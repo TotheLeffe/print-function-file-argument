@@ -1,5 +1,5 @@
 import React from 'react';
-import {AbsoluteFill} from 'remotion';
+import {AbsoluteFill, Img, staticFile} from 'remotion';
 import {COLORS} from '../theme';
 
 // Fond premium : dégradé très doux + halos discrets bleu/vert, style fintech.
@@ -41,7 +41,7 @@ export const Background: React.FC<{plain?: boolean}> = ({plain}) => {
   );
 };
 
-// Petit rappel de marque en haut à gauche des scènes 1 à 3.
+// Petit rappel de marque en haut à gauche des scènes 1 à 3 (logo officiel).
 export const BrandTag: React.FC = () => {
   return (
     <div
@@ -49,27 +49,12 @@ export const BrandTag: React.FC = () => {
         position: 'absolute',
         top: 52,
         left: 70,
-        display: 'flex',
-        alignItems: 'center',
-        gap: 14,
-        opacity: 0.92,
       }}
     >
-      <svg width={34} height={34} viewBox="0 0 96 96">
-        <rect width="96" height="96" rx="26" fill={COLORS.green} />
-        <path d="M28 30 H70 L48 50 H34 Z" fill={COLORS.white} />
-        <path d="M68 66 H26 L48 46 H62 Z" fill={COLORS.white} />
-      </svg>
-      <span
-        style={{
-          fontWeight: 700,
-          fontSize: 28,
-          color: COLORS.navy,
-          letterSpacing: -0.5,
-        }}
-      >
-        Cambiste
-      </span>
+      <Img
+        src={staticFile('brand/cambiste-logo.png')}
+        style={{height: 42, width: 'auto', mixBlendMode: 'multiply'}}
+      />
     </div>
   );
 };

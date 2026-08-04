@@ -1,49 +1,34 @@
 import React from 'react';
-import {COLORS, FONT} from '../theme';
+import {Img, staticFile} from 'remotion';
 
-// Pictogramme : carré arrondi vert avec le monogramme blanc stylisé
-// (deux barres opposées formant un « Z » d'échange, clin d'œil au change de devises).
+// Assets officiels extraits de l'animation de marque fournie
+// (public/brand/cambiste-reveal.mp4). Le blend "multiply" rend le fond
+// blanc des crops invisible sur nos fonds clairs.
+
 export const CambisteMark: React.FC<{size?: number}> = ({size = 96}) => {
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 96 96"
-      style={{display: 'block'}}
-    >
-      <rect x="0" y="0" width="96" height="96" rx="26" fill={COLORS.green} />
-      <path d="M28 30 H70 L48 50 H34 Z" fill={COLORS.white} />
-      <path d="M68 66 H26 L48 46 H62 Z" fill={COLORS.white} />
-    </svg>
+    <Img
+      src={staticFile('brand/cambiste-mark.png')}
+      style={{
+        width: size,
+        height: 'auto',
+        display: 'block',
+        mixBlendMode: 'multiply',
+      }}
+    />
   );
 };
 
-export const CambisteLogo: React.FC<{
-  height?: number;
-  color?: string;
-}> = ({height = 72, color = '#0B0B0F'}) => {
-  const markSize = height * 0.92;
+export const CambisteLogo: React.FC<{height?: number}> = ({height = 72}) => {
   return (
-    <div
+    <Img
+      src={staticFile('brand/cambiste-logo.png')}
       style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: height * 0.28,
+        height,
+        width: 'auto',
+        display: 'block',
+        mixBlendMode: 'multiply',
       }}
-    >
-      <span
-        style={{
-          fontFamily: FONT,
-          fontWeight: 800,
-          fontSize: height,
-          letterSpacing: -height * 0.03,
-          color,
-          lineHeight: 1,
-        }}
-      >
-        Cambiste
-      </span>
-      <CambisteMark size={markSize} />
-    </div>
+    />
   );
 };
