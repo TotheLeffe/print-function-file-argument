@@ -1,0 +1,19 @@
+import React from 'react';
+import {Composition} from 'remotion';
+import './fonts';
+import {CambisteAd} from './CambisteAd';
+
+export const Root: React.FC = () => {
+  return (
+    <>
+      <Composition
+        id="CambisteLinkedIn"
+        component={CambisteAd}
+        durationInFrames={900}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+    </>
+  );
+};
