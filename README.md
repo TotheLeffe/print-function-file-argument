@@ -6,7 +6,11 @@ bleu/blanc, accent vert repris du logo Cambiste.
 
 - **`CambisteLinkedIn`** — spot français 30 s pour LinkedIn (4 scènes).
 - **`CambisteGlobal`** — spot international anglais 40 s, façon film de marque
-  (5 scènes, transitions croisées, scènes sombres « réseau mondial »).
+  (5 scènes, transitions croisées, scènes sombres « réseau mondial »),
+  finale sur fond blanc (pas de carton noir).
+- **`CambisteShort`** — spot anglais 15 s, clair et rythmé (cuts francs) :
+  blocage à la frontière → connexion Cambiste → 4 usages éclair →
+  révélation du logo + « Book a demo ».
 
 ## CambisteLinkedIn — découpage (30 s)
 

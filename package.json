@@ -7,7 +7,8 @@
     "dev": "remotion studio",
     "render": "remotion render CambisteLinkedIn out/cambiste-linkedin-30s.mp4",
     "render:global": "remotion render CambisteGlobal out/cambiste-global-40s.mp4",
-    "still": "remotion still CambisteLinkedIn"
+    "still": "remotion still CambisteLinkedIn",
+    "render:short": "remotion render CambisteShort out/cambiste-15s.mp4"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.505",

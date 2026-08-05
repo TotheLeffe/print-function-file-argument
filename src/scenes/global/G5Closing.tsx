@@ -3,7 +3,6 @@ import {
   AbsoluteFill,
   Img,
   OffthreadVideo,
-  interpolate,
   staticFile,
   useCurrentFrame,
   useVideoConfig,
@@ -17,12 +16,6 @@ const REVEAL_FRAMES = 120;
 export const G5Closing: React.FC = () => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
-
-  const toBlack = interpolate(frame, [148, 170], [0, 1], {
-    extrapolateLeft: 'clamp',
-    extrapolateRight: 'clamp',
-  });
-  const endCard = easeUp(frame, fps, 172, 26);
 
   return (
     <AbsoluteFill style={{backgroundColor: COLORS.white}}>
@@ -69,52 +62,6 @@ export const G5Closing: React.FC = () => {
         </h1>
       </div>
 
-      {/* Fondu au noir puis carton final */}
-      <AbsoluteFill
-        style={{
-          backgroundColor: '#000',
-          opacity: toBlack,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: 30,
-            ...endCard,
-          }}
-        >
-          <div style={{display: 'flex', alignItems: 'center', gap: 26}}>
-            <span
-              style={{
-                fontWeight: 800,
-                fontSize: 84,
-                letterSpacing: -2,
-                color: COLORS.white,
-              }}
-            >
-              Cambiste
-            </span>
-            <Img
-              src={staticFile('brand/cambiste-mark-alpha.png')}
-              style={{width: 84, height: 'auto'}}
-            />
-          </div>
-          <div
-            style={{
-              fontWeight: 500,
-              fontSize: 32,
-              letterSpacing: -0.4,
-              color: 'rgba(255, 255, 255, 0.72)',
-            }}
-          >
-            Connecting Africa to Global Finance.
-          </div>
-        </div>
-      </AbsoluteFill>
     </AbsoluteFill>
   );
 };
