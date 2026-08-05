@@ -15,6 +15,13 @@ export const COLORS = {
   white: '#FFFFFF',
   bg: '#F7FAFD',
   border: '#E3EAF3',
+  // Palette « cinématique » des scènes sombres (spot international).
+  navyDeep: '#071830',
+  navyScene: '#0A2540',
+  glowBlue: '#4D8DFF',
+  glowGreen: '#2EE58F',
+  textOnDark: 'rgba(255, 255, 255, 0.92)',
+  mutedOnDark: 'rgba(255, 255, 255, 0.55)',
 };
 
 export const FONT = `'Inter', 'Helvetica Neue', Arial, sans-serif`;

@@ -8,7 +8,8 @@ export const Caption: React.FC<{
   delay?: number;
   bottom?: number;
   accent?: boolean;
-}> = ({text, delay = 0, bottom = 92, accent}) => {
+  light?: boolean;
+}> = ({text, delay = 0, bottom = 92, accent, light}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   const anim = easeUp(frame, fps, delay, 28);
@@ -33,7 +34,11 @@ export const Caption: React.FC<{
           lineHeight: 1.35,
           fontWeight: 600,
           letterSpacing: -0.6,
-          color: accent ? COLORS.blue : COLORS.navy,
+          color: light
+            ? COLORS.textOnDark
+            : accent
+              ? COLORS.blue
+              : COLORS.navy,
         }}
       >
         {text}

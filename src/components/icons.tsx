@@ -91,6 +91,49 @@ export const WarningIcon: React.FC<IconProps> = ({
   </svg>
 );
 
+export const LockIcon: React.FC<IconProps> = ({
+  size = 28,
+  color = COLORS.slate,
+}) => (
+  <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
+    <rect x="5" y="12" width="18" height="12" rx="3" stroke={color} strokeWidth="2.6" />
+    <path d="M9 12V9a5 5 0 0 1 10 0v3" stroke={color} strokeWidth="2.6" strokeLinecap="round" />
+    <circle cx="14" cy="18" r="1.8" fill={color} />
+  </svg>
+);
+
+export const GraduationIcon: React.FC<IconProps> = ({
+  size = 48,
+  color = COLORS.white,
+}) => (
+  <svg width={size} height={size} viewBox="0 0 48 48" fill="none">
+    <path d="M4 19 24 9l20 10-20 10L4 19Z" stroke={color} strokeWidth="3.2" strokeLinejoin="round" />
+    <path d="M13 24v9c0 2.8 5 5 11 5s11-2.2 11-5v-9" stroke={color} strokeWidth="3.2" strokeLinecap="round" />
+    <path d="M44 19v10" stroke={color} strokeWidth="3.2" strokeLinecap="round" />
+  </svg>
+);
+
+export const LaptopIcon: React.FC<IconProps> = ({
+  size = 48,
+  color = COLORS.white,
+}) => (
+  <svg width={size} height={size} viewBox="0 0 48 48" fill="none">
+    <rect x="9" y="10" width="30" height="20" rx="3" stroke={color} strokeWidth="3.2" />
+    <path d="M5 36h38l-3-6H8l-3 6Z" stroke={color} strokeWidth="3.2" strokeLinejoin="round" />
+  </svg>
+);
+
+export const InvoiceIcon: React.FC<IconProps> = ({
+  size = 48,
+  color = COLORS.white,
+}) => (
+  <svg width={size} height={size} viewBox="0 0 48 48" fill="none">
+    <path d="M12 6h18l8 8v28H12V6Z" stroke={color} strokeWidth="3.2" strokeLinejoin="round" />
+    <path d="M30 6v8h8" stroke={color} strokeWidth="3.2" strokeLinejoin="round" />
+    <path d="M18 24h12M18 31h12" stroke={color} strokeWidth="3" strokeLinecap="round" />
+  </svg>
+);
+
 // Avatar minimaliste façon illustration flat : tête + épaules, sourire animable.
 export const Avatar: React.FC<{
   size?: number;
