@@ -1,0 +1,30 @@
+{
+  "name": "villa-bahari-montage",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Montage video Remotion presentant Villa Bahari Resort (Kinshasa, RDC)",
+  "scripts": {
+    "dev": "remotion studio",
+    "studio": "remotion studio",
+    "render": "remotion render VillaBahariLinkedIn out/villa-bahari-linkedin.mp4",
+    "render:radisson": "remotion render VillaBahariRadisson out/villa-bahari-radisson.mp4",
+    "render:square": "remotion render VillaBahariCarre out/villa-bahari-carre.mp4",
+    "render:all": "npm run render && npm run render:radisson && npm run render:square",
+    "upgrade": "remotion upgrade",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.513",
+    "@remotion/fonts": "4.0.513",
+    "@remotion/media-utils": "4.0.513",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "remotion": "4.0.513"
+  },
+  "devDependencies": {
+    "@fontsource/cormorant-garamond": "^5.1.0",
+    "@fontsource/inter": "^5.1.0",
+    "@types/react": "19.0.0",
+    "typescript": "5.5.4"
+  }
+}
