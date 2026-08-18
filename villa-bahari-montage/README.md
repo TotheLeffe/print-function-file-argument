@@ -37,6 +37,10 @@ npm run render:square     # out/villa-bahari-carre.mp4
 npm run render:all
 ```
 
+Chaque fichier pèse environ 25 Mo (12 Mo en carré). Le rush d'origine étant en
+848×480, descendre le CRF sous 23 (`remotion.config.ts`) alourdit le fichier
+sans gain visible.
+
 Le rendu a besoin d'un Chrome ; Remotion en télécharge un au premier lancement.
 Si une version est déjà installée sur la machine, on peut la réutiliser :
 
