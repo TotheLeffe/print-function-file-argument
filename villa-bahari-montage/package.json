@@ -9,7 +9,12 @@
     "render": "remotion render VillaBahariLinkedIn out/villa-bahari-linkedin.mp4",
     "render:radisson": "remotion render VillaBahariRadisson out/villa-bahari-radisson.mp4",
     "render:square": "remotion render VillaBahariCarre out/villa-bahari-carre.mp4",
-    "render:all": "npm run render && npm run render:radisson && npm run render:square",
+    "render:en": "remotion render VillaBahariLinkedInEN out/villa-bahari-linkedin-en.mp4",
+    "render:en:radisson": "remotion render VillaBahariRadissonEN out/villa-bahari-radisson-en.mp4",
+    "render:en:square": "remotion render VillaBahariSquareEN out/villa-bahari-square-en.mp4",
+    "render:fr:all": "npm run render && npm run render:radisson && npm run render:square",
+    "render:en:all": "npm run render:en && npm run render:en:radisson && npm run render:en:square",
+    "render:all": "npm run render:fr:all && npm run render:en:all",
     "upgrade": "remotion upgrade",
     "typecheck": "tsc --noEmit"
   },

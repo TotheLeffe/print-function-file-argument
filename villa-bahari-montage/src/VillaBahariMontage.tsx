@@ -7,7 +7,7 @@ import {LowerThird} from './components/LowerThird';
 import {OutroCard} from './components/OutroCard';
 import {StatPanel} from './components/StatPanel';
 import {TitleCard} from './components/TitleCard';
-import {FOOTAGE_END, OUTRO_FROM, TOTAL_FRAMES, type MontageScript} from './script';
+import {FOOTAGE_END, OUTRO_FROM, TOTAL_FRAMES, type MontageScript} from './timeline';
 import {COLORS} from './theme';
 
 /**
