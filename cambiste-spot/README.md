@@ -1,9 +1,14 @@
-# Spot commercial Cambiste — 15 s
+# Spot commercial Cambiste — 24,5 s
 
-Film publicitaire de 15 secondes au format carré (1080×1080, 30 fps), destiné à
-LinkedIn. Sujet : le produit Cambiste et la conformité intégrée.
+Film publicitaire de 24,5 secondes au format carré (1080×1080, 30 fps), destiné
+à LinkedIn. Sujet : le produit Cambiste et la conformité intégrée.
 
-**Livrable :** `cambiste-spot-15s.mp4`
+**Livrable :** `cambiste-spot-24s.mp4`
+
+Le film vise la **compréhension**, pas la notoriété. La cible est un dirigeant
+d'opérateur Mobile Money qui ne connaît pas Cambiste : il doit lire, comprendre
+un schéma, et relier une proposition B2B nouvelle. Quinze secondes suffisent à
+faire passer un nom, pas à faire comprendre une offre.
 
 ---
 
@@ -11,8 +16,9 @@ LinkedIn. Sujet : le produit Cambiste et la conformité intégrée.
 
 Le langage visuel reprend celui du teaser **Wero × BoursoBank** fourni en
 référence : aplats de couleur pleine, typographie cinétique en très gros corps,
-coupes franches à un rythme d'environ deux secondes, aucune photographie, et une
-explosion de confettis sur la signature finale.
+aucune photographie, et une explosion de confettis sur la signature finale. Le
+rythme, en revanche, est plus lent que celui de Wero : le teaser Wero n'a rien à
+expliquer, il annonce.
 
 Ce langage est appliqué à la **charte Cambiste**, pas à celle de Wero. Le jaune
 Wero est remplacé par le vert Cambiste, qui joue le même rôle de couleur
@@ -43,26 +49,46 @@ Le spot est muet, comme la référence — les vidéos LinkedIn démarrent sans 
 
 ## Découpage
 
-| # | Temps | Fond | Contenu |
-|---|-------|------|---------|
-| 1 | 0,0 – 2,0 s | Blanc | « OPÉRATEURS MOBILE MONEY » · **LE TRANSFERT INTERNATIONAL / S'ARRÊTE ICI.** biffé de vert |
-| 2 | 2,0 – 3,6 s | Vert plein | La barre de biffure envahit le cadre · **PLUS MAINTENANT.** · pluie d'étoiles |
-| 3 | 3,6 – 5,8 s | Blanc | Le logo s'écrit · *Limitless Africa* · la promesse produit |
-| 4 | 5,8 – 8,6 s | Vert clair | **UN SEUL POINT D'INTÉGRATION.** · Wallet → Cambiste → Bénéficiaire en cartes blanches, un jeton bleu traverse le rail et fait tressaillir la carte Cambiste au passage |
-| 5 | 8,6 – 12,0 s | Blanc | **LA CONFORMITÉ N'EST PAS UNE OPTION.** · KYC, screening sanctions, Travel Rule, monitoring — une étoile salue chaque contrôle validé |
-| 6 | 12,0 – 13,3 s | Vert profond | **CÔTÉ CLIENT,** en blanc, **UN SIMPLE TRANSFERT.** en or |
-| 7 | 13,3 – 15,0 s | Blanc | Confettis à étoiles dorées · logo Cambiste · *Limitless Africa* |
+| # | Temps | Durée | Fond | Contenu |
+|---|-------|-------|------|---------|
+| 1 | 0,0 – 3,5 s | 3,5 s | Blanc | « OPÉRATEURS MOBILE MONEY » · **LE TRANSFERT INTERNATIONAL / S'ARRÊTE ICI.** biffé de vert |
+| 2 | 3,5 – 5,5 s | 2,0 s | Vert plein | La barre de biffure envahit le cadre · **PLUS MAINTENANT.** · pluie d'étoiles |
+| 3 | 5,5 – 8,5 s | 3,0 s | Blanc | Le logo s'écrit · *Limitless Africa* · la promesse produit |
+| 4 | 8,5 – 13,0 s | 4,5 s | Vert clair | **UN SEUL POINT D'INTÉGRATION.** · Wallet → Cambiste → Bénéficiaire en cartes blanches, un jeton bleu traverse le rail en 1,5 s et fait tressaillir la carte Cambiste au passage |
+| 5 | 13,0 – 19,5 s | 6,5 s | Blanc | **LA CONFORMITÉ N'EST PAS UNE OPTION.** tient seul 2,5 s, puis les contrôles s'égrènent sur 4 s : KYC, screening sanctions, Travel Rule, monitoring — une étoile salue chacun |
+| 6 | 19,5 – 22,0 s | 2,5 s | Vert profond | **CÔTÉ CLIENT,** en blanc, **UN SIMPLE TRANSFERT.** en or |
+| 7 | 22,0 – 24,5 s | 2,5 s | Blanc | Confettis à étoiles dorées · logo Cambiste · *Limitless Africa* |
 
-La scène 5 occupe 3,4 secondes, soit près d'un quart du film : c'est le bloc le
-plus long, la conformité étant l'argument à retenir.
+Les deux écrans qui **expliquent** — le flux et la conformité — pèsent 11 s à eux
+seuls, soit 45 % du film. Ce sont eux qui demandent au spectateur de lire, de
+comprendre un schéma et de relier le tout ; ils ne peuvent pas se couper au
+rythme d'une accroche.
+
+### La règle de montage
+
+**Aucun écran ne se coupe avant que sa composition soit complète depuis environ
+une seconde.** C'est cette seconde d'assimilation, et non le temps d'animation,
+qui dimensionne chaque plan :
+
+| Plan | Durée | Composition complète à | Tenue avant la coupe |
+|---|---|---|---|
+| 1 accroche | 3,50 s | 2,33 s | **1,13 s** |
+| 2 renversement | 2,00 s | 1,27 s | 0,70 s |
+| 3 marque | 3,00 s | 1,97 s | **1,00 s** |
+| 4 le flux | 4,50 s | 3,20 s | **1,27 s** |
+| 5 conformité | 6,50 s | 5,47 s | **1,00 s** |
+| 6 côté client | 2,50 s | 1,33 s | **1,13 s** |
+| 7 signature | 2,50 s | 1,47 s | **1,00 s** |
+
+Seul le plan 2 tient 0,70 s : il ne porte que deux mots en très gros corps, dont
+la lecture prend moins d'une demi-seconde.
 
 Les **volets** entre les plans durent 0,50 à 0,67 seconde (15 à 20 images) et
 suivent une courbe d'accompagnement quadratique, dont le pic de vitesse ne
 dépasse pas 1,5 fois la vitesse moyenne : le mouvement est ample plutôt que sec.
 Un volet se déroule au début du plan qu'il révèle, pendant que le plan sortant
-reste figé — allonger les volets ne rallonge donc pas le film, qui reste à
-15,00 s exactement. Chaque plan retarde en contrepartie son entrée pour ne pas
-naître sous le volet.
+reste figé — allonger les volets ne rallonge donc pas le film. Chaque plan
+retarde en contrepartie son entrée pour ne pas naître sous le volet.
 
 ## Charte respectée
 
@@ -110,7 +136,7 @@ scène 4 sans retoucher le reste du montage.
 
 ```bash
 pip install playwright imageio-ffmpeg pillow numpy potracer
-python3 render.py                 # 450 images -> cambiste-spot-15s.mp4
+python3 render.py                 # 735 images -> cambiste-spot-24s.mp4
 python3 preview.py                # planche de contrôle de 16 images clés
 python3 tools/extract_brand.py <video-de-marque.mov>   # régénère brand/brand.js
 ```
@@ -126,13 +152,26 @@ de le subir, et deux rendus successifs sont identiques au pixel près — ce qu'
 enregistrement d'écran ne garantit pas.
 
 ```
-spot.html              l'animation (canvas 2D, 7 scènes, 450 images)
+spot.html              l'animation (canvas 2D, 7 scènes, 735 images)
 brand/brand.js         actifs de marque générés — ne pas éditer à la main
 fonts/                 Outfit (variable, sous-ensembles latin et latin-ext)
 render.py              capture image par image puis encodage H.264
 preview.py             planche de contrôle
 tools/extract_brand.py extraction des actifs depuis la vidéo de marque
 ```
+
+## Version courte
+
+`cambiste-spot-15s.mp4` est le **montage court de 15 s**, conservé pour un usage
+de notoriété pure — faire passer le nom et la couleur, sans chercher à faire
+comprendre l'offre. Il correspond à l'état du dépôt au commit `7cb9669` et se
+régénère depuis ce commit.
+
+Une version courte **dérivée du présent montage** n'est pas un simple
+accéléré : les durées ci-dessus sont calées sur des temps de lecture, et les
+diviser par 1,6 les ferait toutes repasser sous le seuil. Un montage court
+demande de retirer des écrans, pas de les raccourcir — le plan 4 ou le plan 5
+tiendraient seuls le format.
 
 ## Variantes
 

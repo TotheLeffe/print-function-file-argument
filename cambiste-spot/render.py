@@ -83,7 +83,7 @@ def encode(frames_dir: Path, out: Path, ff: str) -> None:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out", default=str(HERE / "cambiste-spot-15s.mp4"))
+    ap.add_argument("--out", default=str(HERE / "cambiste-spot-24s.mp4"))
     ap.add_argument("--frames", default=str(HERE / "build" / "frames"))
     ap.add_argument("--scale", type=float, default=1.0)
     args = ap.parse_args()
