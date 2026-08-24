@@ -18,19 +18,26 @@ Ce langage est appliqué à la **charte Cambiste**, pas à celle de Wero. Le jau
 Wero est remplacé par le vert Cambiste, qui joue le même rôle de couleur
 signature : c'est lui qui porte les temps forts et qui coche la conformité.
 
+**Les fonds ne prennent que trois valeurs, toutes blanc ou vert** — blanc, vert
+plein, et une teinte claire du vert de marque — et s'alternent d'un plan à
+l'autre. Aucun aplat noir. Les couleurs vives restent dans la typographie et les
+détails : l'encre pour les titres, le bleu de marque pour le jeton qui traverse
+le rail, et **l'or pour les étoiles**, réservé aux deux temps de fête (les
+étincelles de « Plus maintenant » et les confettis de la signature).
+
 Le spot est muet, comme la référence — les vidéos LinkedIn démarrent sans son.
 
 ## Découpage
 
 | # | Temps | Fond | Contenu |
 |---|-------|------|---------|
-| 1 | 0,0 – 2,0 s | Encre | « OPÉRATEURS MOBILE MONEY » · **L'INTERNATIONAL / S'ARRÊTE ICI.** biffé de vert |
-| 2 | 2,0 – 3,6 s | Vert | La barre de biffure envahit le cadre · **PLUS MAINTENANT.** |
+| 1 | 0,0 – 2,0 s | Blanc | « OPÉRATEURS MOBILE MONEY » · **LE TRANSFERT INTERNATIONAL / S'ARRÊTE ICI.** biffé de vert |
+| 2 | 2,0 – 3,6 s | Vert plein | La barre de biffure envahit le cadre · **PLUS MAINTENANT.** · étincelles dorées |
 | 3 | 3,6 – 5,8 s | Blanc | Le logo s'écrit · *Limitless Africa* · la promesse produit |
-| 4 | 5,8 – 8,6 s | Encre | **UN SEUL POINT D'INTÉGRATION.** · Wallet → Cambiste → Bénéficiaire, un jeton traverse le rail |
+| 4 | 5,8 – 8,6 s | Vert clair | **UN SEUL POINT D'INTÉGRATION.** · Wallet → Cambiste → Bénéficiaire en cartes blanches, un jeton bleu traverse le rail |
 | 5 | 8,6 – 12,0 s | Blanc | **LA CONFORMITÉ N'EST PAS UNE OPTION.** · KYC, screening sanctions, Travel Rule, monitoring |
-| 6 | 12,0 – 13,3 s | Vert | **CÔTÉ CLIENT, UN SIMPLE TRANSFERT.** |
-| 7 | 13,3 – 15,0 s | Encre | Confettis · logo Cambiste · *Limitless Africa* |
+| 6 | 12,0 – 13,3 s | Vert plein | **CÔTÉ CLIENT, UN SIMPLE TRANSFERT.** |
+| 7 | 13,3 – 15,0 s | Blanc | Confettis à étoiles dorées · logo Cambiste · *Limitless Africa* |
 
 La scène 5 occupe 3,4 secondes, soit près d'un quart du film : c'est le bloc le
 plus long, la conformité étant l'argument à retenir.
@@ -45,7 +52,9 @@ officielle**, jamais approximés :
 | Logotype « Cambiste » | masque alpha 494×85 natif | extrait image par image, teinté noir ou blanc |
 | Marque (carré + glyphe) | vectoriel | superellipse ajustée + tracé du glyphe |
 | Vert Cambiste | `#0AB064` | relevé sur l'aplat |
+| Vert clair (4e plan) | `#E8F6EF` | teinte du vert de marque |
 | Bleu d'accent | `#2361EA` | relevé sur le bouton « Book a demo » |
+| Or (étoiles) | `#F0B323` / `#FFD166` | accent de fête, hors charte de base |
 | Signature | *Limitless Africa* | reprise telle quelle |
 
 Deux points méritent d'être signalés :

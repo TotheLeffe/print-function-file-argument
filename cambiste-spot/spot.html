@@ -36,11 +36,19 @@ const ctx = cv.getContext('2d');
 
 /* ---- Palette de marque ------------------------------------------------- */
 const C = {
-  green : BRAND.color.green,   // #0AB064 — vert Cambiste, couleur signature
+  green : BRAND.color.green,   // #0AB064 — vert Cambiste, aplat signature
+  mint  : '#E8F6EF',           // teinte claire du vert de marque — 3e fond
+  leaf  : '#7FD9AE',           // teinte moyenne — confettis
+  gold  : '#F0B323',           // or — reserve aux etoiles
+  gold2 : '#FFD166',           // or clair — nuance des etoiles
   blue  : BRAND.color.blue,    // #2361EA — bleu d'accent
-  ink   : BRAND.color.ink,     // #0B0B0C
+  ink   : BRAND.color.ink,     // #0B0B0C — encre, pour les textes uniquement
   white : BRAND.color.white
 };
+
+/* Les fonds ne prennent que trois valeurs, toutes blanc ou vert :
+   blanc -> vert plein -> blanc -> vert pale -> blanc -> vert plein -> blanc.
+   Les couleurs vives restent dans la typographie et les details. */
 
 const M = 92, MAXW = W - M * 2;
 
@@ -224,13 +232,50 @@ function drawLockup(cx, cy, h, dark, pw = 1, pm = 1, tagP = 0){
 /* ---- Confettis (deterministes) ----------------------------------------- */
 const CONF = (() => {
   const r = mul32(20260824), out = [];
-  const cols = [C.green, C.blue, C.white, C.green, C.white, C.blue, C.green];
+  const cols = [C.green, C.blue, C.leaf, C.green, C.blue, C.leaf, C.green];
   for (let i = 0; i < 108; i++)
-    out.push({ a: r()*Math.PI*2, v: 380 + r()*900, s: 11 + r()*26,
-               col: cols[(r()*cols.length)|0], sh: (r()*4)|0,
-               rot: r()*Math.PI*2, rv: (r()-.5)*9, dl: r()*.16 });
+    {
+      const sh = (r()*4)|0;                       // 1 et 2 = formes etoilees
+      const star = sh === 1 || sh === 2;
+      out.push({ a: r()*Math.PI*2, v: 380 + r()*900, s: 11 + r()*26,
+                 col: star ? (r() > .5 ? C.gold : C.gold2)
+                           : cols[(r()*cols.length)|0],
+                 sh, rot: r()*Math.PI*2, rv: (r()-.5)*9, dl: r()*.16 });
+    }
   return out;
 })();
+
+/* Etincelles de la scene 2 : cantonnees aux bandes haute et basse pour ne
+   jamais empieter sur le titre. */
+const SPARK = (() => {
+  const r = mul32(77021), out = [];
+  for (let i = 0; i < 16; i++)
+    out.push({ x: 105 + r() * (W - 210),
+               y: (i % 2 ? 700 + r() * 190 : 175 + r() * 160),
+               s: 15 + r() * 25,
+               col: r() > .45 ? C.gold : C.gold2,
+               d: 10 + r() * 22,
+               rot: r() * Math.PI });
+  return out;
+})();
+
+function sparkles(l){
+  for (const p of SPARK){
+    const q = seg(l, p.d, p.d + 10);
+    if (q <= 0) continue;
+    const e = Math.max(back(eo(q)), 0);
+    const tw = 1 + .10 * Math.sin((l - p.d) * .22);   // scintillement leger
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rot);
+    ctx.scale(e * tw, e * tw);
+    ctx.globalAlpha = clamp(q * 2) * .85;
+    ctx.fillStyle = p.col;
+    sparkle(p.s);
+    ctx.fill();
+    ctx.restore();
+  }
+}
 
 function sparkle(s){
   const k = s * .30;
@@ -278,24 +323,27 @@ function burst(cx, cy, tau){
    ========================================================================= */
 
 /* --- 1. Le mur (0.00 – 2.00 s) ------------------------------------------ */
-const S1A = "L'INTERNATIONAL", S1B = "S'ARRÊTE ICI.";
-const s1Size = () => fit(S1A, MAXW, 118, { w: 800, tr: -3 });
+const S1A = 'LE TRANSFERT', S1B = 'INTERNATIONAL', S1C = "S'ARRÊTE ICI.";
+const S1Y = 510, S1LH = 1.14;                 // pied de la 1re ligne, interligne
+const s1Size = () => fit(S1B, MAXW, 130, { w: 800, tr: -3 });
+const s1Base = () => S1Y + 2 * s1Size() * S1LH;   // pied de la ligne biffee
 
 function s1(f, opt = {}){
-  bg(C.ink);
-  text('OPÉRATEURS MOBILE MONEY', M, 322, 27,
-       { w: 700, tr: 5.5, color: C.green }, 'left', eo(seg(f, 3, 14)));
-  const s = s1Size();
-  reveal(S1A, M, 476,             s, { w: 800, tr: -3, color: C.white }, seg(f, 8, 26));
-  reveal(S1B, M, 476 + s * 1.22,  s, { w: 800, tr: -3, color: C.white }, seg(f, 20, 40));
+  bg(C.white);
+  text('OPÉRATEURS MOBILE MONEY', M, 340, 27,
+       { w: 700, tr: 5.5, color: C.green }, 'left', eo(seg(f, 2, 13)));
+  const s = s1Size(), o = { w: 800, tr: -3, color: C.ink };
+  reveal(S1A, M, S1Y,                s, o, seg(f,  4, 20));
+  reveal(S1B, M, S1Y + s * S1LH,     s, o, seg(f, 12, 28));
+  reveal(S1C, M, S1Y + 2 * s * S1LH, s, o, seg(f, 20, 36));
 
   if (!opt.noBar){
-    const p = eo(seg(f, 44, 56));
+    const p = eo(seg(f, 42, 54));
     if (p > 0){
-      const bw = widthOf(S1B, s, { w: 800, tr: -3 });
+      const bw = widthOf(S1C, s, { w: 800, tr: -3 });
       ctx.fillStyle = C.green;
       // centree sur la hauteur de capitale (~0.35 x corps au-dessus du pied)
-      ctx.fillRect(M - 10, 476 + s * 1.22 - s * .42, (bw + 20) * p, s * .14);
+      ctx.fillRect(M - 10, s1Base() - s * .42, (bw + 20) * p, s * .14);
     }
   }
 }
@@ -303,8 +351,8 @@ function s1(f, opt = {}){
 /* --- 2. Le renversement (2.00 – 3.60 s) --------------------------------- */
 function barShape(p){                    // la barre verte engloutit le cadre
   const s  = s1Size();
-  const bw = widthOf(S1B, s, { w: 800, tr: -3 }) + 20;
-  const h0 = s * .14, y0 = 476 + s * 1.22 - s * .42, cy = y0 + h0/2;
+  const bw = widthOf(S1C, s, { w: 800, tr: -3 }) + 20;
+  const h0 = s * .14, y0 = s1Base() - s * .42, cy = y0 + h0/2;
   const w = bw + (W + 20 - bw) * p, h = h0 + (H + 20 - h0) * p;
   ctx.beginPath();
   ctx.rect((M - 10) * (1 - p), cy - h/2 - (cy - H/2) * p, w, h);
@@ -322,9 +370,10 @@ function s2(f){
     text(str, 0, 0, size, { w: 800, tr: -3, color: C.ink }, 'center', clamp(p*2));
     ctx.restore();
   };
+  sparkles(l);
   const big = fit('MAINTENANT.', MAXW, 136, { w: 800, tr: -4 });
-  pop('PLUS', 452, fit('PLUS', MAXW, 122, { w: 800, tr: -2 }), seg(l, 12, 26));
-  pop('MAINTENANT.', 452 + big * 1.02, big, seg(l, 20, 36));
+  pop('PLUS', 452, fit('PLUS', MAXW, 122, { w: 800, tr: -2 }), seg(l, 9, 23));
+  pop('MAINTENANT.', 452 + big * 1.02, big, seg(l, 16, 31));
 }
 
 /* --- 3. La marque (3.60 – 5.80 s) --------------------------------------- */
@@ -353,16 +402,16 @@ const NODES = [
 const NY = 556, NW = 262, NH = 158;
 
 function s4(f){
-  bg(C.ink);
+  bg(C.mint);                               // teinte claire du vert de marque
   const l = f - 174;
   const s = fit("UN SEUL POINT D'INTÉGRATION.", MAXW, 66, { w: 800, tr: -1.5 });
   reveal("UN SEUL POINT D'INTÉGRATION.", M, 330, s,
-         { w: 800, tr: -1.5, color: C.white }, seg(l, 4, 22));
+         { w: 800, tr: -1.5, color: C.ink }, seg(l, 4, 22));
 
   const pr = eo(seg(l, 14, 34));
   if (pr > 0){
     ctx.save();
-    ctx.strokeStyle = alpha(C.white, .22);
+    ctx.strokeStyle = alpha(C.green, .45);
     ctx.lineWidth = 4; ctx.setLineDash([2, 16]); ctx.lineCap = 'round';
     ctx.beginPath();
     ctx.moveTo(NODES[0].cx, NY);
@@ -371,11 +420,12 @@ function s4(f){
     ctx.restore();
   }
 
+  // le jeton passe DERRIERE les cartes : il traverse reellement Cambiste
   const pt = seg(l, 34, 74);
   if (pt > 0 && pt < 1){
     const x = NODES[0].cx + (NODES[2].cx - NODES[0].cx) * eio(pt);
     ctx.save();
-    ctx.globalAlpha = .3; ctx.fillStyle = C.blue;
+    ctx.globalAlpha = .22; ctx.fillStyle = C.blue;
     ctx.beginPath(); ctx.arc(x, NY, 46, 0, 7); ctx.fill();
     ctx.globalAlpha = 1;
     ctx.beginPath(); ctx.arc(x, NY, 21, 0, 7); ctx.fill();
@@ -390,21 +440,21 @@ function s4(f){
     ctx.translate(n.cx, NY);
     ctx.scale(.82 + .18*e, .82 + .18*e);
     ctx.globalAlpha = clamp(p * 2);
-    if (mid){ ctx.fillStyle = C.green; roundRect(-NW/2, -NH/2, NW, NH, 32); ctx.fill(); }
-    else    { roundRect(-NW/2, -NH/2, NW, NH, 32);
-              ctx.fillStyle = C.ink; ctx.fill();          // masque le jeton
-              ctx.strokeStyle = alpha(C.white, .34); ctx.lineWidth = 3; ctx.stroke(); }
-    text(n.t, 0, -4, mid ? 30 : 28, { w: 800, tr: .4,
-         color: mid ? C.white : C.white }, 'center');
-    text(n.s, 0, 38, 21, { w: 500,
-         color: mid ? alpha(C.white, .8) : alpha(C.white, .5) }, 'center');
+    roundRect(-NW/2, -NH/2, NW, NH, 32);
+    // fond plein dans les deux cas : les cartes masquent le jeton au passage
+    ctx.fillStyle = mid ? C.green : C.white;
+    ctx.fill();
+    text(n.t, 0, -4, mid ? 30 : 28,
+         { w: 800, tr: .4, color: mid ? C.white : C.ink }, 'center');
+    text(n.s, 0, 38, 21,
+         { w: 500, color: mid ? alpha(C.white, .85) : alpha(C.ink, .5) }, 'center');
     ctx.restore();
   });
 
   text('Aucune infrastructure blockchain à opérer.', M, 812, 32,
-       { w: 600, color: alpha(C.white, .86) }, 'left', eo(seg(l, 56, 74)));
+       { w: 600, color: alpha(C.ink, .82) }, 'left', eo(seg(l, 56, 74)));
   text("Aucun compte de préfinancement à l'étranger.", M, 862, 32,
-       { w: 600, color: alpha(C.white, .86) }, 'left', eo(seg(l, 62, 80)));
+       { w: 600, color: alpha(C.ink, .82) }, 'left', eo(seg(l, 62, 80)));
 }
 
 /* --- 5. La conformite (8.60 – 12.00 s) ---------------------------------- */
@@ -420,7 +470,7 @@ function s5(f){
 
   CHECKS.forEach((label, i) => {
     const a0 = 30 + i * 16;                 // la 4e coche doit finir avant f359
-    const pr = seg(l, a0, a0 + 13), pc = seg(l, a0 + 8, a0 + 20);
+    const pr = seg(l, a0, a0 + 13), pc = seg(l, a0 + 4, a0 + 15);
     if (pr <= 0) return;
     const y = 522 + i * 102;
     ctx.save();
@@ -468,15 +518,15 @@ function s6(f){
 
 /* --- 7. Signature (13.30 – 15.00 s) ------------------------------------- */
 function s7(f){
-  bg(C.ink);
+  bg(C.white);
   const l = f - 399;
-  const g = ctx.createRadialGradient(W/2, 500, 40, W/2, 500, 640);
-  g.addColorStop(0, alpha(C.green, .26));
+  const g = ctx.createRadialGradient(W/2, 500, 40, W/2, 500, 660);
+  g.addColorStop(0, alpha(C.green, .16));
   g.addColorStop(1, alpha(C.green, 0));
   ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
 
   burst(W/2, 492, (l - 4) / FPS);
-  drawLockup(W/2, 512, 92, true, seg(l, 8, 26), seg(l, 16, 32), seg(l, 26, 42));
+  drawLockup(W/2, 512, 92, false, seg(l, 8, 26), seg(l, 16, 32), seg(l, 26, 42));
 }
 
 /* =========================================================================
@@ -506,7 +556,7 @@ function renderFrame(f){
   f = Math.max(0, Math.min(TOTAL - 1, f | 0));
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.globalAlpha = 1;
-  bg(C.ink);
+  bg(C.white);
   const i = sceneAt(f), sc = SC[i];
   if (i > 0 && f < sc.start + sc.tin){
     const prev = SC[i - 1];
