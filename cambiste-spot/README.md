@@ -48,6 +48,14 @@ Le spot est muet, comme la référence — les vidéos LinkedIn démarrent sans 
 La scène 5 occupe 3,4 secondes, soit près d'un quart du film : c'est le bloc le
 plus long, la conformité étant l'argument à retenir.
 
+Les **volets** entre les plans durent 0,50 à 0,67 seconde (15 à 20 images) et
+suivent une courbe d'accompagnement quadratique, dont le pic de vitesse ne
+dépasse pas 1,5 fois la vitesse moyenne : le mouvement est ample plutôt que sec.
+Un volet se déroule au début du plan qu'il révèle, pendant que le plan sortant
+reste figé — allonger les volets ne rallonge donc pas le film, qui reste à
+15,00 s exactement. Chaque plan retarde en contrepartie son entrée pour ne pas
+naître sous le volet.
+
 ## Charte respectée
 
 Tous les actifs et toutes les couleurs sont **extraits de la vidéo de marque
