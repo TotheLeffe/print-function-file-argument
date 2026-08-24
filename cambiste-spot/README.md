@@ -18,11 +18,19 @@ Ce langage est appliqué à la **charte Cambiste**, pas à celle de Wero. Le jau
 Wero est remplacé par le vert Cambiste, qui joue le même rôle de couleur
 signature : c'est lui qui porte les temps forts et qui coche la conformité.
 
-**Les fonds ne prennent que trois valeurs, toutes blanc ou vert** — blanc, vert
-plein, et une teinte claire du vert de marque — et s'alternent d'un plan à
-l'autre. Aucun aplat noir. Les couleurs vives restent dans la typographie et les
+**Les fonds ne prennent que quatre valeurs, toutes blanc ou vert** — blanc, vert
+plein, une teinte claire et un vert profond, ces deux derniers obtenus en
+éclaircissant et en assombrissant le vert de marque à teinte constante — et
+s'alternent d'un plan à l'autre. Aucun aplat noir. Les couleurs vives restent dans la typographie et les
 détails : l'encre pour les titres, le bleu de marque pour le jeton qui traverse
 le rail, et **l'or pour les étoiles**.
+
+La ligne de chute, « un simple transfert », est **en or**. Elle impose son fond :
+sur le vert vif, aucun or ne dépasse 2,6:1 de contraste et la ligne devient
+illisible. Le plan 6 passe donc sur le vert de marque assombri à teinte
+constante (`#055731`), qui porte l'or à **4,6:1** — largement au-dessus du seuil
+de 3:1 exigé pour un grand corps. Le plan y gagne au passage une identité propre
+face au vert vif du plan 2.
 
 Les étoiles dorées sont le **motif récurrent** du film : elles ponctuent chaque
 temps fort, les sept plans sans exception — la biffure qui annule la frontière,
@@ -42,7 +50,7 @@ Le spot est muet, comme la référence — les vidéos LinkedIn démarrent sans 
 | 3 | 3,6 – 5,8 s | Blanc | Le logo s'écrit · *Limitless Africa* · la promesse produit |
 | 4 | 5,8 – 8,6 s | Vert clair | **UN SEUL POINT D'INTÉGRATION.** · Wallet → Cambiste → Bénéficiaire en cartes blanches, un jeton bleu traverse le rail et fait tressaillir la carte Cambiste au passage |
 | 5 | 8,6 – 12,0 s | Blanc | **LA CONFORMITÉ N'EST PAS UNE OPTION.** · KYC, screening sanctions, Travel Rule, monitoring — une étoile salue chaque contrôle validé |
-| 6 | 12,0 – 13,3 s | Vert plein | **CÔTÉ CLIENT, UN SIMPLE TRANSFERT.** |
+| 6 | 12,0 – 13,3 s | Vert profond | **CÔTÉ CLIENT,** en blanc, **UN SIMPLE TRANSFERT.** en or |
 | 7 | 13,3 – 15,0 s | Blanc | Confettis à étoiles dorées · logo Cambiste · *Limitless Africa* |
 
 La scène 5 occupe 3,4 secondes, soit près d'un quart du film : c'est le bloc le
@@ -66,7 +74,8 @@ officielle**, jamais approximés :
 | Logotype « Cambiste » | masque alpha 494×85 natif | extrait image par image, teinté noir ou blanc |
 | Marque (carré + glyphe) | vectoriel | superellipse ajustée + tracé du glyphe |
 | Vert Cambiste | `#0AB064` | relevé sur l'aplat |
-| Vert clair (4e plan) | `#E8F6EF` | teinte du vert de marque |
+| Vert clair (plan 4) | `#E8F6EF` | vert de marque éclairci |
+| Vert profond (plan 6) | `#055731` | vert de marque assombri |
 | Bleu d'accent | `#2361EA` | relevé sur le bouton « Book a demo » |
 | Or (étoiles) | `#F0B323` / `#FFD166` | seule couleur hors charte, réservée aux étoiles |
 | Signature | *Limitless Africa* | reprise telle quelle |

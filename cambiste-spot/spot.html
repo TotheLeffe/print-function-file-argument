@@ -38,6 +38,8 @@ const ctx = cv.getContext('2d');
 const C = {
   green : BRAND.color.green,   // #0AB064 — vert Cambiste, aplat signature
   mint  : '#E8F6EF',           // teinte claire du vert de marque — 3e fond
+  forest: '#055731',           // vert de marque assombri a teinte constante :
+                               // seul fond ou l'or est lisible (4,6:1)
   leaf  : '#7FD9AE',           // teinte moyenne — confettis
   gold  : '#F0B323',           // or — reserve aux etoiles
   gold2 : '#FFD166',           // or clair — nuance des etoiles
@@ -318,7 +320,9 @@ const STAR6 = [
   { x: 174, y: 304, s: 26, d: 11, rot: .2, col: G  },
   { x: 902, y: 322, s: 20, d: 14, rot: .8, col: G2 },
   { x: 212, y: 802, s: 23, d: 17, rot: .5, col: G2 },
-  { x: 884, y: 776, s: 18, d: 15, rot: .3, col: G  }
+  { x: 884, y: 776, s: 18, d: 15, rot: .3, col: G  },
+  { x: 540, y: 902, s: 22, d: 19, rot: .6, col: G2 },
+  { x: 692, y: 236, s: 17, d: 13, rot: .2, col: G  }
 ];
 
 function sparkle(s){
@@ -564,14 +568,16 @@ function s5(f){
 
 /* --- 6. Cote client (12.00 – 13.30 s) ----------------------------------- */
 function s6(f){
-  bg(C.green);
+  // Fond vert profond : sur le vert vif, l'or plafonne a 2,6:1 et ne se lit
+  // pas. Assombri a teinte constante, il porte l'or a 4,6:1.
+  bg(C.forest);
   const l = f - 360;
   stars(STAR6, l);
   const s = fit('UN SIMPLE TRANSFERT.', MAXW, 112, { w: 800, tr: -3 });
   reveal('CÔTÉ CLIENT,', W/2, 468, fit('CÔTÉ CLIENT,', MAXW, 76, { w: 600, tr: -1 }),
-         { w: 600, tr: -1, color: alpha(C.ink, .72) }, seg(l, 9, 24), 'center');
+         { w: 600, tr: -1, color: alpha(C.white, .72) }, seg(l, 9, 24), 'center');
   reveal('UN SIMPLE TRANSFERT.', W/2, 468 + s * 1.02, s,
-         { w: 800, tr: -3, color: C.ink }, seg(l, 15, 33), 'center');
+         { w: 800, tr: -3, color: C.gold }, seg(l, 15, 33), 'center');
 }
 
 /* --- 7. Signature (13.30 – 15.00 s) ------------------------------------- */
