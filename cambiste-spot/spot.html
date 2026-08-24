@@ -245,40 +245,83 @@ const CONF = (() => {
   return out;
 })();
 
-/* Etincelles de la scene 2 : cantonnees aux bandes haute et basse pour ne
-   jamais empieter sur le titre. */
-const SPARK = (() => {
-  const r = mul32(77021), out = [];
-  for (let i = 0; i < 16; i++)
-    out.push({ x: 105 + r() * (W - 210),
-               y: (i % 2 ? 700 + r() * 190 : 175 + r() * 160),
-               s: 15 + r() * 25,
-               col: r() > .45 ? C.gold : C.gold2,
-               d: 10 + r() * 22,
-               rot: r() * Math.PI });
-  return out;
-})();
-
-function sparkles(l){
-  for (const p of SPARK){
-    const q = seg(l, p.d, p.d + 10);
+/* =========================================================================
+   ETOILES DOREES — motif recurrent du film.
+   Elles ponctuent chaque temps fort : la biffure, le renversement, la pose
+   du logo, le passage du jeton, chaque controle valide, et la signature.
+   Chaque etoile eclot avec un rebond puis scintille doucement.
+   ========================================================================= */
+function stars(list, l){
+  for (const p of list){
+    const q = seg(l, p.d, p.d + 9);
     if (q <= 0) continue;
     const e = Math.max(back(eo(q)), 0);
-    const tw = 1 + .10 * Math.sin((l - p.d) * .22);   // scintillement leger
+    const tw = 1 + .12 * Math.sin((l - p.d) * .25);   // scintillement
     ctx.save();
     ctx.translate(p.x, p.y);
-    ctx.rotate(p.rot);
+    ctx.rotate(p.rot || 0);
     ctx.scale(e * tw, e * tw);
-    ctx.globalAlpha = clamp(q * 2) * .85;
-    ctx.fillStyle = p.col;
+    ctx.globalAlpha = clamp(q * 2.5) * (p.a || 1);
+    ctx.fillStyle = p.col || C.gold;
     sparkle(p.s);
     ctx.fill();
     ctx.restore();
   }
 }
 
+const G = C.gold, G2 = '#FFD166';
+
+/* Scene 1 — elles giclent de la biffure, dans les blancs a droite du texte. */
+const STAR1 = [
+  { x: 884, y: 232, s: 26, d: 43, rot: .3, col: G  },
+  { x: 978, y: 322, s: 17, d: 46, rot: .9, col: G2 },
+  { x: 692, y: 268, s: 20, d: 45, rot: .5, col: G2 },
+  { x: 214, y: 892, s: 23, d: 44, rot: .4, col: G  },
+  { x: 376, y: 940, s: 16, d: 47, rot: .1, col: G2 },
+  { x: 908, y: 878, s: 25, d: 46, rot: .7, col: G  }
+];
+
+/* Scene 2 — pluie d'etoiles, cantonnee aux bandes haute et basse. */
+const SPARK = (() => {
+  const r = mul32(77021), out = [];
+  for (let i = 0; i < 18; i++)
+    out.push({ x: 105 + r() * (W - 210),
+               y: (i % 2 ? 700 + r() * 190 : 168 + r() * 165),
+               s: 18 + r() * 24,
+               col: r() > .45 ? G : G2,
+               d: 8 + r() * 24,
+               rot: r() * Math.PI });
+  return out;
+})();
+
+/* Scene 3 — elles saluent la pose de la marque. */
+const STAR3 = [
+  { x: 206, y: 302, s: 25, d: 28, rot: .2,  col: G  },
+  { x: 884, y: 276, s: 19, d: 31, rot: .8,  col: G2 },
+  { x: 128, y: 648, s: 17, d: 35, rot: .5,  col: G2 },
+  { x: 958, y: 606, s: 23, d: 33, rot: .1,  col: G  },
+  { x: 548, y: 214, s: 15, d: 37, rot: .6,  col: G  }
+];
+
+/* Scene 4 — deux en fond, plus une qui eclate quand le jeton
+   traverse la carte Cambiste (image 54 de la scene). */
+const STAR4 = [
+  { x: 948, y: 252, s: 22, d: 20, rot: .3, col: G2 },
+  { x: 126, y: 716, s: 18, d: 42, rot: .7, col: G  },
+  { x: 986, y: 736, s: 20, d: 46, rot: .2, col: G2 },
+  { x: 540, y: 424, s: 28, d: 52, rot: .4, col: G  }
+];
+
+/* Scene 6 — le plan le plus court, quatre etoiles suffisent. */
+const STAR6 = [
+  { x: 174, y: 304, s: 26, d: 5,  rot: .2, col: G  },
+  { x: 902, y: 322, s: 20, d: 8,  rot: .8, col: G2 },
+  { x: 212, y: 802, s: 23, d: 11, rot: .5, col: G2 },
+  { x: 884, y: 776, s: 18, d: 9,  rot: .3, col: G  }
+];
+
 function sparkle(s){
-  const k = s * .30;
+  const k = s * .23;
   ctx.beginPath();
   ctx.moveTo(0, -s);
   ctx.quadraticCurveTo(k, -k, s, 0);
@@ -345,6 +388,7 @@ function s1(f, opt = {}){
       // centree sur la hauteur de capitale (~0.35 x corps au-dessus du pied)
       ctx.fillRect(M - 10, s1Base() - s * .42, (bw + 20) * p, s * .14);
     }
+    stars(STAR1, f);
   }
 }
 
@@ -370,7 +414,7 @@ function s2(f){
     text(str, 0, 0, size, { w: 800, tr: -3, color: C.ink }, 'center', clamp(p*2));
     ctx.restore();
   };
-  sparkles(l);
+  stars(SPARK, l);
   const big = fit('MAINTENANT.', MAXW, 136, { w: 800, tr: -4 });
   pop('PLUS', 452, fit('PLUS', MAXW, 122, { w: 800, tr: -2 }), seg(l, 9, 23));
   pop('MAINTENANT.', 452 + big * 1.02, big, seg(l, 16, 31));
@@ -380,6 +424,7 @@ function s2(f){
 function s3(f){
   bg(C.white);
   const l = f - 108;
+  stars(STAR3, l);
   drawLockup(W/2, 470, 94, false, seg(l, 8, 34), seg(l, 26, 46), seg(l, 40, 56));
 
   const pr = eo(seg(l, 44, 58));
@@ -404,6 +449,7 @@ const NY = 556, NW = 262, NH = 158;
 function s4(f){
   bg(C.mint);                               // teinte claire du vert de marque
   const l = f - 174;
+  stars(STAR4, l);
   const s = fit("UN SEUL POINT D'INTÉGRATION.", MAXW, 66, { w: 800, tr: -1.5 });
   reveal("UN SEUL POINT D'INTÉGRATION.", M, 330, s,
          { w: 800, tr: -1.5, color: C.ink }, seg(l, 4, 22));
@@ -436,9 +482,11 @@ function s4(f){
     const p = seg(l, 16 + i*8, 34 + i*8);
     if (p <= 0) return;
     const e = back(eo(p)), mid = i === 1;
+    // la carte Cambiste tressaille quand le jeton la traverse (image 54)
+    const bump = mid ? 1 + .07 * Math.exp(-Math.pow((l - 54) / 5, 2)) : 1;
     ctx.save();
     ctx.translate(n.cx, NY);
-    ctx.scale(.82 + .18*e, .82 + .18*e);
+    ctx.scale((.82 + .18*e) * bump, (.82 + .18*e) * bump);
     ctx.globalAlpha = clamp(p * 2);
     roundRect(-NW/2, -NH/2, NW, NH, 32);
     // fond plein dans les deux cas : les cartes masquent le jeton au passage
@@ -460,6 +508,13 @@ function s4(f){
 /* --- 5. La conformite (8.60 – 12.00 s) ---------------------------------- */
 const CHECKS = ['KYC & origine des fonds', 'Screening sanctions',
                 'Travel Rule', 'Monitoring & réconciliation'];
+
+/* Une etoile doree salue chaque controle valide, calee sur sa coche. */
+const STAR5 = CHECKS.map((_, i) => ({
+  x: i % 2 ? 878 : 812, y: 500 + i * 102,
+  s: i % 2 ? 16 : 21, col: i % 2 ? G2 : G,
+  d: 30 + i * 16 + 7, rot: .2 + i * .6
+}));
 
 function s5(f){
   bg(C.white);
@@ -501,6 +556,7 @@ function s5(f){
     ctx.restore();
   });
 
+  stars(STAR5, l);
   text('Contrôles intégrés au flux. À chaque transaction.', M, 946, 29,
        { w: 500, color: alpha(C.ink, .6) }, 'left', eo(seg(l, 82, 96)));
 }
@@ -509,6 +565,7 @@ function s5(f){
 function s6(f){
   bg(C.green);
   const l = f - 360;
+  stars(STAR6, l);
   const s = fit('UN SIMPLE TRANSFERT.', MAXW, 112, { w: 800, tr: -3 });
   reveal('CÔTÉ CLIENT,', W/2, 468, fit('CÔTÉ CLIENT,', MAXW, 76, { w: 600, tr: -1 }),
          { w: 600, tr: -1, color: alpha(C.ink, .72) }, seg(l, 3, 18), 'center');

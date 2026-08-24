@@ -22,8 +22,14 @@ signature : c'est lui qui porte les temps forts et qui coche la conformité.
 plein, et une teinte claire du vert de marque — et s'alternent d'un plan à
 l'autre. Aucun aplat noir. Les couleurs vives restent dans la typographie et les
 détails : l'encre pour les titres, le bleu de marque pour le jeton qui traverse
-le rail, et **l'or pour les étoiles**, réservé aux deux temps de fête (les
-étincelles de « Plus maintenant » et les confettis de la signature).
+le rail, et **l'or pour les étoiles**.
+
+Les étoiles dorées sont le **motif récurrent** du film : elles ponctuent chaque
+temps fort, les sept plans sans exception — la biffure qui annule la frontière,
+le renversement, la pose du logo, le passage du jeton dans la carte Cambiste,
+chaque contrôle de conformité validé, et l'explosion finale. Elles éclosent avec
+un rebond puis scintillent. L'or ne sert qu'à elles : c'est la seule couleur du
+film qui ne vienne pas de la charte, et elle est réservée à la fête.
 
 Le spot est muet, comme la référence — les vidéos LinkedIn démarrent sans son.
 
@@ -32,10 +38,10 @@ Le spot est muet, comme la référence — les vidéos LinkedIn démarrent sans 
 | # | Temps | Fond | Contenu |
 |---|-------|------|---------|
 | 1 | 0,0 – 2,0 s | Blanc | « OPÉRATEURS MOBILE MONEY » · **LE TRANSFERT INTERNATIONAL / S'ARRÊTE ICI.** biffé de vert |
-| 2 | 2,0 – 3,6 s | Vert plein | La barre de biffure envahit le cadre · **PLUS MAINTENANT.** · étincelles dorées |
+| 2 | 2,0 – 3,6 s | Vert plein | La barre de biffure envahit le cadre · **PLUS MAINTENANT.** · pluie d'étoiles |
 | 3 | 3,6 – 5,8 s | Blanc | Le logo s'écrit · *Limitless Africa* · la promesse produit |
-| 4 | 5,8 – 8,6 s | Vert clair | **UN SEUL POINT D'INTÉGRATION.** · Wallet → Cambiste → Bénéficiaire en cartes blanches, un jeton bleu traverse le rail |
-| 5 | 8,6 – 12,0 s | Blanc | **LA CONFORMITÉ N'EST PAS UNE OPTION.** · KYC, screening sanctions, Travel Rule, monitoring |
+| 4 | 5,8 – 8,6 s | Vert clair | **UN SEUL POINT D'INTÉGRATION.** · Wallet → Cambiste → Bénéficiaire en cartes blanches, un jeton bleu traverse le rail et fait tressaillir la carte Cambiste au passage |
+| 5 | 8,6 – 12,0 s | Blanc | **LA CONFORMITÉ N'EST PAS UNE OPTION.** · KYC, screening sanctions, Travel Rule, monitoring — une étoile salue chaque contrôle validé |
 | 6 | 12,0 – 13,3 s | Vert plein | **CÔTÉ CLIENT, UN SIMPLE TRANSFERT.** |
 | 7 | 13,3 – 15,0 s | Blanc | Confettis à étoiles dorées · logo Cambiste · *Limitless Africa* |
 
@@ -54,7 +60,7 @@ officielle**, jamais approximés :
 | Vert Cambiste | `#0AB064` | relevé sur l'aplat |
 | Vert clair (4e plan) | `#E8F6EF` | teinte du vert de marque |
 | Bleu d'accent | `#2361EA` | relevé sur le bouton « Book a demo » |
-| Or (étoiles) | `#F0B323` / `#FFD166` | accent de fête, hors charte de base |
+| Or (étoiles) | `#F0B323` / `#FFD166` | seule couleur hors charte, réservée aux étoiles |
 | Signature | *Limitless Africa* | reprise telle quelle |
 
 Deux points méritent d'être signalés :
