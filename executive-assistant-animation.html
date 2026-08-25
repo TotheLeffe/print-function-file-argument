@@ -1,0 +1,1072 @@
+<title>Le Temps du Dirigeant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap">
+
+<style>
+/* ------------------------------------------------------------------
+   Tokens — light is the base set, dark redefines the same names.
+------------------------------------------------------------------ */
+:root {
+  --bg:        #E4E6E1;
+  --bg-2:      #EDEEEA;
+  --surface:   #F7F8F5;
+  --surface-2: #FFFFFF;
+  --line:      #C7CBC4;
+  --line-soft: #D9DBD4;
+  --text:      #141C24;
+  --text-2:    #39444E;
+  --muted:     #6B7681;
+  --accent:    #94590F;
+  --accent-2:  #B87A2A;
+  --accent-bg: #F0DFC0;
+  --accent-ink:#2B1A05;
+  --sage:      #3A6B60;
+  --clay:      #8E4B3C;
+  --slate:     #3B5470;
+  --shadow-sm: 0 1px 0 rgba(20,28,36,.05);
+  --shadow-lg: 0 24px 48px -34px rgba(20,28,36,.55);
+  --ring:      rgba(148,89,15,.45);
+}
+
+:root:not([data-theme="light"]) {
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg:        #0E141A;
+    --bg-2:      #121A21;
+    --surface:   #18222B;
+    --surface-2: #1E2A34;
+    --line:      #2B3742;
+    --line-soft: #202B35;
+    --text:      #E8EBEA;
+    --text-2:    #B4BEC6;
+    --muted:     #7C8A95;
+    --accent:    #E0A552;
+    --accent-2:  #C98B3C;
+    --accent-bg: #3A2C18;
+    --accent-ink:#120C04;
+    --sage:      #79B0A3;
+    --clay:      #CF8A76;
+    --slate:     #7C9AC0;
+    --shadow-sm: 0 1px 0 rgba(0,0,0,.3);
+    --shadow-lg: 0 28px 56px -34px rgba(0,0,0,.85);
+    --ring:      rgba(224,165,82,.5);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg:        #0E141A;
+  --bg-2:      #121A21;
+  --surface:   #18222B;
+  --surface-2: #1E2A34;
+  --line:      #2B3742;
+  --line-soft: #202B35;
+  --text:      #E8EBEA;
+  --text-2:    #B4BEC6;
+  --muted:     #7C8A95;
+  --accent:    #E0A552;
+  --accent-2:  #C98B3C;
+  --accent-bg: #3A2C18;
+  --accent-ink:#120C04;
+  --sage:      #79B0A3;
+  --clay:      #CF8A76;
+  --slate:     #7C9AC0;
+  --shadow-sm: 0 1px 0 rgba(0,0,0,.3);
+  --shadow-lg: 0 28px 56px -34px rgba(0,0,0,.85);
+  --ring:      rgba(224,165,82,.5);
+}
+
+/* ------------------------------------------------------------------
+   Base
+------------------------------------------------------------------ */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Newsreader", Georgia, "Times New Roman", serif;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+.film {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(0.9rem, 2.2vw, 1.6rem);
+  gap: clamp(0.8rem, 1.6vw, 1.2rem);
+  overflow: hidden;
+}
+
+/* Ambient: the hairline ruling of a day planner, held still. */
+.film::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      var(--line-soft) 0 1px,
+      transparent 1px 74px
+    );
+  opacity: .5;
+  pointer-events: none;
+}
+
+.frame {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2.4vw, 2rem);
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+  box-shadow: var(--shadow-lg);
+  padding: clamp(1.1rem, 3vw, 2.4rem);
+}
+
+/* ------------------------------------------------------------------
+   Top bar
+------------------------------------------------------------------ */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.7rem, 2vw, 1.4rem);
+  padding-bottom: clamp(0.7rem, 1.6vw, 1.1rem);
+  border-bottom: 1px solid var(--line-soft);
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: clamp(0.6rem, 1.1vw, 0.72rem);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.mark {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-variation-settings: "wdth" 118, "wght" 800;
+  font-size: clamp(0.78rem, 1.5vw, 0.95rem);
+  letter-spacing: .04em;
+  color: var(--text);
+  border: 1.5px solid var(--text);
+  padding: .18em .45em .12em;
+  line-height: 1;
+}
+
+.topbar__meta { flex: 1; }
+
+.topbar__clock { font-variant-numeric: tabular-nums; }
+
+.topbar__status {
+  display: inline-flex;
+  align-items: center;
+  gap: .5em;
+  color: var(--sage);
+}
+
+.topbar__status::before {
+  content: "";
+  width: .45em;
+  height: .45em;
+  border-radius: 50%;
+  background: var(--sage);
+}
+
+/* ------------------------------------------------------------------
+   Stage
+------------------------------------------------------------------ */
+.stage {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(232px, 296px) 1fr;
+  gap: clamp(1.5rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+/* --- the day column: one persistent object, transformed act by act --- */
+.day {
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: .34rem;
+  transition: opacity .8s ease;
+}
+
+.film[data-act="5"] .day,
+.film[data-act="6"] .day { opacity: .16; }
+
+.day__body { position: relative; }
+
+.day__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .64rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-bottom: .55rem;
+  margin-bottom: .35rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.day__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+}
+
+.slot {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3.4rem 3px 1fr;
+  align-items: center;
+  gap: .55rem;
+  padding: .5rem .65rem;
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity .55s ease,
+    transform .55s cubic-bezier(.2,.75,.3,1),
+    background .5s ease,
+    border-color .5s ease,
+    box-shadow .5s ease;
+  transition-delay: calc(var(--i) * 55ms);
+}
+
+.film:not([data-act="0"]) .slot { opacity: 1; transform: none; }
+
+.slot__time {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .68rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  letter-spacing: .02em;
+}
+
+.slot__bar {
+  align-self: stretch;
+  background: var(--line);
+  opacity: 0;
+  transition: opacity .5s ease, background .5s ease;
+  transition-delay: calc(var(--i) * 70ms);
+}
+
+.slot__label {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-variation-settings: "wdth" 96, "wght" 520;
+  font-size: .74rem;
+  line-height: 1.25;
+  color: var(--text-2);
+}
+
+.slot__tag {
+  grid-column: 3;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .56rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--sage);
+  opacity: 0;
+  transform: translateY(-3px);
+  transition: opacity .45s ease, transform .45s ease;
+  transition-delay: calc(220ms + var(--i) * 130ms);
+}
+
+/* act 3 — lanes become legible */
+.film[data-act="3"] .slot__bar,
+.film[data-act="4"] .slot__bar { opacity: 1; }
+
+.slot[data-lane="dir"]     .slot__bar { background: var(--slate); }
+.slot[data-lane="finance"] .slot__bar { background: var(--sage); }
+.slot[data-lane="clients"] .slot__bar { background: var(--clay); }
+
+/* act 4 — every decision carries an owner and a date */
+.film[data-act="4"] .slot__tag { opacity: 1; transform: none; }
+
+/* the protected block */
+.slot--protect .slot__label { color: var(--text); }
+
+.film[data-act="2"] .slot--protect,
+.film[data-act="3"] .slot--protect,
+.film[data-act="4"] .slot--protect {
+  background: var(--accent-bg);
+  border-color: var(--accent);
+}
+
+.film[data-act="2"] .slot--protect {
+  transform: scale(1.045);
+  box-shadow: 0 0 0 1px var(--accent), var(--shadow-lg);
+}
+
+.film[data-act="2"] .slot--protect .slot__label,
+.film[data-act="3"] .slot--protect .slot__label,
+.film[data-act="4"] .slot--protect .slot__label { color: var(--accent); }
+
+.slot--protect .slot__label { padding-right: 4.9rem; }
+
+.slot__lock {
+  position: absolute;
+  right: .55rem;
+  top: .55rem;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .54rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0;
+  transition: opacity .4s ease .35s;
+}
+
+.film[data-act="2"] .slot__lock { opacity: 1; }
+
+/* --- overlays: things that arrive at the day and are handled --- */
+.layer {
+  position: absolute;
+  inset: 14% -26% 0 34%;
+  display: none;
+  pointer-events: none;
+}
+
+.film[data-act="1"] .layer--intake  { display: block; }
+.film[data-act="2"] .layer--defend  { display: block; }
+.film[data-act="3"] .layer--align   { display: block; }
+
+.chip {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .34rem .6rem;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-lg);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .56rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.chip::before {
+  content: "";
+  width: .38rem;
+  height: .38rem;
+  background: var(--clay);
+  flex: none;
+}
+
+.chip--done { color: var(--sage); }
+.chip--done::before { background: var(--sage); }
+
+.layer--intake .chip { animation: intake 3.4s cubic-bezier(.25,.8,.3,1) forwards; }
+.layer--intake .chip:nth-child(1) { top: 4%;  animation-delay: .25s; }
+.layer--intake .chip:nth-child(2) { top: 38%; animation-delay: 1.05s; }
+.layer--intake .chip:nth-child(3) { top: 70%; animation-delay: 1.85s; }
+
+@keyframes intake {
+  0%   { opacity: 0; right: -34%; }
+  22%  { opacity: 1; right: 4%; }
+  62%  { opacity: 1; right: 4%; }
+  100% { opacity: 0; right: 4%; translate: 0 -14px; }
+}
+
+.layer--defend .chip { animation: deflect 2.6s cubic-bezier(.3,1.5,.5,1) forwards; }
+.layer--defend .chip:nth-child(1) { top: 14%; animation-delay: .5s; }
+.layer--defend .chip:nth-child(2) { top: 34%; animation-delay: 1.5s; }
+
+@keyframes deflect {
+  0%   { opacity: 0; right: -46%; }
+  34%  { opacity: 1; right: 6%; }
+  46%  { opacity: 1; right: 0%; }
+  100% { opacity: 0; right: -46%; }
+}
+
+.layer--align { inset: auto 0 -2.5rem 0; }
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem 1.1rem;
+  opacity: 0;
+  animation: rise .7s ease .45s forwards;
+}
+
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .54rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.legend span::before {
+  content: "";
+  width: .9rem;
+  height: 2px;
+  background: currentColor;
+}
+
+.legend .l-dir::before     { background: var(--slate); }
+.legend .l-finance::before { background: var(--sage); }
+.legend .l-clients::before { background: var(--clay); }
+
+@keyframes rise {
+  from { opacity: 0; translate: 0 8px; }
+  to   { opacity: 1; translate: 0 0; }
+}
+
+/* ------------------------------------------------------------------
+   Scene deck
+------------------------------------------------------------------ */
+.deck {
+  position: relative;
+  min-height: clamp(330px, 50svh, 520px);
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(.7rem, 1.6vw, 1.2rem);
+  opacity: 0;
+  visibility: hidden;
+  translate: 0 14px;
+  transition: opacity .6s ease, translate .6s cubic-bezier(.2,.75,.3,1), visibility 0s linear .6s;
+}
+
+.scene.is-on {
+  opacity: 1;
+  visibility: visible;
+  translate: 0 0;
+  transition-delay: 0s, 0s, 0s;
+}
+
+.eyebrow {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: clamp(.6rem, 1.1vw, .7rem);
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0;
+}
+
+.verb {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-variation-settings: "wdth" 122, "wght" 800;
+  font-size: clamp(2.6rem, 8.4vw, 6.4rem);
+  line-height: .88;
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+  margin: 0;
+  color: var(--text);
+  text-wrap: balance;
+}
+
+.headline {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-variation-settings: "wdth" 104, "wght" 700;
+  font-size: clamp(1.6rem, 4.3vw, 3.15rem);
+  line-height: 1.02;
+  letter-spacing: -.018em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.headline em {
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+  font-size: 1.04em;
+}
+
+.lede {
+  font-size: clamp(1.05rem, 2.1vw, 1.5rem);
+  line-height: 1.42;
+  font-weight: 300;
+  color: var(--text-2);
+  max-width: 30ch;
+  margin: 0;
+}
+
+.note {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: clamp(.6rem, 1.15vw, .72rem);
+  line-height: 1.7;
+  letter-spacing: .04em;
+  color: var(--muted);
+  max-width: 46ch;
+  margin: 0;
+  padding-top: .8rem;
+  border-top: 1px solid var(--line);
+}
+
+.manifesto {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(.8rem, 1.8vw, 1.35rem);
+  max-width: 42ch;
+}
+
+.manifesto p {
+  margin: 0;
+  font-size: clamp(1.12rem, 2.7vw, 2.05rem);
+  line-height: 1.34;
+  font-weight: 300;
+  color: var(--text-2);
+  opacity: 0;
+  translate: 0 10px;
+}
+
+.scene.is-on .manifesto p { animation: rise .85s cubic-bezier(.2,.75,.3,1) forwards; }
+.scene.is-on .manifesto p:nth-child(1) { animation-delay: .15s; }
+.scene.is-on .manifesto p:nth-child(2) { animation-delay: .95s; }
+.scene.is-on .manifesto p:nth-child(3) { animation-delay: 1.95s; }
+
+.manifesto strong {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-variation-settings: "wdth" 100, "wght" 700;
+  font-size: .92em;
+  color: var(--text);
+}
+
+/* contact scene */
+.contact {
+  max-width: 64ch;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(.6rem, 1.4vw, 1rem);
+}
+
+.contact__q {
+  font-size: clamp(1rem, 2vw, 1.32rem);
+  line-height: 1.42;
+  font-weight: 300;
+  color: var(--text-2);
+  margin: 0;
+  max-width: 32ch;
+}
+
+.contact__cta {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-variation-settings: "wdth" 120, "wght" 800;
+  font-size: clamp(1.85rem, 5vw, 3.6rem);
+  line-height: .96;
+  letter-spacing: -.022em;
+  text-transform: uppercase;
+  margin: 0;
+  color: var(--accent);
+  text-wrap: balance;
+}
+
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .55rem 1.4rem;
+  padding: .95rem 1.1rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  margin-top: .3rem;
+}
+
+.card__name {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-variation-settings: "wdth" 104, "wght" 640;
+  font-size: 1rem;
+  letter-spacing: -.005em;
+}
+
+.card__line {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .64rem;
+  letter-spacing: .08em;
+  color: var(--muted);
+}
+
+.card a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ring);
+  padding-bottom: 1px;
+}
+
+.card a:hover { border-bottom-color: var(--accent); }
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem .55rem;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .58rem;
+  letter-spacing: .09em;
+  color: var(--muted);
+  margin: .2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  border: 1px solid var(--line);
+  padding: .28rem .5rem;
+}
+
+/* ------------------------------------------------------------------
+   Controls
+------------------------------------------------------------------ */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: clamp(.6rem, 1.6vw, 1.1rem);
+  padding-top: clamp(.7rem, 1.6vw, 1.1rem);
+  border-top: 1px solid var(--line-soft);
+}
+
+.btn {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: .5em;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .62rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: .5rem .8rem;
+  cursor: pointer;
+  transition: border-color .25s ease, color .25s ease;
+}
+
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.chapters {
+  flex: 1;
+  display: flex;
+  gap: .4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chapters li {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+}
+
+.chapter {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  color: var(--muted);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .53rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  transition: color .3s ease;
+}
+
+.chapter:hover { color: var(--text); }
+.chapter:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.chapter[aria-current="true"] { color: var(--accent); }
+
+.seg {
+  display: block;
+  height: 2px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.seg-fill {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.chapter__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------------
+   Responsive
+------------------------------------------------------------------ */
+@media (max-width: 900px) {
+  .stage {
+    grid-template-columns: 1fr;
+    gap: clamp(1.2rem, 4vw, 2rem);
+    align-content: center;
+  }
+  .day { align-self: auto; }
+  .slot[data-drop] { display: none; }
+  .deck { min-height: clamp(260px, 38svh, 400px); }
+  .layer--intake,
+  .layer--defend { inset: 14% 0 0 46%; }
+
+  /* the agenda is the visual of acts I–IV only; elsewhere it steals the room */
+  .film[data-act="0"] .day,
+  .film[data-act="5"] .day,
+  .film[data-act="6"] .day { display: none; }
+}
+
+@media (max-width: 620px) {
+  .chapter__label { display: none; }
+  .chapters { gap: .3rem; }
+  .topbar__meta { display: none; }
+  .frame { padding: 1rem .9rem 1.1rem; }
+  .seg { height: 3px; }
+  .slot[data-drop2] { display: none; }
+  .day__head { font-size: .58rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    transition-delay: 0ms !important;
+  }
+}
+</style>
+
+<main class="film" id="film" data-act="0">
+  <div class="frame">
+
+    <header class="topbar">
+      <span class="mark">EA</span>
+      <span class="topbar__meta">Executive Assistant &middot; Support au management</span>
+      <span class="topbar__clock" id="clock">07:12</span>
+      <span class="topbar__status">Bruxelles &middot; Ouvert aux opportunités</span>
+    </header>
+
+    <div class="stage">
+
+      <aside class="day" aria-hidden="true">
+       <div class="day__body">
+        <div class="day__head">
+          <span>Journée du dirigeant</span>
+          <span>Mar. 14</span>
+        </div>
+
+        <ul class="day__list">
+          <li class="slot" style="--i:0" data-lane="dir" data-drop2>
+            <span class="slot__time">07:30</span>
+            <span class="slot__bar"></span>
+            <span class="slot__label">Revue de la journée</span>
+            <span class="slot__tag">Brief envoyé &middot; 07:05</span>
+          </li>
+          <li class="slot" style="--i:1" data-lane="dir">
+            <span class="slot__time">08:00</span>
+            <span class="slot__bar"></span>
+            <span class="slot__label">Comité de direction</span>
+            <span class="slot__tag">Dossier prêt &middot; J-1</span>
+          </li>
+          <li class="slot slot--protect" style="--i:2" data-lane="dir">
+            <span class="slot__time">09:30</span>
+            <span class="slot__bar"></span>
+            <span class="slot__label">Temps protégé</span>
+            <span class="slot__tag">Aucune interruption</span>
+            <span class="slot__lock">Verrouillé</span>
+          </li>
+          <li class="slot" style="--i:3" data-lane="finance" data-drop2>
+            <span class="slot__time">11:00</span>
+            <span class="slot__bar"></span>
+            <span class="slot__label">Board pack &middot; relecture</span>
+            <span class="slot__tag">Finance &middot; jeu. 16</span>
+          </li>
+          <li class="slot" style="--i:4" data-lane="clients" data-drop>
+            <span class="slot__time">12:30</span>
+            <span class="slot__bar"></span>
+            <span class="slot__label">Déjeuner client &middot; renouvellement</span>
+            <span class="slot__tag">Note de contexte &middot; envoyée</span>
+          </li>
+          <li class="slot" style="--i:5" data-lane="finance">
+            <span class="slot__time">14:00</span>
+            <span class="slot__bar"></span>
+            <span class="slot__label">Arbitrage budget Q4</span>
+            <span class="slot__tag">Chiffres consolidés</span>
+          </li>
+          <li class="slot" style="--i:6" data-lane="clients" data-drop>
+            <span class="slot__time">15:30</span>
+            <span class="slot__bar"></span>
+            <span class="slot__label">Suivi des actions</span>
+            <span class="slot__tag">6 sur 6 &middot; à jour</span>
+          </li>
+          <li class="slot" style="--i:7" data-lane="dir">
+            <span class="slot__time">17:00</span>
+            <span class="slot__bar"></span>
+            <span class="slot__label">Point de clôture</span>
+            <span class="slot__tag">Décisions consignées</span>
+          </li>
+        </ul>
+
+        <div class="layer layer--intake">
+          <span class="chip">Conseil déplacé au 21</span>
+          <span class="chip">Visa Londres &middot; expire</span>
+          <span class="chip chip--done">Conflit du 14 &middot; résolu</span>
+        </div>
+
+        <div class="layer layer--defend">
+          <span class="chip">Réunion « rapide » &middot; 30 min</span>
+          <span class="chip">Sujet sans décision</span>
+        </div>
+
+        <div class="layer layer--align">
+          <div class="legend">
+            <span class="l-dir">Direction</span>
+            <span class="l-finance">Finance</span>
+            <span class="l-clients">Clients</span>
+          </div>
+        </div>
+       </div>
+      </aside>
+
+      <div class="deck" id="deck">
+
+        <section class="scene" aria-label="Ouverture">
+          <p class="eyebrow">Bruxelles &middot; 07:12</p>
+          <h1 class="headline">Un bon Executive Assistant ne se contente pas de <em>gérer un agenda.</em></h1>
+          <p class="lede">Il ressent une véritable responsabilité envers l'entreprise.</p>
+        </section>
+
+        <section class="scene" aria-label="Anticiper">
+          <p class="eyebrow">Acte I &middot; le réflexe</p>
+          <h2 class="verb">Anticiper</h2>
+          <p class="lede">Voir arriver le problème pendant qu'il n'est encore qu'une question.</p>
+          <p class="note">Le conflit d'agenda du 14 est traité le 11. Le visa est renouvelé avant le déplacement. Le dirigeant n'apprend jamais l'existence de la plupart des incidents&nbsp;: ils sont réglés en amont.</p>
+        </section>
+
+        <section class="scene" aria-label="Protéger">
+          <p class="eyebrow">Acte II &middot; l'arbitrage</p>
+          <h2 class="verb">Protéger</h2>
+          <p class="lede">Le temps du dirigeant est la ressource la plus rare de l'entreprise. Je la défends.</p>
+          <p class="note">90 minutes sanctuarisées chaque matin pour les décisions qui engagent. Tout ce qui peut être traité ailleurs l'est ailleurs&nbsp;— dire non à une réunion, c'est dire oui à une décision.</p>
+        </section>
+
+        <section class="scene" aria-label="Coordonner">
+          <p class="eyebrow">Acte III &middot; la cohérence</p>
+          <h2 class="verb">Coordonner</h2>
+          <p class="lede">Aligner les priorités avant qu'elles ne se percutent.</p>
+          <p class="note">Direction, Finance, Clients&nbsp;: une seule version des priorités, partagée, tenue à jour. Les équipes savent ce qui passe en premier — et pourquoi.</p>
+        </section>
+
+        <section class="scene" aria-label="Veiller">
+          <p class="eyebrow">Acte IV &middot; l'exécution</p>
+          <h2 class="verb">Veiller</h2>
+          <p class="lede">Une décision sans suivi n'est qu'une intention.</p>
+          <p class="note">Chaque décision devient une action, un responsable, une échéance. Rien ne se perd entre la réunion et le résultat.</p>
+        </section>
+
+        <section class="scene" aria-label="Manifeste">
+          <p class="eyebrow">Ma conviction</p>
+          <div class="manifesto">
+            <p>Être Executive Assistant, ce n'est pas simplement <strong>assister.</strong></p>
+            <p>C'est comprendre le business, prendre des initiatives et contribuer concrètement à son bon fonctionnement.</p>
+            <p>C'est cette approche que je souhaite apporter à ma prochaine entreprise.</p>
+          </div>
+        </section>
+
+        <section class="scene" aria-label="Contact">
+          <div class="contact">
+            <p class="eyebrow">Disponible &middot; Bruxelles &amp; environs</p>
+            <p class="contact__q">Vous recherchez un véritable soutien au management, capable d'anticiper, de structurer et de faire avancer vos priorités&nbsp;?</p>
+            <p class="contact__cta">Contactez-moi</p>
+            <div class="card">
+              <span class="card__name">Prénom Nom</span>
+              <span class="card__line"><a href="mailto:prenom.nom@exemple.com">prenom.nom@exemple.com</a></span>
+              <span class="card__line">Français &middot; Néerlandais &middot; Anglais</span>
+            </div>
+            <ul class="tags">
+              <li>#ExecutiveAssistant</li>
+              <li>#ManagementSupport</li>
+              <li>#ExecutiveSupport</li>
+              <li>#Bruxelles</li>
+              <li>#OpenToWork</li>
+            </ul>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <footer class="controls">
+      <button class="btn" id="toggle" type="button" aria-label="Mettre en pause">
+        <span id="toggleLabel">Pause</span>
+      </button>
+      <ul class="chapters" id="chapters"></ul>
+    </footer>
+
+  </div>
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  var CHAPTERS = [
+    { label: "Ouverture",  ms: 6000 },
+    { label: "Anticiper",  ms: 7400 },
+    { label: "Protéger",   ms: 7000 },
+    { label: "Coordonner", ms: 6600 },
+    { label: "Veiller",    ms: 6600 },
+    { label: "Manifeste",  ms: 8200 },
+    { label: "Contact",    ms: 0 }
+  ];
+
+  var film = document.getElementById("film");
+  var deck = document.getElementById("deck");
+  var list = document.getElementById("chapters");
+  var toggle = document.getElementById("toggle");
+  var toggleLabel = document.getElementById("toggleLabel");
+  var clock = document.getElementById("clock");
+
+  var scenes = Array.prototype.slice.call(deck.querySelectorAll(".scene"));
+  var fills = [];
+  var current = -1;
+  var anim = null;
+  var playing = true;
+
+  CHAPTERS.forEach(function (chapter, i) {
+    var li = document.createElement("li");
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "chapter";
+    btn.setAttribute("aria-current", "false");
+
+    var seg = document.createElement("span");
+    seg.className = "seg";
+    var fill = document.createElement("span");
+    fill.className = "seg-fill";
+    seg.appendChild(fill);
+
+    var label = document.createElement("span");
+    label.className = "chapter__label";
+    label.textContent = chapter.label;
+
+    btn.appendChild(seg);
+    btn.appendChild(label);
+    btn.addEventListener("click", function () { go(i, true); });
+
+    li.appendChild(btn);
+    list.appendChild(li);
+    fills.push(fill);
+  });
+
+  var buttons = Array.prototype.slice.call(list.querySelectorAll(".chapter"));
+
+  var CLOCKS = ["07:12", "08:04", "09:30", "11:26", "14:07", "16:41", "18:20"];
+
+  function setPlaying(state) {
+    playing = state;
+    toggleLabel.textContent = state ? "Pause" : (current === CHAPTERS.length - 1 ? "Rejouer" : "Lecture");
+    toggle.setAttribute("aria-label", state ? "Mettre en pause" : "Reprendre la lecture");
+  }
+
+  function go(index, fromClick) {
+    if (anim) {
+      anim.onfinish = null;
+      anim.cancel();
+      anim = null;
+    }
+
+    current = index;
+    film.setAttribute("data-act", String(index));
+    clock.textContent = CLOCKS[index] || CLOCKS[CLOCKS.length - 1];
+
+    scenes.forEach(function (scene, i) {
+      scene.classList.toggle("is-on", i === index);
+    });
+
+    buttons.forEach(function (btn, i) {
+      btn.setAttribute("aria-current", i === index ? "true" : "false");
+    });
+
+    fills.forEach(function (fill, i) {
+      fill.style.transform = i < index ? "scaleX(1)" : "scaleX(0)";
+    });
+
+    if (fromClick) { setPlaying(true); }
+
+    var duration = CHAPTERS[index].ms;
+
+    if (duration <= 0) {
+      fills[index].style.transform = "scaleX(1)";
+      setPlaying(false);
+      return;
+    }
+
+    anim = fills[index].animate(
+      [{ transform: "scaleX(0)" }, { transform: "scaleX(1)" }],
+      { duration: duration, easing: "linear", fill: "forwards" }
+    );
+
+    anim.onfinish = function () { go(index + 1); };
+
+    if (!playing) { anim.pause(); }
+  }
+
+  toggle.addEventListener("click", function () {
+    if (current === CHAPTERS.length - 1 && !playing) {
+      go(0, true);
+      return;
+    }
+    if (playing) {
+      if (anim) { anim.pause(); }
+      setPlaying(false);
+    } else {
+      if (anim) { anim.play(); }
+      setPlaying(true);
+    }
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.target instanceof HTMLElement && event.target.tagName === "BUTTON" && event.key === " ") {
+      return;
+    }
+    if (event.key === " ") {
+      event.preventDefault();
+      toggle.click();
+    } else if (event.key === "ArrowRight") {
+      go(Math.min(current + 1, CHAPTERS.length - 1), true);
+    } else if (event.key === "ArrowLeft") {
+      go(Math.max(current - 1, 0), true);
+    }
+  });
+
+  go(0);
+})();
+</script>
