@@ -45,6 +45,24 @@ chaque contrôle de conformité validé, et l'explosion finale. Elles éclosent 
 un rebond puis scintillent. L'or ne sert qu'à elles : c'est la seule couleur du
 film qui ne vienne pas de la charte, et elle est réservée à la fête.
 
+### Animation des textes
+
+Les titres se construisent **mot à mot** : chaque mot monte derrière son propre
+masque, décalé de 5 à 6 images sur le précédent, et se pose avec un léger
+rebond. L'œil suit la phrase s'écrire au lieu de la recevoir d'un bloc — ce qui
+compte d'autant plus que les plans sont longs. Les textes secondaires (promesse,
+arguments, note de conformité) montent de quelques pixels en apparaissant, au
+lieu de se révéler sur place.
+
+Chaque plan enchaîne ensuite sur un accent qui prolonge le mouvement : la
+biffure verte, le filet de marque, le jeton qui traverse le rail, les coches qui
+tombent une à une, le filet doré sous la ligne de chute, les confettis.
+
+Les bornes de plans sont définies **une seule fois**, dans la table `CUT` : la
+table de montage et l'origine locale de chaque plan en dérivent, et un garde-fou
+vérifie la continuité au chargement. Les avoir saisies deux fois avait laissé
+les plans démarrer avec leur animation déjà terminée.
+
 Le spot est muet, comme la référence — les vidéos LinkedIn démarrent sans son.
 
 ## Découpage
@@ -56,7 +74,7 @@ Le spot est muet, comme la référence — les vidéos LinkedIn démarrent sans 
 | 3 | 5,5 – 8,5 s | 3,0 s | Blanc | Le logo s'écrit · *Limitless Africa* · la promesse produit |
 | 4 | 8,5 – 13,0 s | 4,5 s | Vert clair | **UN SEUL POINT D'INTÉGRATION.** · Wallet → Cambiste → Bénéficiaire en cartes blanches, un jeton bleu traverse le rail en 1,5 s et fait tressaillir la carte Cambiste au passage |
 | 5 | 13,0 – 19,5 s | 6,5 s | Blanc | **LA CONFORMITÉ N'EST PAS UNE OPTION.** tient seul 2,5 s, puis les contrôles s'égrènent sur 4 s : KYC, screening sanctions, Travel Rule, monitoring — une étoile salue chacun |
-| 6 | 19,5 – 22,0 s | 2,5 s | Vert profond | **CÔTÉ CLIENT,** en blanc, **UN SIMPLE TRANSFERT.** en or |
+| 6 | 19,5 – 22,0 s | 2,5 s | Vert profond | **CÔTÉ CLIENT,** en blanc, **UN SIMPLE TRANSFERT.** en or, souligné d'un filet doré |
 | 7 | 22,0 – 24,5 s | 2,5 s | Blanc | Confettis à étoiles dorées · logo Cambiste · *Limitless Africa* |
 
 Les deux écrans qui **expliquent** — le flux et la conformité — pèsent 11 s à eux

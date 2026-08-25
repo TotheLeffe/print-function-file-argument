@@ -30,7 +30,13 @@
    sans dependance a l'horloge -> capture image par image reproductible.
    ========================================================================= */
 
-const W = 1080, H = 1080, FPS = 30, TOTAL = 735;   // 24,5 s
+/* Bornes des plans, en images. SOURCE UNIQUE : la table de montage SC et
+   l'origine locale de chaque fonction de plan en derivent toutes les deux.
+   Les avoir saisies deux fois avait laisse les plans demarrer avec leur
+   animation deja terminee. */
+const CUT = { s1: 0, s2: 105, s3: 165, s4: 255, s5: 390, s6: 585, s7: 660,
+              end: 735 };
+const W = 1080, H = 1080, FPS = 30, TOTAL = CUT.end;   // 24,5 s
 const cv  = document.getElementById('stage');
 const ctx = cv.getContext('2d');
 
@@ -104,6 +110,48 @@ function reveal(t, x, y, size, o, p, align = 'left'){
   font(size, o);
   ctx.fillText(t, x, y + (1 - e) * size * .22);
   ctx.restore();
+}
+
+/**
+ * Ligne revelee MOT A MOT : chaque mot monte derriere son propre masque, avec
+ * un decalage, et se pose avec un leger rebond. La ou un masque unique posait
+ * la ligne d'un bloc, l'oeil suit ici la phrase se construire.
+ *   l    : image courante dans le plan      a : image de depart du 1er mot
+ *   step : decalage d'un mot au suivant     dur : duree de montee d'un mot
+ */
+function revealWords(t, x, y, size, o, l, a, step, dur, align = 'left'){
+  const words = t.split(' ');
+  font(size, o);
+  const sp = ctx.measureText(' ').width;
+  const w  = words.map(m => { font(size, o); return ctx.measureText(m).width; });
+  const tot = w.reduce((s, v) => s + v, 0) + sp * (words.length - 1);
+  let cx = align === 'center' ? x - tot / 2 : x;
+  const asc = size * 1.10, desc = size * .32;
+  for (let i = 0; i < words.length; i++){
+    const p = seg(l, a + i * step, a + i * step + dur);
+    if (p > 0){
+      const em = eo(clamp(p * 1.3));          // le masque ouvre avant le mot
+      const ey = back(eo(p));                 // atterrissage avec rebond
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(cx - size * .1, y + desc - (asc + desc) * em,
+               w[i] + size * .2, (asc + desc) * em);
+      ctx.clip();
+      ctx.globalAlpha = clamp(p * 2.2);
+      ctx.textAlign = 'left';
+      ctx.fillStyle = o.color || C.ink;
+      font(size, o);
+      ctx.fillText(words[i], cx, y + (1 - ey) * size * .30);
+      ctx.restore();
+    }
+    cx += w[i] + sp;
+  }
+}
+
+/** Texte secondaire : il monte de quelques pixels au lieu d'apparaitre sur place. */
+function textRise(str, x, y, size, o, align, p, rise = 16){
+  if (p <= 0) return;
+  text(str, x, y + (1 - eo(p)) * rise, size, o, align, clamp(p * 1.4));
 }
 
 function text(str, x, y, size, o = {}, align = 'left', a = 1){
@@ -381,9 +429,9 @@ function s1(f, opt = {}){
   text('OPÉRATEURS MOBILE MONEY', M, 340, 27,
        { w: 700, tr: 5.5, color: C.green }, 'left', eo(seg(f, 2, 14)));
   const s = s1Size(), o = { w: 800, tr: -3, color: C.ink };
-  reveal(S1A, M, S1Y,                s, o, seg(f,  6, 26));
-  reveal(S1B, M, S1Y + s * S1LH,     s, o, seg(f, 18, 38));
-  reveal(S1C, M, S1Y + 2 * s * S1LH, s, o, seg(f, 30, 50));
+  revealWords(S1A, M, S1Y,                s, o, f,  6, 6, 17);
+  revealWords(S1B, M, S1Y + s * S1LH,     s, o, f, 18, 6, 17);
+  revealWords(S1C, M, S1Y + 2 * s * S1LH, s, o, f, 30, 6, 17);
 
   if (!opt.noBar){
     const p = eo(seg(f, 54, 70));
@@ -409,7 +457,7 @@ function barShape(p){                    // la barre verte engloutit le cadre
 
 function s2(f){
   bg(C.green);
-  const l = f - 60;
+  const l = f - CUT.s2;
   const pop = (str, y, size, p) => {
     if (p <= 0) return;
     const e = back(eo(p));
@@ -428,7 +476,7 @@ function s2(f){
 /* --- 3. La marque (3.60 – 5.80 s) --------------------------------------- */
 function s3(f){
   bg(C.white);
-  const l = f - 108;
+  const l = f - CUT.s3;
   stars(STAR3, l);
   drawLockup(W/2, 470, 94, false, seg(l, 12, 34), seg(l, 24, 42), seg(l, 34, 48));
 
@@ -437,10 +485,10 @@ function s3(f){
     ctx.fillStyle = C.green;
     ctx.fillRect(W/2 - (MAXW - 150)/2 * pr, 690, (MAXW - 150) * pr, 8);
   }
-  text('Le paiement international,', W/2, 774, 38,
-       { w: 500, color: alpha(C.ink, .8) }, 'center', eo(seg(l, 40, 54)));
-  text('directement depuis le wallet Mobile Money.', W/2, 826, 38,
-       { w: 500, color: alpha(C.ink, .8) }, 'center', eo(seg(l, 45, 59)));
+  textRise('Le paiement international,', W/2, 774, 38,
+           { w: 500, color: alpha(C.ink, .8) }, 'center', seg(l, 40, 54));
+  textRise('directement depuis le wallet Mobile Money.', W/2, 826, 38,
+           { w: 500, color: alpha(C.ink, .8) }, 'center', seg(l, 45, 59));
 }
 
 /* --- 4. Le flux (5.80 – 8.60 s) ----------------------------------------- */
@@ -453,11 +501,11 @@ const NY = 556, NW = 262, NH = 158;
 
 function s4(f){
   bg(C.mint);                               // teinte claire du vert de marque
-  const l = f - 174;
+  const l = f - CUT.s4;
   stars(STAR4, l);
   const s = fit("UN SEUL POINT D'INTÉGRATION.", MAXW, 66, { w: 800, tr: -1.5 });
-  reveal("UN SEUL POINT D'INTÉGRATION.", M, 330, s,
-         { w: 800, tr: -1.5, color: C.ink }, seg(l, 12, 32));
+  revealWords("UN SEUL POINT D'INTÉGRATION.", M, 330, s,
+              { w: 800, tr: -1.5, color: C.ink }, l, 12, 5, 16);
 
   const pr = eo(seg(l, 22, 42));
   if (pr > 0){
@@ -504,10 +552,10 @@ function s4(f){
     ctx.restore();
   });
 
-  text('Aucune infrastructure blockchain à opérer.', M, 812, 32,
-       { w: 600, color: alpha(C.ink, .82) }, 'left', eo(seg(l, 68, 84)));
-  text("Aucun compte de préfinancement à l'étranger.", M, 862, 32,
-       { w: 600, color: alpha(C.ink, .82) }, 'left', eo(seg(l, 74, 90)));
+  textRise('Aucune infrastructure blockchain à opérer.', M, 812, 32,
+           { w: 600, color: alpha(C.ink, .82) }, 'left', seg(l, 68, 84));
+  textRise("Aucun compte de préfinancement à l'étranger.", M, 862, 32,
+           { w: 600, color: alpha(C.ink, .82) }, 'left', seg(l, 74, 90));
 }
 
 /* --- 5. La conformite (8.60 – 12.00 s) ---------------------------------- */
@@ -523,10 +571,12 @@ const STAR5 = CHECKS.map((_, i) => ({
 
 function s5(f){
   bg(C.white);
-  const l = f - 258;
+  const l = f - CUT.s5;
   const s = fit("N'EST PAS UNE OPTION.", MAXW, 74, { w: 800, tr: -1.8 });
-  reveal('LA CONFORMITÉ',         M, 292,            s, { w: 800, tr: -1.8, color: C.ink },   seg(l, 14, 34));
-  reveal("N'EST PAS UNE OPTION.", M, 292 + s * 1.06, s, { w: 800, tr: -1.8, color: C.green }, seg(l, 24, 46));
+  revealWords('LA CONFORMITÉ',         M, 292,            s,
+              { w: 800, tr: -1.8, color: C.ink },   l, 12, 6, 16);
+  revealWords("N'EST PAS UNE OPTION.", M, 292 + s * 1.06, s,
+              { w: 800, tr: -1.8, color: C.green }, l, 22, 5, 15);
 
   CHECKS.forEach((label, i) => {
     // le titre tient seul les 2,5 premieres secondes ; les controles
@@ -564,8 +614,8 @@ function s5(f){
   });
 
   stars(STAR5, l);
-  text('Contrôles intégrés au flux. À chaque transaction.', M, 946, 29,
-       { w: 500, color: alpha(C.ink, .6) }, 'left', eo(seg(l, 150, 164)));
+  textRise('Contrôles intégrés au flux. À chaque transaction.', M, 946, 29,
+           { w: 500, color: alpha(C.ink, .6) }, 'left', seg(l, 150, 164));
 }
 
 /* --- 6. Cote client (12.00 – 13.30 s) ----------------------------------- */
@@ -573,19 +623,28 @@ function s6(f){
   // Fond vert profond : sur le vert vif, l'or plafonne a 2,6:1 et ne se lit
   // pas. Assombri a teinte constante, il porte l'or a 4,6:1.
   bg(C.forest);
-  const l = f - 360;
+  const l = f - CUT.s6;
   stars(STAR6, l);
   const s = fit('UN SIMPLE TRANSFERT.', MAXW, 112, { w: 800, tr: -3 });
-  reveal('CÔTÉ CLIENT,', W/2, 468, fit('CÔTÉ CLIENT,', MAXW, 76, { w: 600, tr: -1 }),
-         { w: 600, tr: -1, color: alpha(C.white, .72) }, seg(l, 12, 28), 'center');
-  reveal('UN SIMPLE TRANSFERT.', W/2, 468 + s * 1.02, s,
-         { w: 800, tr: -3, color: C.gold }, seg(l, 20, 40), 'center');
+  revealWords('CÔTÉ CLIENT,', W/2, 468,
+              fit('CÔTÉ CLIENT,', MAXW, 76, { w: 600, tr: -1 }),
+              { w: 600, tr: -1, color: alpha(C.white, .72) }, l, 12, 6, 16, 'center');
+  revealWords('UN SIMPLE TRANSFERT.', W/2, 468 + s * 1.02, s,
+              { w: 800, tr: -3, color: C.gold }, l, 16, 6, 16, 'center');
+
+  // filet dore : la chute se souligne une fois posee
+  const pu = eo(seg(l, 46, 60));
+  if (pu > 0){
+    const wl = widthOf('UN SIMPLE TRANSFERT.', s, { w: 800, tr: -3 });
+    ctx.fillStyle = C.gold;
+    ctx.fillRect(W/2 - wl/2, 468 + s * 1.02 + s * .26, wl * pu, 7);
+  }
 }
 
 /* --- 7. Signature (13.30 – 15.00 s) ------------------------------------- */
 function s7(f){
   bg(C.white);
-  const l = f - 399;
+  const l = f - CUT.s7;
   const g = ctx.createRadialGradient(W/2, 500, 40, W/2, 500, 660);
   g.addColorStop(0, alpha(C.green, .16));
   g.addColorStop(1, alpha(C.green, 0));
@@ -603,20 +662,26 @@ function s7(f){
    soit complete depuis ~1 s. Les deux plans explicatifs (le flux et la
    conformite) sont les plus longs — 4,5 s et 6,5 s. */
 const SC = [
-  { start:   0, end: 104, draw: s1, tin:  0 },                      // 3,5 s
-  { start: 105, end: 164, draw: s2, tin: 18,                        // 2,0 s
+  { start: CUT.s1, end: CUT.s2 - 1, draw: s1, tin:  0 },            // 3,5 s
+  { start: CUT.s2, end: CUT.s3 - 1, draw: s2, tin: 18,              // 2,0 s
     prevOpt: { noBar: true }, wipe: barShape },
-  { start: 165, end: 254, draw: s3, tin: 20,                        // 3,0 s
+  { start: CUT.s3, end: CUT.s4 - 1, draw: s3, tin: 20,              // 3,0 s
     wipe: p => { ctx.beginPath(); ctx.rect(0, 0, W, H * p); } },
-  { start: 255, end: 389, draw: s4, tin: 20,                        // 4,5 s
+  { start: CUT.s4, end: CUT.s5 - 1, draw: s4, tin: 20,              // 4,5 s
     wipe: p => { ctx.beginPath(); ctx.rect(W * (1 - p), 0, W * p, H); } },
-  { start: 390, end: 584, draw: s5, tin: 20,                        // 6,5 s
+  { start: CUT.s5, end: CUT.s6 - 1, draw: s5, tin: 20,              // 6,5 s
     wipe: p => { ctx.beginPath(); ctx.rect(0, H * (1 - p), W, H * p); } },
-  { start: 585, end: 659, draw: s6, tin: 15,                        // 2,5 s
+  { start: CUT.s6, end: CUT.s7 - 1, draw: s6, tin: 15,              // 2,5 s
     wipe: p => { ctx.beginPath(); ctx.rect(0, 0, W * p, H); } },
-  { start: 660, end: 734, draw: s7, tin: 16,                        // 2,5 s
+  { start: CUT.s7, end: CUT.end - 1, draw: s7, tin: 16,             // 2,5 s
     wipe: p => { ctx.beginPath(); ctx.arc(W/2, 492, 800 * p, 0, 7); } }
 ];
+
+/* Garde-fou : chaque plan doit demarrer son animation a son image d'ouverture. */
+SC.forEach((sc, i) => {
+  if (i && sc.start !== SC[i - 1].end + 1)
+    console.error('plan', i + 1, 'discontinu', SC[i - 1].end, sc.start);
+});
 
 function sceneAt(f){
   for (let i = SC.length - 1; i >= 0; i--) if (f >= SC[i].start) return i;
