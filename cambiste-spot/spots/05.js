@@ -25,7 +25,6 @@ window.SPOT = {
   /* -- 1. Le titre, seul dans le cadre ----------------------------------- */
   { name: 'titre', sec: 3.5, bg: 'white',
     draw: function (l) {
-      E.stars(E.starField(5501, 7, [210, 350], [760, 940], 24, 16), l);
       E.text('INFRASTRUCTURE, NOT AN APP', M, 336, 27,
              { w: 700, tr: 5.5, color: C.green }, 'left', E.eo(E.seg(l, 2, 14)));
       E.headline(['ONE API.'], M, 596, 190,
@@ -35,10 +34,6 @@ window.SPOT = {
   /* -- 2. Le faisceau : entrees, socle, sorties -------------------------- */
   { name: 'faisceau', sec: 9.0, bg: 'mint', tin: 20, wipe: 'right',
     draw: function (l) {
-      E.stars([{ x: 962, y: 244, s: 21, d: 26, rot: .3, col: C.gold2 },
-               { x: 120, y: 258, s: 17, d: 34, rot: .7, col: C.gold },
-               { x: 540, y: 404, s: 26, d: 126, rot: .4, col: C.gold },
-               { x: 118, y: 906, s: 19, d: 200, rot: .5, col: C.gold2 }], l);
       E.headline(['MANY IN. ONE LAYER. A WORLD OUT.'], M, 268, 46,
                  { w: 800, tr: -1, color: C.ink }, l, 12, 0, 16);
 

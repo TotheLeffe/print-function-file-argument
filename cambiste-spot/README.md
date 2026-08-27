@@ -67,19 +67,29 @@ sombre. Les couleurs vives vivent dans la typographie et les détails.
 |---|---|---|
 | Blanc | `#FFFFFF` | accroches et signature |
 | Vert Cambiste | `#0AB064` | aplat signature, temps forts |
-| Vert clair | `#E8F6EF` | fond des schémas — vert de marque éclairci |
+| Vert pâle | `#E8F6EF` | fond des schémas — vert de marque éclairci |
 | Vert profond | `#055731` | plans de chute — vert de marque assombri |
 | Encre | `#0B0B0C` | titres |
 | Bleu | `#2361EA` | la valeur en mouvement (jeton, sorties) |
-| Or | `#F0B323` / `#FFD166` | étoiles et lignes de chute |
+| Vert clair | `#7FD9AE` | filets et flèches sur vert profond |
 
-**L'or impose son fond.** Sur le vert vif, aucun or ne dépasse 2,6:1 de
-contraste et devient illisible ; sur le vert profond il atteint 4,6:1. Toute
-ligne en or se pose donc sur `#055731`.
+**Pas d'or, pas d'ornement.** Une version antérieure ponctuait chaque temps
+fort d'étoiles dorées scintillantes, sur fonds verts, et terminait sur des
+confettis dorés. Chaque élément se défendait isolément ; ensemble, **vert + or
++ étoiles + confettis** produisait une lecture de fête de fin d'année, à
+l'opposé du registre voulu. Le semis d'étoiles a été supprimé, l'or a quitté la
+palette, et les confettis de signature sont revenus aux seules couleurs de
+marque.
 
-**Les étoiles dorées sont le motif récurrent** de la série. Elles ponctuent
-chaque temps fort, éclosent avec un rebond puis scintillent. L'or ne sert qu'à
-elles et aux lignes de chute : c'est la seule couleur hors charte.
+La règle qui en découle : **le mouvement porte l'énergie, pas l'ornement.**
+Les titres qui se construisent mot à mot, le jeton qui traverse le rail, la
+carte Cambiste qui tressaille à son passage, les coches qui tombent une à une —
+c'est là que vit la vivacité du film, et rien de tout cela ne coûte un signal
+visuel parasite.
+
+Les **lignes de chute** se posent en blanc sur vert profond (8,7:1), soulignées
+d'un filet vert clair. Ce fond leur donne une identité distincte du vert vif
+employé ailleurs.
 
 **Les titres se construisent mot à mot**, chaque mot montant derrière son propre
 masque avec un décalage et un léger rebond. Les textes secondaires montent de
@@ -121,7 +131,7 @@ signale.
 ### Vocabulaire de schéma
 
 `card` `rail` `token` `arrowDown` `arrowRight` `check` `counter` `fanIn`
-`network` — plus `headline` `revealWords` `textRise` `stars` `starField`
+`network` — plus `headline` `revealWords` `textRise`
 `burst` `lockup`, et les deux plans communs `closer` et `signature`.
 
 ### Ajouter un spot

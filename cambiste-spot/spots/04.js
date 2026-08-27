@@ -10,13 +10,6 @@ const CONTROLS = ['KYC', 'AML screening', 'Source of funds',
                   'Transaction monitoring', 'Regulatory controls'];
 const A0 = 30, STEP = 32;          // premiere coche, puis une toutes les 1,07 s
 
-/* Une etoile doree salue chaque controle valide. */
-const STARS = CONTROLS.map(function (_, i) {
-  return { x: i % 2 ? 878 : 812, y: 452 + i * 102,
-           s: i % 2 ? 16 : 21, col: i % 2 ? C.gold2 : C.gold,
-           d: A0 + i * STEP + 8, rot: .2 + i * .6 };
-});
-
 window.SPOT = {
   name: '04 — Compliance by design',
   scenes: [
@@ -24,7 +17,6 @@ window.SPOT = {
   /* -- 1. L'accroche : une API ne suffit pas ----------------------------- */
   { name: 'accroche', sec: 4.5, bg: 'white',
     draw: function (l) {
-      E.stars(E.starField(4401, 6, [200, 340], [800, 950], 34, 16), l);
       E.text('CROSS-BORDER PAYMENTS', M, 330, 27,
              { w: 700, tr: 5.5, color: C.green }, 'left', E.eo(E.seg(l, 2, 14)));
       E.headline(['NEED MORE', 'THAN APIs.'], M, 546, 130,
@@ -34,7 +26,6 @@ window.SPOT = {
   /* -- 2. Les controles, un par un --------------------------------------- */
   { name: 'controles', sec: 9.0, bg: 'mint', tin: 20, wipe: 'bottom',
     draw: function (l) {
-      E.stars(STARS, l);
       E.headline(['BUILT INTO THE FLOW.'], M, 300, 62,
                  { w: 800, tr: -1.5, color: C.ink }, l, 10, 0, 16);
       CONTROLS.forEach(function (t, i) {

@@ -20,7 +20,6 @@ window.SPOT = {
   /* -- 1. Le constat : ils ont deja l'essentiel -------------------------- */
   { name: 'constat', sec: 4.0, bg: 'white',
     draw: function (l) {
-      E.stars(E.starField(2201, 6, [200, 340], [790, 940], 30, 16), l);
       E.text('MOBILE MONEY OPERATORS', M, 330, 27,
              { w: 700, tr: 5.5, color: C.green }, 'left', E.eo(E.seg(l, 2, 14)));
       E.headline(['YOUR CUSTOMERS', 'ALREADY HAVE', 'A WALLET.'], M, 500, 116,
@@ -30,8 +29,6 @@ window.SPOT = {
   /* -- 2. Le wallet, seul dans le cadre ---------------------------------- */
   { name: 'wallet', sec: 3.0, bg: 'mint', tin: 20, wipe: 'bottom',
     draw: function (l) {
-      E.stars([{ x: 800, y: 360, s: 24, d: 30, rot: .3, col: C.gold },
-               { x: 260, y: 730, s: 20, d: 36, rot: .7, col: C.gold2 }], l);
       E.card(W/2, 496, 440, 236, 'MOBILE MONEY', 'today: local only',
              E.seg(l, 14, 34));
       E.textRise('It works. It scales. It stops at the border.', W/2, 726, 34,
@@ -41,7 +38,6 @@ window.SPOT = {
   /* -- 3. La question ---------------------------------------------------- */
   { name: 'question', sec: 4.0, bg: 'green', tin: 20, wipe: 'left',
     draw: function (l) {
-      E.stars(E.starField(2203, 8, [200, 350], [760, 930], 20, 18), l);
       E.headline(['WHAT IF THAT WALLET', 'COULD GO GLOBAL?'], W/2, 486, 100,
                  { w: 800, tr: -3, color: C.ink, lh: 1.14 }, l, 14, 10, 16, 'center');
     } },
@@ -49,10 +45,6 @@ window.SPOT = {
   /* -- 4. La reponse : un rail, trois etapes ----------------------------- */
   { name: 'reponse', sec: 6.0, bg: 'mint', tin: 20, wipe: 'right',
     draw: function (l) {
-      E.stars([{ x: 946, y: 250, s: 22, d: 24, rot: .3, col: C.gold2 },
-               { x: 540, y: 424, s: 28, d: 96, rot: .4, col: C.gold },
-               { x: 128, y: 742, s: 19, d: 128, rot: .6, col: C.gold },
-               { x: 966, y: 756, s: 17, d: 136, rot: .2, col: C.gold2 }], l);
       E.headline(['IT CAN.'], M, 330, 66, { w: 800, tr: -1.5, color: C.ink }, l, 12, 0, 16);
 
       E.rail(NODE[0].x, NODE[2].x, CY, E.seg(l, 26, 52));

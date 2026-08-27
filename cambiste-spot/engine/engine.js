@@ -21,9 +21,7 @@ const C = {
   green : '#0AB064',   // vert Cambiste, aplat signature
   mint  : '#E8F6EF',   // vert de marque eclairci — fond des schemas
   forest: '#055731',   // vert de marque assombri — seul fond portant l'or
-  leaf  : '#7FD9AE',   // teinte moyenne — confettis
-  gold  : '#F0B323',   // or — etoiles et lignes de chute
-  gold2 : '#FFD166',   // or clair
+  leaf  : '#7FD9AE',   // teinte claire — filets et accents sur vert profond
   blue  : '#2361EA',   // bleu d'accent — la valeur en mouvement
   ink   : '#0B0B0C',
   white : '#FFFFFF'
@@ -165,24 +163,6 @@ function roundRect(x, y, w, h, r){
   ctx.arcTo(x,     y,     x + w, y,     r);
   ctx.closePath();
 }
-function sparkle(s){
-  const k = s * .23;
-  ctx.beginPath();
-  ctx.moveTo(0, -s);
-  ctx.quadraticCurveTo(k, -k, s, 0);
-  ctx.quadraticCurveTo(k, k, 0, s);
-  ctx.quadraticCurveTo(-k, k, -s, 0);
-  ctx.quadraticCurveTo(-k, -k, 0, -s);
-  ctx.closePath();
-}
-function star6(s){
-  ctx.beginPath();
-  for (let i = 0; i < 12; i++){
-    const rr = i % 2 ? s * .46 : s, an = i/12 * Math.PI*2 - Math.PI/2;
-    ctx[i ? 'lineTo' : 'moveTo'](Math.cos(an)*rr, Math.sin(an)*rr);
-  }
-  ctx.closePath();
-}
 function bg(c){ ctx.fillStyle = BG[c] || c; ctx.fillRect(0, 0, W, H); }
 
 /* ---- Logo --------------------------------------------------------------- */
@@ -258,46 +238,14 @@ function lockup(cx, cy, h, dark, pw = 1, pm = 1, tagP = 0){
          'center', eo(tagP));
 }
 
-/* ---- Etoiles dorees, motif recurrent de la marque ----------------------- */
-function stars(list, l){
-  for (const p of list){
-    const q = seg(l, p.d, p.d + 9);
-    if (q <= 0) continue;
-    const e = Math.max(back(eo(q)), 0);
-    const tw = 1 + .12 * Math.sin((l - p.d) * .25);
-    ctx.save();
-    ctx.translate(p.x, p.y); ctx.rotate(p.rot || 0);
-    ctx.scale(e * tw, e * tw);
-    ctx.globalAlpha = clamp(q * 2.5) * (p.a || 1);
-    ctx.fillStyle = p.col || C.gold;
-    sparkle(p.s); ctx.fill();
-    ctx.restore();
-  }
-}
-
-/** Semis d'etoiles cantonne aux bandes haute et basse, hors du texte. */
-function starField(seed, n, topBand, botBand, d0 = 10, spread = 20){
-  const r = rng(seed), out = [];
-  for (let i = 0; i < n; i++)
-    out.push({ x: 105 + r() * (W - 210),
-               y: i % 2 ? botBand[0] + r() * (botBand[1] - botBand[0])
-                        : topBand[0] + r() * (topBand[1] - topBand[0]),
-               s: 16 + r() * 24,
-               col: r() > .45 ? C.gold : C.gold2,
-               d: d0 + r() * spread, rot: r() * Math.PI });
-  return out;
-}
-
 /* ---- Confettis ---------------------------------------------------------- */
 const CONF = (function(){
   const r = rng(20260824), out = [];
   const cols = [C.green, C.blue, C.leaf, C.green, C.blue, C.leaf, C.green];
-  for (let i = 0; i < 108; i++){
-    const sh = (r()*4)|0, star = sh === 1 || sh === 2;
-    out.push({ a: r()*Math.PI*2, v: 380 + r()*900, s: 11 + r()*26,
-               col: star ? (r() > .5 ? C.gold : C.gold2) : cols[(r()*cols.length)|0],
-               sh, rot: r()*Math.PI*2, rv: (r()-.5)*9, dl: r()*.16 });
-  }
+  for (let i = 0; i < 96; i++)
+    out.push({ a: r()*Math.PI*2, v: 380 + r()*880, s: 13 + r()*23,
+               col: cols[(r()*cols.length)|0], sh: r() > .45 ? 0 : 1,
+               rot: r()*Math.PI*2, rv: (r()-.5)*9, dl: r()*.16 });
   return out;
 })();
 
@@ -315,10 +263,8 @@ function burst(cx, cy, tau){
     ctx.globalAlpha = clamp(t * 7);
     ctx.fillStyle = p.col;
     const sz = p.s * clamp(t * 6);
-    if      (p.sh === 0){ ctx.beginPath(); ctx.arc(0, 0, sz*.6, 0, 7); ctx.fill(); }
-    else if (p.sh === 1){ sparkle(sz); ctx.fill(); }
-    else if (p.sh === 2){ star6(sz*.9); ctx.fill(); }
-    else                { roundRect(-sz*.5, -sz*.5, sz, sz, sz*.28); ctx.fill(); }
+    if (p.sh === 0){ ctx.beginPath(); ctx.arc(0, 0, sz*.6, 0, 7); ctx.fill(); }
+    else           { roundRect(-sz*.5, -sz*.5, sz, sz, sz*.28); ctx.fill(); }
     ctx.restore();
   }
 }
@@ -502,35 +448,31 @@ function network(seed, n, box, p, col = C.green){
 
 /* ---- Plans communs a toute la serie ------------------------------------- */
 
-/** Semis d'etoiles pour les plans de chute (fond vert profond). */
-const CLOSER_STARS = starField(51771, 8, [230, 400], [740, 930], 8, 14);
-
 /**
- * Plan de chute : une phrase en or sur vert profond, soulignee d'un filet.
- * L'or n'est lisible que sur ce fond (4,6:1 contre 2,6:1 au mieux sur le
- * vert vif), d'ou le choix systematique du vert profond ici.
+ * Plan de chute : une phrase en blanc sur vert profond, soulignee d'un filet
+ * vert clair. Le vert profond porte le blanc a 8,7:1 et donne au plan une
+ * identite distincte du vert vif employe ailleurs.
  */
 function closer(lines, sec, opts){
   opts = opts || {};
   return { name: 'chute', sec: sec, bg: 'forest',
     tin: opts.tin === undefined ? 15 : opts.tin, wipe: opts.wipe || 'left',
     draw: function(l){
-      stars(CLOSER_STARS, l);
       const last = lines[lines.length - 1];
       const s = fit(last, MAXW, opts.size || 104, { w: 800, tr: -3 });
       const lh = s * 1.10;
       const y0 = (opts.y || H/2 + s * .18) - (lines.length - 1) * lh / 2;
       lines.forEach(function(t, i){
-        const gold = i === lines.length - 1;
-        revealWords(t, W/2, y0 + i * lh, gold ? s : s * .70,
-          { w: gold ? 800 : 600, tr: gold ? -3 : -1,
-            color: gold ? C.gold : alpha(C.white, .72) },
+        const key = i === lines.length - 1;      // la derniere ligne porte la chute
+        revealWords(t, W/2, y0 + i * lh, key ? s : s * .70,
+          { w: key ? 800 : 600, tr: key ? -3 : -1,
+            color: key ? C.white : alpha(C.white, .62) },
           l, 12 + i * 6, 6, 16, 'center');
       });
       const pu = eo(seg(l, 12 + lines.length * 6 + 18, 12 + lines.length * 6 + 32));
       if (pu > 0){
         const wl = widthOf(last, s, { w: 800, tr: -3 });
-        ctx.fillStyle = C.gold;
+        ctx.fillStyle = C.leaf;
         ctx.fillRect(W/2 - wl/2, y0 + (lines.length - 1) * lh + s * .26, wl * pu, 7);
       }
     } };
@@ -647,8 +589,8 @@ function boot(canvas, spot, done){
 return { W, H, FPS, C, M, MAXW, boot, build,
          clamp, seg, eo, eio, back, wipeE, mix, rng, alpha,
          font, fit, widthOf, text, textRise, reveal, revealWords, headline,
-         roundRect, sparkle, star6, bg, drawMark, lockup,
-         stars, starField, burst, card, rail, token, arrowDown, check,
+         roundRect, bg, drawMark, lockup,
+         burst, card, rail, token, arrowDown, check,
          counter, fanIn, network, closer, signature, arrowRight,
          get ctx(){ return ctx; } };
 })();

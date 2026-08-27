@@ -13,7 +13,6 @@ window.SPOT = {
   /* -- 1. L'invitation --------------------------------------------------- */
   { name: 'imagine', sec: 4.5, bg: 'white',
     draw: function (l) {
-      E.stars(E.starField(6601, 6, [200, 340], [800, 950], 34, 16), l);
       E.headline(['IMAGINE', '100 MILLION', 'AFRICAN WALLETS…'], M, 470, 116,
                  { w: 800, tr: -3, color: C.ink, lh: 1.14 }, l, 8, 14, 18);
     } },
@@ -21,7 +20,6 @@ window.SPOT = {
   /* -- 2. La suite de la phrase ------------------------------------------ */
   { name: 'connectes', sec: 4.5, bg: 'green', tin: 20, wipe: 'bottom',
     draw: function (l) {
-      E.stars(E.starField(6602, 8, [200, 350], [760, 930], 20, 18), l);
       E.headline(['CONNECTED TO', 'THE GLOBAL', 'BANKING SYSTEM.'], W/2, 430, 104,
                  { w: 800, tr: -3, color: C.ink, lh: 1.14 }, l, 14, 12, 16, 'center');
     } },
@@ -31,9 +29,6 @@ window.SPOT = {
     draw: function (l) {
       const p = E.seg(l, 20, 150);
       E.network(6603, 34, [120, 300, 960, 860], p);
-      E.stars([{ x: 200, y: 270, s: 22, d: 120, rot: .3, col: C.gold },
-               { x: 900, y: 300, s: 18, d: 132, rot: .7, col: C.gold2 },
-               { x: 880, y: 860, s: 24, d: 144, rot: .2, col: C.gold }], l);
       const bump = 1 + .06 * Math.exp(-Math.pow((l - 152) / 10, 2));
       E.card(W/2, 560, 300, 152, 'CAMBISTE', 'the connection layer',
              E.seg(l, 96, 120), 'brand', bump);
