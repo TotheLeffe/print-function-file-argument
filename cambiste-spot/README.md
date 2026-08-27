@@ -1,202 +1,189 @@
-# Spot commercial Cambiste — 24,5 s
+# Cambiste — série de spots LinkedIn
 
-Film publicitaire de 24,5 secondes au format carré (1080×1080, 30 fps), destiné
-à LinkedIn. Sujet : le produit Cambiste et la conformité intégrée.
+Six films carrés (1080×1080, 30 fps, muets) bâtis sur **un seul langage
+visuel**, produits par un moteur commun. Ajouter un spot à la série coûte un
+fichier de quatre-vingts lignes, pas un nouveau projet.
 
-**Livrable :** `cambiste-spot-24s.mp4`
+**Positionnement central :** *Mobile Money → Global Banking System.*
 
-Le film vise la **compréhension**, pas la notoriété. La cible est un dirigeant
-d'opérateur Mobile Money qui ne connaît pas Cambiste : il doit lire, comprendre
-un schéma, et relier une proposition B2B nouvelle. Quinze secondes suffisent à
-faire passer un nom, pas à faire comprendre une offre.
+> Mobile Money is already Africa's financial interface.
+> Cambiste connects it to the rest of the world.
 
 ---
 
-## Direction
+## La série
 
-Le langage visuel reprend celui du teaser **Wero × BoursoBank** fourni en
-référence : aplats de couleur pleine, typographie cinétique en très gros corps,
-aucune photographie, et une explosion de confettis sur la signature finale. Le
-rythme, en revanche, est plus lent que celui de Wero : le teaser Wero n'a rien à
-expliquer, il annonce.
+| # | Fichier | Durée | Une idée, une seule |
+|---|---|---|---|
+| 01 | `cambiste-01.mp4` | 25,0 s | **Manifeste.** 1,5 milliard de comptes existent déjà, mais restent locaux. Cambiste les relie au système bancaire mondial. *C'est le spot de vision — celui à produire en premier.* |
+| 02 | `cambiste-02.mp4` | 23,5 s | **Aux opérateurs.** Vos clients ont déjà un wallet. Et s'il pouvait devenir mondial ? |
+| 03 | `cambiste-03.mp4` | 21,0 s | **À contre-pied.** L'Afrique n'a pas un problème d'adoption, elle a un problème de connexion. |
+| 04 | `cambiste-04.mp4` | 20,0 s | **Conformité.** Un paiement transfrontalier demande plus qu'une API. Se réutilise en pièce d'après-contact. |
+| 05 | `cambiste-05.mp4` | 19,0 s | **Infrastructure.** Plusieurs opérateurs entrent, un monde de rails sort. Cambiste n'est pas une application de transfert. |
+| 06 | `cambiste-06.mp4` | 21,5 s | **Vision.** Imaginez cent millions de wallets connectés. Le spot de personal branding du fondateur. |
 
-Ce langage est appliqué à la **charte Cambiste**, pas à celle de Wero. Le jaune
-Wero est remplacé par le vert Cambiste, qui joue le même rôle de couleur
-signature : c'est lui qui porte les temps forts et qui coche la conformité.
+Soit **130 secondes** de matière, déclinables en publications texte et en
+schémas fixes — une idée produit trois ou quatre contenus.
 
-**Les fonds ne prennent que quatre valeurs, toutes blanc ou vert** — blanc, vert
-plein, une teinte claire et un vert profond, ces deux derniers obtenus en
-éclaircissant et en assombrissant le vert de marque à teinte constante — et
-s'alternent d'un plan à l'autre. Aucun aplat noir. Les couleurs vives restent dans la typographie et les
-détails : l'encre pour les titres, le bleu de marque pour le jeton qui traverse
-le rail, et **l'or pour les étoiles**.
+## Ligne éditoriale
 
-La ligne de chute, « un simple transfert », est **en or**. Elle impose son fond :
-sur le vert vif, aucun or ne dépasse 2,6:1 de contraste et la ligne devient
-illisible. Le plan 6 passe donc sur le vert de marque assombri à teinte
-constante (`#055731`), qui porte l'or à **4,6:1** — largement au-dessus du seuil
-de 3:1 exigé pour un grand corps. Le plan y gagne au passage une identité propre
-face au vert vif du plan 2.
+Quatre règles, qui valent autant pour les prochains spots que pour ceux-ci.
 
-Les étoiles dorées sont le **motif récurrent** du film : elles ponctuent chaque
-temps fort, les sept plans sans exception — la biffure qui annule la frontière,
-le renversement, la pose du logo, le passage du jeton dans la carte Cambiste,
-chaque contrôle de conformité validé, et l'explosion finale. Elles éclosent avec
-un rebond puis scintillent. L'or ne sert qu'à elles : c'est la seule couleur du
-film qui ne vienne pas de la charte, et elle est réservée à la fête.
+1. **Un spot, une idée.** Ne jamais essayer d'expliquer tout Cambiste dans une
+   vidéo. Chaque film porte une seule friction du paiement africain et s'arrête
+   là.
+2. **Parler connexion, infrastructure, conformité, accès mondial** — jamais
+   crypto, jamais la plomberie technique. Le produit devient beaucoup plus
+   simple à comprendre.
+3. **Moins de texte par écran, plus de temps par écran.** Trois à quatre
+   secondes minimum pour un message important. C'est ce qui donne un rendu
+   premium et rend le contenu réellement lisible dans un fil LinkedIn.
+4. **Commencer par une accroche qui retient le défilement** — une donnée, une
+   question, ou une phrase à contre-pied.
 
-### Animation des textes
-
-Les titres se construisent **mot à mot** : chaque mot monte derrière son propre
-masque, décalé de 5 à 6 images sur le précédent, et se pose avec un léger
-rebond. L'œil suit la phrase s'écrire au lieu de la recevoir d'un bloc — ce qui
-compte d'autant plus que les plans sont longs. Les textes secondaires (promesse,
-arguments, note de conformité) montent de quelques pixels en apparaissant, au
-lieu de se révéler sur place.
-
-Chaque plan enchaîne ensuite sur un accent qui prolonge le mouvement : la
-biffure verte, le filet de marque, le jeton qui traverse le rail, les coches qui
-tombent une à une, le filet doré sous la ligne de chute, les confettis.
-
-Les bornes de plans sont définies **une seule fois**, dans la table `CUT` : la
-table de montage et l'origine locale de chaque plan en dérivent, et un garde-fou
-vérifie la continuité au chargement. Les avoir saisies deux fois avait laissé
-les plans démarrer avec leur animation déjà terminée.
-
-Le spot est muet, comme la référence — les vidéos LinkedIn démarrent sans son.
-
-## Découpage
-
-| # | Temps | Durée | Fond | Contenu |
-|---|-------|-------|------|---------|
-| 1 | 0,0 – 3,5 s | 3,5 s | Blanc | « OPÉRATEURS MOBILE MONEY » · **LE TRANSFERT INTERNATIONAL / S'ARRÊTE ICI.** biffé de vert |
-| 2 | 3,5 – 5,5 s | 2,0 s | Vert plein | La barre de biffure envahit le cadre · **PLUS MAINTENANT.** · pluie d'étoiles |
-| 3 | 5,5 – 8,5 s | 3,0 s | Blanc | Le logo s'écrit · *Limitless Africa* · la promesse produit |
-| 4 | 8,5 – 13,0 s | 4,5 s | Vert clair | **UN SEUL POINT D'INTÉGRATION.** · Wallet → Cambiste → Bénéficiaire en cartes blanches, un jeton bleu traverse le rail en 1,5 s et fait tressaillir la carte Cambiste au passage |
-| 5 | 13,0 – 19,5 s | 6,5 s | Blanc | **LA CONFORMITÉ N'EST PAS UNE OPTION.** tient seul 2,5 s, puis les contrôles s'égrènent sur 4 s : KYC, screening sanctions, Travel Rule, monitoring — une étoile salue chacun |
-| 6 | 19,5 – 22,0 s | 2,5 s | Vert profond | **CÔTÉ CLIENT,** en blanc, **UN SIMPLE TRANSFERT.** en or, souligné d'un filet doré |
-| 7 | 22,0 – 24,5 s | 2,5 s | Blanc | Confettis à étoiles dorées · logo Cambiste · *Limitless Africa* |
-
-Les deux écrans qui **expliquent** — le flux et la conformité — pèsent 11 s à eux
-seuls, soit 45 % du film. Ce sont eux qui demandent au spectateur de lire, de
-comprendre un schéma et de relier le tout ; ils ne peuvent pas se couper au
-rythme d'une accroche.
-
-### La règle de montage
+## La règle de montage
 
 **Aucun écran ne se coupe avant que sa composition soit complète depuis environ
 une seconde.** C'est cette seconde d'assimilation, et non le temps d'animation,
-qui dimensionne chaque plan :
+qui dimensionne chaque plan. Les écrans qui *expliquent* — un schéma, une liste
+de contrôles — pèsent systématiquement le double d'une accroche.
 
-| Plan | Durée | Composition complète à | Tenue avant la coupe |
-|---|---|---|---|
-| 1 accroche | 3,50 s | 2,33 s | **1,13 s** |
-| 2 renversement | 2,00 s | 1,27 s | 0,70 s |
-| 3 marque | 3,00 s | 1,97 s | **1,00 s** |
-| 4 le flux | 4,50 s | 3,20 s | **1,27 s** |
-| 5 conformité | 6,50 s | 5,47 s | **1,00 s** |
-| 6 côté client | 2,50 s | 1,33 s | **1,13 s** |
-| 7 signature | 2,50 s | 1,47 s | **1,00 s** |
+Les **volets** entre plans durent 0,50 à 0,67 s et suivent une courbe
+d'accompagnement quadratique : le mouvement est ample plutôt que sec. Un volet
+se déroule au début du plan qu'il révèle, pendant que le plan sortant reste
+figé ; l'allonger ne rallonge donc pas le film.
 
-Seul le plan 2 tient 0,70 s : il ne porte que deux mots en très gros corps, dont
-la lecture prend moins d'une demi-seconde.
+## Le langage visuel
 
-Les **volets** entre les plans durent 0,50 à 0,67 seconde (15 à 20 images) et
-suivent une courbe d'accompagnement quadratique, dont le pic de vitesse ne
-dépasse pas 1,5 fois la vitesse moyenne : le mouvement est ample plutôt que sec.
-Un volet se déroule au début du plan qu'il révèle, pendant que le plan sortant
-reste figé — allonger les volets ne rallonge donc pas le film. Chaque plan
-retarde en contrepartie son entrée pour ne pas naître sous le volet.
+Repris du teaser **Wero × BoursoBank** donné en référence — aplats pleins,
+typographie cinétique en très gros corps, aucune photographie, confettis sur la
+signature — mais **appliqué à la charte Cambiste**, et à un rythme plus lent :
+Wero n'a rien à expliquer, il annonce.
+
+**Les fonds ne prennent que quatre valeurs, toutes blanc ou vert.** Aucun aplat
+sombre. Les couleurs vives vivent dans la typographie et les détails.
+
+| Rôle | Valeur | Emploi |
+|---|---|---|
+| Blanc | `#FFFFFF` | accroches et signature |
+| Vert Cambiste | `#0AB064` | aplat signature, temps forts |
+| Vert clair | `#E8F6EF` | fond des schémas — vert de marque éclairci |
+| Vert profond | `#055731` | plans de chute — vert de marque assombri |
+| Encre | `#0B0B0C` | titres |
+| Bleu | `#2361EA` | la valeur en mouvement (jeton, sorties) |
+| Or | `#F0B323` / `#FFD166` | étoiles et lignes de chute |
+
+**L'or impose son fond.** Sur le vert vif, aucun or ne dépasse 2,6:1 de
+contraste et devient illisible ; sur le vert profond il atteint 4,6:1. Toute
+ligne en or se pose donc sur `#055731`.
+
+**Les étoiles dorées sont le motif récurrent** de la série. Elles ponctuent
+chaque temps fort, éclosent avec un rebond puis scintillent. L'or ne sert qu'à
+elles et aux lignes de chute : c'est la seule couleur hors charte.
+
+**Les titres se construisent mot à mot**, chaque mot montant derrière son propre
+masque avec un décalage et un léger rebond. Les textes secondaires montent de
+quelques pixels au lieu d'apparaître sur place.
+
+## Le moteur
+
+```
+engine/engine.js   la charte, la typographie animée, les blocs, le montage
+engine/brand.js    actifs de marque générés — ne pas éditer à la main
+spots/01.js … 06   un fichier par spot : durées, fonds, contenu
+spot.html          chargeur — spot.html?spot=03
+fonts/             Outfit (variable, sous-ensembles latin et latin-ext)
+render.py          capture image par image puis encodage H.264
+preview.py         planche de contrôle
+tools/             extraction des actifs depuis la vidéo de marque
+```
+
+Un spot ne décrit que son contenu ; le moteur tient tout le reste :
+
+```js
+window.SPOT = { name: '…', scenes: [
+  { name: 'accroche', sec: 4.5, bg: 'white',
+    draw: l => E.headline(['ONE LINE.', 'THEN ANOTHER.'], M, 500, 110,
+                          { w: 800, tr: -3, color: C.ink }, l, 8, 13, 17) },
+  { name: 'schema', sec: 6.0, bg: 'mint', tin: 20, wipe: 'right',
+    draw: l => { … E.card(…); E.rail(…); E.token(…); } },
+  E.closer(['WE BUILD THE BRIDGE.'], 3.5),
+  E.signature(3.0)
+]};
+```
+
+**Les bornes de plans sont dérivées des durées**, jamais saisies deux fois.
+C'est délibéré : les avoir écrites à deux endroits avait laissé, dans une
+version antérieure, tous les plans démarrer avec leur animation déjà terminée —
+les textes apparaissaient posés au lieu de s'animer, sans que rien ne le
+signale.
+
+### Vocabulaire de schéma
+
+`card` `rail` `token` `arrowDown` `arrowRight` `check` `counter` `fanIn`
+`network` — plus `headline` `revealWords` `textRise` `stars` `starField`
+`burst` `lockup`, et les deux plans communs `closer` et `signature`.
+
+### Ajouter un spot
+
+1. Copier `spots/03.js` sous un nouveau numéro.
+2. Réécrire les textes et les durées. Une phrase importante : 3 à 4 s.
+3. `python3 preview.py --spot 07` — la planche prend deux images par plan, une
+   en pleine animation et une en tenue, ce qui montre d'un coup d'œil qu'un
+   plan **s'anime** et qu'il **se pose**.
+4. `python3 render.py --spot 07`.
 
 ## Charte respectée
 
 Tous les actifs et toutes les couleurs sont **extraits de la vidéo de marque
-officielle**, jamais approximés :
+officielle**, jamais approximés : le logotype en masque alpha 494×85 natif
+(teinté noir ou blanc), la marque en vectoriel — carré en superellipse ajustée
+sur le profil mesuré, glyphe tracé dont le second lobe est la rotation exacte du
+premier —, et les couleurs relevées sur les aplats.
 
-| Élément | Valeur | Origine |
-|---|---|---|
-| Logotype « Cambiste » | masque alpha 494×85 natif | extrait image par image, teinté noir ou blanc |
-| Marque (carré + glyphe) | vectoriel | superellipse ajustée + tracé du glyphe |
-| Vert Cambiste | `#0AB064` | relevé sur l'aplat |
-| Vert clair (plan 4) | `#E8F6EF` | vert de marque éclairci |
-| Vert profond (plan 6) | `#055731` | vert de marque assombri |
-| Bleu d'accent | `#2361EA` | relevé sur le bouton « Book a demo » |
-| Or (étoiles) | `#F0B323` / `#FFD166` | seule couleur hors charte, réservée aux étoiles |
-| Signature | *Limitless Africa* | reprise telle quelle |
+Deux points à signaler :
 
-Deux points méritent d'être signalés :
-
-- **Le logotype utilise une police propriétaire.** Aucune police Google ne
-  correspond (meilleur recouvrement testé : 0,70). Le logotype est donc employé
-  tel quel, en image, et n'est jamais recomposé. Il n'est affiché qu'à sa taille
-  native ou en deçà, donc sans perte.
-- **La typographie de support est Outfit**, la plus proche du logotype parmi les
-  polices libres testées. À remplacer par la police de la charte si elle est
-  disponible : un seul `@font-face` à changer dans `spot.html`.
-
-Le glyphe de la marque a une symétrie centrale exacte. Un seul lobe est tracé ;
-l'autre en est la rotation à 180°, ce qui garantit la symétrie.
+- **Le logotype utilise une police propriétaire.** Aucune police libre ne
+  correspond (meilleur recouvrement testé sur dix-huit candidates : 0,70). Il
+  est donc employé tel quel, en image, jamais recomposé, et jamais affiché
+  au-delà de sa taille native.
+- **La typographie de support est Outfit**, la plus proche du logotype parmi
+  les libres. À remplacer par la police de la charte si elle est disponible :
+  un seul `@font-face` à changer dans `spot.html`.
 
 ## Ripple
 
-Le spot **ne mentionne pas Ripple**. Le document d'architecture qui l'accompagne
-est un projet à valider (« Draft v2 – Cambiste Proposal ») : annoncer
-publiquement un partenariat non signé serait prématuré. Les deux arguments
-d'infrastructure sont donc formulés côté bénéfice client :
+Les spots **ne mentionnent pas Ripple**. Le document d'architecture qui les
+accompagne est un projet à valider (« Draft v2 – Cambiste Proposal ») :
+annoncer publiquement un partenariat non signé serait prématuré. Les arguments
+d'infrastructure sont formulés côté bénéfice client :
 
-> Aucune infrastructure blockchain à opérer.
-> Aucun compte de préfinancement à l'étranger.
+> No blockchain to operate. No pre-funded accounts abroad.
 
-Une fois le partenariat acté, un co-marquage « Powered by Ripple » s'ajoute en
-scène 4 sans retoucher le reste du montage.
+Une fois le partenariat acté, un co-marquage s'ajoute au plan de schéma sans
+retoucher le reste.
+
+## Version française
+
+`cambiste-fr-24s.mp4` est le film français de 24,5 s produit avant la série, à
+partir de `spot-fr-24s.html` — autonome, antérieur au moteur, conservé tel
+quel. `cambiste-spot-15s.mp4` en est le montage court de 15 s, pour un usage de
+notoriété pure ; il se régénère depuis le commit `7cb9669`.
 
 ## Reconstruire
 
 ```bash
-pip install playwright imageio-ffmpeg pillow numpy potracer
-python3 render.py                 # 735 images -> cambiste-spot-24s.mp4
-python3 preview.py                # planche de contrôle de 16 images clés
-python3 tools/extract_brand.py <video-de-marque.mov>   # régénère brand/brand.js
+pip install playwright imageio-ffmpeg pillow numpy potracer fonttools brotli
+python3 render.py --all                       # toute la série
+python3 render.py --spot 01                   # un seul spot
+python3 render.py --page spot-fr-24s.html --out cambiste-fr-24s.mp4
+python3 preview.py --spot 01                  # planche de contrôle
+python3 tools/extract_brand.py <video.mov>    # régénère engine/brand.js
 ```
 
-`spot.html` s'ouvre aussi directement dans un navigateur ; `play()` dans la
-console lance la lecture en temps réel.
-
-## Fonctionnement
+`spot.html?spot=01` s'ouvre aussi dans un navigateur ; `play()` dans la console
+lance la lecture en temps réel.
 
 L'animation est **déterministe** : `renderFrame(n)` dessine intégralement
 l'image `n` sans dépendre de l'horloge. La capture pilote donc le temps au lieu
-de le subir, et deux rendus successifs sont identiques au pixel près — ce qu'un
-enregistrement d'écran ne garantit pas.
-
-```
-spot.html              l'animation (canvas 2D, 7 scènes, 735 images)
-brand/brand.js         actifs de marque générés — ne pas éditer à la main
-fonts/                 Outfit (variable, sous-ensembles latin et latin-ext)
-render.py              capture image par image puis encodage H.264
-preview.py             planche de contrôle
-tools/extract_brand.py extraction des actifs depuis la vidéo de marque
-```
-
-## Version courte
-
-`cambiste-spot-15s.mp4` est le **montage court de 15 s**, conservé pour un usage
-de notoriété pure — faire passer le nom et la couleur, sans chercher à faire
-comprendre l'offre. Il correspond à l'état du dépôt au commit `7cb9669` et se
-régénère depuis ce commit.
-
-Une version courte **dérivée du présent montage** n'est pas un simple
-accéléré : les durées ci-dessus sont calées sur des temps de lecture, et les
-diviser par 1,6 les ferait toutes repasser sous le seuil. Un montage court
-demande de retirer des écrans, pas de les raccourcir — le plan 4 ou le plan 5
-tiendraient seuls le format.
-
-## Variantes
-
-Les textes sont regroupés en haut de chaque fonction de scène dans `spot.html`.
-
-- **Version anglaise** : traduire les sept blocs de texte ; les cadrages
-  s'ajustent seuls, chaque titre étant redimensionné automatiquement pour tenir
-  dans la marge.
-- **Formats 9:16 ou 16:9** : changer `W` et `H` en tête de `spot.html`. Les
-  positions sont exprimées en dur et demanderont une reprise.
+de le subir, et deux rendus successifs sont identiques au pixel près.
