@@ -33,11 +33,11 @@ visibles dans les aplats sombres. La chaîne appliquée :
    plus riche qu'un simple noir ;
 8. vignettage et grain fin discrets.
 
-## Bande-son
+## Son
 
-Nappe d'ambiance synthétisée (bourdon grave, quinte, souffle, pulsation lente),
-normalisée à −19 LUFS. La séquence source était muette. C'est un lit
-volontairement neutre, prévu pour être remplacé par une musique sous licence.
+Le spot est **muet** : il porte une piste audio silencieuse plutôt qu'aucune
+piste, certains lecteurs et plateformes se comportant mal sans flux audio. La
+séquence source était elle-même sans son.
 
 ## Reconstruire
 

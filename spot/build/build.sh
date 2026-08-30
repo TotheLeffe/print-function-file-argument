@@ -52,36 +52,26 @@ cas=0.45"
 [base]vignette=PI/4.6,noise=alls=4:allf=t+u,fade=t=in:st=0:d=0.6,format=yuv420p[v]" \
   -map "[v]" -t 24.5 "${ENC[@]}" "$WORK/seg/seg2.mp4" -y
 
-# --- 3. lit sonore : bourdon grave, quinte, souffle, pulsation lente ---------
+# --- 3. piste audio ----------------------------------------------------------
+# Le spot est muet : on ecrit une piste silencieuse plutot que rien du tout,
+# certains lecteurs et plateformes se comportant mal sans piste audio.
 D=38.7
 "$FF" -hide_banner -loglevel error \
- -f lavfi -i "sine=frequency=55:sample_rate=48000:duration=$D" \
- -f lavfi -i "sine=frequency=82.5:sample_rate=48000:duration=$D" \
- -f lavfi -i "sine=frequency=110:sample_rate=48000:duration=$D" \
- -f lavfi -i "anoisesrc=color=brown:sample_rate=48000:amplitude=0.5:duration=$D" \
- -f lavfi -i "sine=frequency=44:sample_rate=48000:duration=$D" \
- -filter_complex "\
-[0:a]volume=0.60[d1];[1:a]volume=0.22[d2];[2:a]volume=0.13[d3];\
-[3:a]highpass=f=90,lowpass=f=520,volume=0.30[air];\
-[4:a]volume='0.34*(0.15+0.85*pow(max(0,sin(2*PI*0.32*t)),6))':eval=frame[pulse];\
-[d1][d2][d3][air][pulse]amix=inputs=5:normalize=0,\
-tremolo=f=0.11:d=0.22,aecho=0.8:0.85:900|1500:0.28|0.18,lowpass=f=900,\
-volume='min(1,t/2.5)*min(1,(${D}-t)/2.0)':eval=frame,\
-aformat=sample_fmts=fltp:channel_layouts=stereo,loudnorm=I=-19:TP=-2.0:LRA=9[a]" \
- -map "[a]" -t $D -c:a pcm_s16le "$WORK/bed.wav" -y
+ -f lavfi -i "anullsrc=channel_layout=stereo:sample_rate=48000" \
+ -t $D -c:a pcm_s16le "$WORK/silence.wav" -y
 
 # --- 4. montage : fondus enchaines ------------------------------------------
 # Les segments images doivent etre lus a 30 i/s en entree (-framerate 30),
 # sinon leur duree reelle est de 25/30 de la duree demandee et les offsets
 # de xfade tombent a cote.
 "$FF" -hide_banner -loglevel error \
- -i "$WORK/seg/seg1.mp4" -i "$WORK/seg/seg2.mp4" -i "$WORK/seg/seg3.mp4" -i "$WORK/seg/seg4.mp4" -i "$WORK/bed.wav" \
+ -i "$WORK/seg/seg1.mp4" -i "$WORK/seg/seg2.mp4" -i "$WORK/seg/seg3.mp4" -i "$WORK/seg/seg4.mp4" -i "$WORK/silence.wav" \
  -filter_complex "\
 [0:v][1:v]xfade=transition=fade:duration=0.8:offset=4.2[x1];\
 [x1][2:v]xfade=transition=fadeblack:duration=0.8:offset=27.9[x2];\
 [x2][3:v]xfade=transition=fade:duration=0.7:offset=32.7,format=yuv420p[v]" \
  -map "[v]" -map 4:a \
  -c:v libx264 -preset slow -crf 17 -profile:v high -level 4.1 -pix_fmt yuv420p -r 30 \
- -c:a aac -b:a 192k -ar 48000 -movflags +faststart "$OUT" -y
+ -c:a aac -b:a 96k -ar 48000 -movflags +faststart "$OUT" -y
 
 echo "Ecrit : $OUT"
