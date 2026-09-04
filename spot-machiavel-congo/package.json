@@ -1,0 +1,30 @@
+{
+  "name": "spot-machiavel-congo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Spot 5 s et outro 3 s (Remotion) pour la vid\u00e9o YouTube \u00ab Machiavel au Congo \u00bb \u2014 cha\u00eene Sangwa Yan",
+  "scripts": {
+    "dev": "remotion studio",
+    "typecheck": "tsc --noEmit",
+    "build:spot:reel": "remotion render SpotReel out/spot-machiavel-congo-reel-1080x1920.mp4",
+    "build:spot:youtube": "remotion render SpotYouTube out/spot-machiavel-congo-youtube-1920x1080.mp4",
+    "build:spot:square": "remotion render SpotSquare out/spot-machiavel-congo-square-1080x1080.mp4",
+    "build:outro:reel": "remotion render OutroReel out/outro-sangwa-yan-reel-1080x1920.mp4",
+    "build:outro:youtube": "remotion render OutroYouTube out/outro-sangwa-yan-youtube-1920x1080.mp4",
+    "build:outro:square": "remotion render OutroSquare out/outro-sangwa-yan-square-1080x1080.mp4",
+    "build:spot": "npm run build:spot:reel && npm run build:spot:youtube && npm run build:spot:square",
+    "build:outro": "npm run build:outro:reel && npm run build:outro:youtube && npm run build:outro:square",
+    "build:all": "npm run build:spot && npm run build:outro"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.418",
+    "@remotion/fonts": "4.0.418",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "remotion": "4.0.418"
+  },
+  "devDependencies": {
+    "@types/react": "19.0.0",
+    "typescript": "5.8.3"
+  }
+}
