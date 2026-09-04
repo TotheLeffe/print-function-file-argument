@@ -6,6 +6,7 @@ import {SlamText} from '../components/SlamText';
 import {Stage} from '../components/Stage';
 import type {Layout} from '../layout';
 import {COLORS} from '../theme';
+import {HOOK} from '../timeline';
 
 /** Beat 1 — the question that stops the thumb, over Machiavelli's face. */
 export const Hook: React.FC<{layout: Layout; durationInFrames: number}> = ({
@@ -25,14 +26,21 @@ export const Hook: React.FC<{layout: Layout; durationInFrames: number}> = ({
         darken={0.55}
         durationInFrames={durationInFrames}
       />
-      <Stage layout={layout} impacts={[7, 21]}>
+      <Stage layout={layout} impacts={HOOK.lines.map((l) => l.at)}>
         <ChannelTag layout={layout} />
-        <SlamText at={7} fontSize={size} color={COLORS.bone}>
-          Et si Le Prince
-        </SlamText>
-        <SlamText at={21} fontSize={size} color={COLORS.yellow}>
-          était congolais&nbsp;?
-        </SlamText>
+        {HOOK.lines.map((line, i) => (
+          <SlamText
+            key={line.text}
+            at={line.at}
+            fontSize={size}
+            color={i === 0 ? COLORS.bone : COLORS.yellow}
+            // Looser than the title lockup: the accent on É would otherwise
+            // collide with the line above.
+            lineHeight={1.02}
+          >
+            {line.text.replace(' ?', '\u00a0?')}
+          </SlamText>
+        ))}
       </Stage>
     </AbsoluteFill>
   );

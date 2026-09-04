@@ -5,6 +5,7 @@
   "description": "Spot 5 s et outro 3 s (Remotion) pour la vid\u00e9o YouTube \u00ab Machiavel au Congo \u00bb \u2014 cha\u00eene Sangwa Yan",
   "scripts": {
     "dev": "remotion studio",
+    "timing": "tsx scripts/timing.ts",
     "typecheck": "tsc --noEmit",
     "build:spot:reel": "remotion render SpotReel out/spot-machiavel-congo-reel-1080x1920.mp4",
     "build:spot:youtube": "remotion render SpotYouTube out/spot-machiavel-congo-youtube-1920x1080.mp4",
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "@types/react": "19.0.0",
+    "tsx": "^4.20.3",
     "typescript": "5.8.3"
   }
 }

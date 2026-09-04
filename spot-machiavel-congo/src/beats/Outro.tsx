@@ -12,7 +12,7 @@ import {Stage} from '../components/Stage';
 import {YouTubeLogo} from '../components/YouTubeMark';
 import type {Layout} from '../layout';
 import {COLORS, FONTS} from '../theme';
-import {CHANNEL} from '../timeline';
+import {CHANNEL, OUTRO_CUES} from '../timeline';
 
 /**
  * Outro — the payoff, and the reusable end card for every reel of the
@@ -35,14 +35,14 @@ export const Outro: React.FC<{layout: Layout}> = ({layout}) => {
       durationInFrames: 20,
     });
 
-  const card = enter(0);
-  const copy = enter(6);
-  const name = enter(12);
-  const button = enter(20);
+  const card = enter(OUTRO_CUES.card);
+  const copy = enter(OUTRO_CUES.copy);
+  const name = enter(OUTRO_CUES.name);
+  const button = enter(OUTRO_CUES.button);
 
   // The card keeps drifting after it lands, so a long hold never freezes.
   const drift = interpolate(frame, [0, 90], [0, 1], {extrapolateRight: 'clamp'});
-  const pulse = 1 + Math.sin(Math.max(0, frame - 24) * 0.32) * 0.028;
+  const pulse = 1 + Math.sin(Math.max(0, frame - OUTRO_CUES.button - 12) * 0.32) * 0.028;
 
   const cardWidth = isVertical ? u(880) : u(700);
 

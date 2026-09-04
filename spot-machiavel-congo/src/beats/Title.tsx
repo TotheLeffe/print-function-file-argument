@@ -7,6 +7,7 @@ import {SlamText} from '../components/SlamText';
 import {Stage} from '../components/Stage';
 import type {Layout} from '../layout';
 import {COLORS} from '../theme';
+import {TITLE} from '../timeline';
 
 /** Beat 2 — the title lands, word by word, over the flag. */
 export const Title: React.FC<{layout: Layout; durationInFrames: number}> = ({
@@ -27,16 +28,21 @@ export const Title: React.FC<{layout: Layout; durationInFrames: number}> = ({
         darken={0.5}
         durationInFrames={durationInFrames}
       />
-      <Stage layout={layout} impacts={[3, 14]}>
+      <Stage layout={layout} impacts={TITLE.words.map((w) => w.at)}>
         <ChannelTag layout={layout} appearAt={0} />
-        <SlamText at={3} fontSize={size} color={COLORS.bone} letterSpacing={u(-2)}>
-          Machiavel
-        </SlamText>
-        <SlamText at={14} fontSize={size} color={COLORS.yellow} letterSpacing={u(-2)}>
-          au Congo
-        </SlamText>
-        <Banner layout={layout} at={26}>
-          Le pouvoir sans l&apos;État
+        {TITLE.words.map((word, i) => (
+          <SlamText
+            key={word.text}
+            at={word.at}
+            fontSize={size}
+            color={i === 0 ? COLORS.bone : COLORS.yellow}
+            letterSpacing={u(-2)}
+          >
+            {word.text}
+          </SlamText>
+        ))}
+        <Banner layout={layout} at={TITLE.tagline.at}>
+          {TITLE.tagline.text}
         </Banner>
       </Stage>
     </AbsoluteFill>

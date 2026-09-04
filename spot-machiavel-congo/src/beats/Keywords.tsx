@@ -5,18 +5,18 @@ import {ChannelTag} from '../components/ChannelTag';
 import {Stage} from '../components/Stage';
 import type {Layout} from '../layout';
 import {COLORS, FONTS} from '../theme';
-import {KEYWORDS} from '../timeline';
+import {KEYWORDS_BEAT} from '../timeline';
 
 const TICKS = [COLORS.blue, COLORS.yellow, COLORS.red, COLORS.bone];
 
-const Keyword: React.FC<{layout: Layout; label: string; index: number}> = ({
-  layout,
-  label,
-  index,
-}) => {
+const Keyword: React.FC<{
+  layout: Layout;
+  label: string;
+  index: number;
+  at: number;
+}> = ({layout, label, index, at}) => {
   const frame = useCurrentFrame();
   const {u} = layout;
-  const at = 1 + index * 2;
   const t = frame - at;
 
   const p = interpolate(t, [0, 8], [0, 1], {
@@ -118,8 +118,14 @@ export const Keywords: React.FC<{layout: Layout; durationInFrames: number}> = ({
             flexWrap: 'wrap',
           }}
         >
-          {KEYWORDS.map((label, i) => (
-            <Keyword key={label} layout={layout} label={label} index={i} />
+          {KEYWORDS_BEAT.items.map((item, i) => (
+            <Keyword
+              key={item.label}
+              layout={layout}
+              label={item.label}
+              index={i}
+              at={item.at}
+            />
           ))}
         </div>
       </Stage>
