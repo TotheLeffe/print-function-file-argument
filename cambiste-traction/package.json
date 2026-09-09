@@ -1,0 +1,22 @@
+{
+  "name": "cambiste-traction-spot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cambiste \u2014 21s brand film: traction is life",
+  "scripts": {
+    "start": "remotion studio",
+    "preview": "remotion render TractionSpot out/preview.mp4 --scale=0.4 --crf=30 --muted",
+    "build": "remotion render TractionSpot ../cambiste-traction-spot.mp4 --codec=h264 --crf=17 --pixel-format=yuv420p --image-format=png --muted",
+    "still": "remotion still TractionSpot out/still.png"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.410",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "remotion": "4.0.410"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.2",
+    "typescript": "5.9.3"
+  }
+}
