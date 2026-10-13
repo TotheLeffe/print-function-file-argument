@@ -31,12 +31,16 @@ coupe.
 images après que la phrase est posée : aucune animation ne commence avant que
 le message soit lisible.
 
-| Séquence | Temps | Lecture stable |
-|---|---|---|
-| 1 · accroche | 0 – 3 s | **2,53 s** |
-| 2 | 3 – 7 s | **3,53 s** |
-| 3 | 7 – 11 s | **3,53 s** |
-| 4 · carton de fin | 11 – 15 s | **3,53 s** |
+| Séquence | Temps | Lecture stable, par construction | Mesurée sur les 14 rendus |
+|---|---|---|---|
+| 1 · accroche | 0 – 3 s | 2,53 s | **2,67 s** |
+| 2 | 3 – 7 s | 3,53 s | **3,67 s** |
+| 3 | 7 – 11 s | 3,53 s | **3,67 s** |
+| 4 · carton de fin | 11 – 15 s | 3,53 s | **3,67 s** |
+
+La colonne mesurée est la vraie : elle vient du décodage des MP4, image par
+image, et elle est un peu meilleure que la garantie du découpage parce que
+le volet dégage la bande de texte avant la fin de la pose.
 
 ## L'identité de la série
 
