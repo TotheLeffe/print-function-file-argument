@@ -177,8 +177,11 @@ if (WITH_RENDER) {
     let start = 0;
     f.frames.forEach((n, i) => {
       const t = f.texts[i];
-      const band = t && t.bottom ? [Math.floor(1000 / SCALE), Math.floor(1240 / SCALE)]
-                                 : [0, Math.floor(430 / SCALE)];
+      /* La bande de mesure couvre le texte et rien d'autre : un bloc de deux
+         lignes au corps maximal descend a 356 px, et aucune illustration de
+         la serie ne monte au-dessus de 410. */
+      const band = t && t.bottom ? [Math.floor(1010 / SCALE), Math.floor(1240 / SCALE)]
+                                 : [0, Math.floor(380 / SCALE)];
       const tol = Math.max(6, Math.round(w * (band[1] - band[0]) * TOL));
       const ref = frames[start + n - LEAVE - 2];
       let stable = n - LEAVE - 2;

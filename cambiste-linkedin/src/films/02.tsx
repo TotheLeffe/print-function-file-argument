@@ -85,7 +85,7 @@ export const film02: SceneDef[] = [
     bg: C.forest,
     enter: {kind: 'wipe', from: 'bottom'},
     render: (f, n) => {
-      const a: [number, number] = [430, 848];
+      const a: [number, number] = [470, 848];
       const c: [number, number] = [600, 756];
       const b: [number, number] = [792, 848];
       const run = at(f, 22, 40, EASE.move);
@@ -95,10 +95,10 @@ export const film02: SceneDef[] = [
           <Glow x={540} y={900} r={700} color={C.deep} alpha={0.7} />
           <Svg>
             {/* la couche du plan precedent, vue de plus pres */}
-            <g transform="translate(286 900)">
+            <g transform="translate(330 900)">
               <Layer skin={{tone: 'dark'}} frame={f} from={0} w={420} />
             </g>
-            <Place x={286} y={900} o={at(f, 10, 14)} s={mix(0.7, 1, at(f, 10, 14))}>
+            <Place x={330} y={900} o={at(f, 10, 14)} s={mix(0.7, 1, at(f, 10, 14))}>
               <MarkG size={96} />
             </Place>
             <Rail a={a} c={c} b={b} t={at(f, 14, 26, EASE.draw)} gradient width={6} />

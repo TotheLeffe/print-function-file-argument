@@ -53,10 +53,10 @@ export const film01: SceneDef[] = [
     enter: {kind: 'iris', x: 540, y: 580},
     render: (f, n) => (
       <>
-        <Glow x={540} y={760} r={820} color={C.deep} alpha={0.5} />
+        <Glow x={540} y={820} r={820} color={C.deep} alpha={0.5} />
         <Camera scale={mix(1.12, 1, at(f, 0, 50, EASE.move))}>
           <Svg>
-            <Globe x={540} y={790} d={880} frame={f} tone="dark" spin={mix(-5, 0, at(f, 0, 90, EASE.move))} />
+            <Globe x={540} y={846} d={860} frame={f} tone="dark" spin={mix(-5, 0, at(f, 0, 90, EASE.move))} />
           </Svg>
         </Camera>
         <Message
