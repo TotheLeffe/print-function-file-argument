@@ -21,8 +21,8 @@ export const film04: SceneDef[] = [
     render: (f, n) => (
       <>
         <Svg>
-          <rect x={0} y={640 + (1 - at(f, 0, 22, EASE.move)) * 440} width={1080} height={710} fill={C.mint} />
-          <Place x={520} y={856} s={1.12}>
+          <rect x={0} y={560 + (1 - at(f, 0, 22, EASE.move)) * 480} width={1080} height={790} fill={C.mint} />
+          <Place x={520} y={900} s={1.34}>
             <Bank skin={{tone: 'light'}} frame={f} from={2} />
           </Place>
         </Svg>
@@ -80,7 +80,7 @@ export const film04: SceneDef[] = [
         <>
           <Glow x={540} y={900} r={720} color={C.deep} alpha={0.72} />
           <Svg>
-            <Place x={250} y={900} s={0.46}>
+            <Place x={250} y={900} s={0.62}>
               <Bank skin={{tone: 'dark'}} frame={f} from={0} />
             </Place>
             <Rail a={a} c={c} b={b} t={at(f, 14, 30, EASE.draw)} gradient width={7} />
@@ -89,8 +89,8 @@ export const film04: SceneDef[] = [
                 <Token r={18} color={run > 0.5 ? C.blue : C.green} />
               </g>
             ) : null}
-            <Place x={830} y={900} s={0.72} o={at(f, 54, 14)}>
-              <Account skin={{tone: 'dark', key: 'blue'}} frame={f} from={54} />
+            <Place x={830} y={900} s={0.92} o={at(f, 40, 14)}>
+              <Account skin={{tone: 'dark', key: 'blue'}} frame={f} from={40} />
             </Place>
             <g transform="translate(830 900)">
               <Ping frame={f} from={70} color={C.sky} r={160} />
@@ -110,16 +110,16 @@ export const film04: SceneDef[] = [
       <>
         <Glow x={540} y={1020} r={700} color={C.deep} alpha={0.7} />
         <Svg>
-          <Place x={300} y={780} s={0.4}>
+          <Place x={300} y={770} s={0.54}>
             <Bank skin={{tone: 'dark'}} frame={f} from={4} />
           </Place>
-          <Place x={790} y={790} s={0.56} o={at(f, 10, 14)}>
+          <Place x={790} y={782} s={0.74} o={at(f, 10, 14)}>
             <Account skin={{tone: 'dark', key: 'blue'}} frame={f} from={10} />
           </Place>
           <Rail a={[300, 850]} c={[400, 960]} b={[480, 1010]} t={at(f, 24, 20, EASE.draw)} color={C.leaf} width={5} />
           <Rail a={[790, 870]} c={[700, 960]} b={[608, 1010]} t={at(f, 30, 20, EASE.draw)} color={C.sky} width={5} />
           <g transform="translate(540 1050)">
-            <Layer skin={{tone: 'dark'}} frame={f} from={34} w={620} />
+            <Layer skin={{tone: 'dark'}} frame={f} from={34} w={720} />
           </g>
           <Place x={540} y={1050} o={at(f, 60, 14)} s={mix(0.7, 1, at(f, 60, 14))}>
             <MarkG size={82} />

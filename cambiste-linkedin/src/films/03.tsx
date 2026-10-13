@@ -86,8 +86,8 @@ export const film03: SceneDef[] = [
                       <Token r={14} color={run > 0.5 ? C.blue : C.green} />
                     </g>
                   ) : null}
-                  <Place x={b[0]} y={b[1]} s={0.5} o={at(f, 44 + i * 6, 14)}>
-                    <Account skin={{tone: 'dark', key: 'blue'}} frame={f} from={44 + i * 6} />
+                  <Place x={b[0]} y={b[1]} s={0.62} o={at(f, 30 + i * 6, 14)}>
+                    <Account skin={{tone: 'dark', key: 'blue'}} frame={f} from={30 + i * 6} />
                   </Place>
                   <g transform={`translate(${b[0]} ${b[1]})`}>
                     <Ping frame={f} from={46 + i * 6} color={C.sky} r={120} />
@@ -114,10 +114,10 @@ export const film03: SceneDef[] = [
         <Glow x={420} y={1020} r={760} color={C.deep} alpha={0.65} />
         <Svg>
           <Globe x={420} y={1000} d={700} frame={f} tone="dark" />
-          <Place x={880} y={760} s={0.5}>
+          <Place x={856} y={742} s={0.62}>
             <Phone skin={{tone: 'dark'}} frame={f} from={14} rows={2} />
           </Place>
-          <Rail a={[700, 870]} c={[810, 800]} b={[880, 790]} t={at(f, 30, 20, EASE.draw)} color={C.leaf} width={5} />
+          <Rail a={[690, 866]} c={[800, 800]} b={[856, 790]} t={at(f, 30, 20, EASE.draw)} color={C.leaf} width={5} />
         </Svg>
         <Message lines={['For mobile wallets', 'in Africa.']} tone="dark" pos="top" frames={n} max={92} />
       </>

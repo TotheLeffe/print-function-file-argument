@@ -60,10 +60,10 @@ export const film02: SceneDef[] = [
       <>
         <Glow x={540} y={1000} r={720} color={C.deep} alpha={0.75} />
         <Svg>
-          <Place x={262} y={640} s={0.56}>
+          <Place x={266} y={650} s={0.68}>
             <Bank skin={{tone: 'dark'}} frame={f} from={4} />
           </Place>
-          <Place x={818} y={646} s={0.5}>
+          <Place x={814} y={652} s={0.58}>
             <Phone skin={{tone: 'dark'}} frame={f} from={10} rows={2} />
           </Place>
           <Rail a={[262, 724]} c={[340, 880]} b={[430, 992]} t={at(f, 30, 22, EASE.draw)} color={C.leaf} width={6} />
@@ -85,17 +85,21 @@ export const film02: SceneDef[] = [
     bg: C.forest,
     enter: {kind: 'wipe', from: 'bottom'},
     render: (f, n) => {
-      const a: [number, number] = [300, 900];
-      const c: [number, number] = [540, 790];
-      const b: [number, number] = [790, 900];
+      const a: [number, number] = [430, 848];
+      const c: [number, number] = [600, 756];
+      const b: [number, number] = [792, 848];
       const run = at(f, 22, 40, EASE.move);
       const p = along(a, c, b, run);
       return (
         <>
           <Glow x={540} y={900} r={700} color={C.deep} alpha={0.7} />
           <Svg>
-            <Place x={300} y={900} s={0.8} o={at(f, 0, 16)}>
-              <MarkG size={120} />
+            {/* la couche du plan precedent, vue de plus pres */}
+            <g transform="translate(286 900)">
+              <Layer skin={{tone: 'dark'}} frame={f} from={0} w={420} />
+            </g>
+            <Place x={286} y={900} o={at(f, 10, 14)} s={mix(0.7, 1, at(f, 10, 14))}>
+              <MarkG size={96} />
             </Place>
             <Rail a={a} c={c} b={b} t={at(f, 14, 26, EASE.draw)} gradient width={6} />
             {run > 0.02 && run < 0.99 ? (
@@ -103,11 +107,11 @@ export const film02: SceneDef[] = [
                 <Token r={17} color={run > 0.5 ? C.blue : C.green} />
               </g>
             ) : null}
-            <Place x={790} y={900} s={0.8} o={at(f, 46, 14)}>
-              <Account skin={{tone: 'dark', key: 'blue'}} frame={f} from={46} />
+            <Place x={792} y={900} s={0.98} o={at(f, 30, 14)}>
+              <Account skin={{tone: 'dark', key: 'blue'}} frame={f} from={30} />
             </Place>
             <g transform="translate(790 900)">
-              <Ping frame={f} from={62} color={C.sky} r={170} />
+              <Ping frame={f} from={56} color={C.sky} r={190} />
             </g>
           </Svg>
           <Message lines={['Designed for', 'cross-border.']} tone="dark" pos="top" frames={n} max={100} />

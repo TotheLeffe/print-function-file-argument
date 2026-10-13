@@ -162,7 +162,9 @@ export const Layer: React.FC<{
   label?: React.ReactNode;
 }> = ({skin, frame, from = 0, w = 520, label}) => {
   const p = palette(skin);
-  const h = 64, gap = 56;
+  const h = 80, gap = 68;
+  /* Plateaux etages : la profondeur vient du decalage ET de la largeur. */
+  const wide = [0.86, 1, 0.93];
   return (
     <g>
       {[2, 1, 0].map((i) => {
@@ -172,7 +174,7 @@ export const Layer: React.FC<{
         return (
           <g key={i} opacity={a} transform={`translate(0 ${mix(28, 0, a)})`}>
             <rect
-              x={-w / 2} y={y - h / 2} width={w} height={h} rx={22}
+              x={(-w * wide[i]) / 2} y={y - h / 2} width={w * wide[i]} height={h} rx={26}
               fill={mid ? p.key : p.face}
               stroke={mid ? 'none' : p.line}
               strokeWidth={5}
@@ -180,8 +182,8 @@ export const Layer: React.FC<{
             />
             {!mid ? (
               <>
-                <rect x={-w / 2 + 34} y={y - 7} width={120} height={14} rx={7} fill={p.quiet} />
-                <rect x={w / 2 - 154} y={y - 7} width={120} height={14} rx={7} fill={p.quiet} />
+                <rect x={(-w * wide[i]) / 2 + 36} y={y - 8} width={132} height={16} rx={8} fill={p.quiet} />
+                <rect x={(w * wide[i]) / 2 - 168} y={y - 8} width={132} height={16} rx={8} fill={p.quiet} />
               </>
             ) : null}
           </g>

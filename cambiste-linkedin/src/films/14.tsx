@@ -15,11 +15,11 @@ import {EndCard} from '../art/EndCard';
 
 const NET = [
   {x: 540, y: 900},
-  {x: 320, y: 760},
-  {x: 770, y: 760},
-  {x: 300, y: 1080},
-  {x: 790, y: 1080},
-  {x: 540, y: 660},
+  {x: 282, y: 718},
+  {x: 800, y: 718},
+  {x: 262, y: 1076},
+  {x: 820, y: 1076},
+  {x: 540, y: 626},
 ];
 
 export const film14: SceneDef[] = [
@@ -38,7 +38,7 @@ export const film14: SceneDef[] = [
           ))}
           {NET.slice(1).map((p, i) => (
             <g key={`n${i}`} transform={`translate(${p.x} ${p.y})`}>
-              <Node skin={{tone: 'dark'}} frame={f} from={4 + i * 4} r={34} />
+              <Node skin={{tone: 'dark'}} frame={f} from={4 + i * 4} r={44} />
             </g>
           ))}
           <Place x={540} y={900} o={at(f, 2, 16)} s={mix(0.6, 1, at(f, 2, 16))}>
@@ -64,13 +64,13 @@ export const film14: SceneDef[] = [
           ))}
           {NET.slice(1).map((p, i) => (
             <g key={`n${i}`} transform={`translate(${p.x} ${p.y})`}>
-              <Node skin={{tone: 'dark'}} frame={f} from={0} r={34} />
+              <Node skin={{tone: 'dark'}} frame={f} from={0} r={44} />
             </g>
           ))}
           <Rail a={[540, 900]} c={[300, 1010]} b={[190, 1120]} t={at(f, 16, 26, EASE.draw)}
                 color={C.green} width={6} />
           <g transform="translate(190 1120)">
-            <Node skin={{tone: 'dark'}} frame={f} from={30} r={58} kind="bank" />
+            <Node skin={{tone: 'dark'}} frame={f} from={30} r={66} kind="bank" />
           </g>
           <Place x={540} y={900}>
             <MarkG size={110} />
@@ -95,17 +95,17 @@ export const film14: SceneDef[] = [
           ))}
           {NET.slice(1).map((p, i) => (
             <g key={`n${i}`} transform={`translate(${p.x} ${p.y})`}>
-              <Node skin={{tone: 'dark'}} frame={f} from={0} r={34} />
+              <Node skin={{tone: 'dark'}} frame={f} from={0} r={44} />
             </g>
           ))}
           <Rail a={[540, 900]} c={[300, 1010]} b={[190, 1120]} t={1} color={C.green} width={6} />
           <g transform="translate(190 1120)">
-            <Node skin={{tone: 'dark'}} frame={f} from={0} r={58} kind="bank" />
+            <Node skin={{tone: 'dark'}} frame={f} from={0} r={66} kind="bank" />
           </g>
           <Rail a={[540, 900]} c={[790, 1010]} b={[890, 1120]} t={at(f, 14, 26, EASE.draw)}
                 color={C.green} width={6} />
           <g transform="translate(890 1120)">
-            <Node skin={{tone: 'dark'}} frame={f} from={28} r={58} kind="wallet" />
+            <Node skin={{tone: 'dark'}} frame={f} from={28} r={66} kind="wallet" />
           </g>
           <Place x={540} y={900}>
             <MarkG size={110} />
@@ -123,16 +123,26 @@ export const film14: SceneDef[] = [
     render: (f, n) => (
       <>
         <Svg>
-          <circle cx={540} cy={900} r={460 * at(f, 0, 26, EASE.move)} fill={C.mint} />
+          <circle cx={540} cy={900} r={490 * at(f, 0, 26, EASE.move)} fill={C.mint} />
           {NET.slice(1).map((p, i) => (
             <Rail key={i} a={[540, 900]} c={[mix(540, p.x, 0.5), mix(900, p.y, 0.5)]} b={[p.x, p.y]}
                   t={at(f, 4 + i * 3, 20, EASE.draw)} color={C.green} width={5} opacity={0.5} />
           ))}
           {NET.slice(1).map((p, i) => (
             <g key={`n${i}`} transform={`translate(${p.x} ${p.y})`}>
-              <Node skin={{tone: 'light'}} frame={f} from={2 + i * 3} r={34} />
+              <Node skin={{tone: 'light'}} frame={f} from={2 + i * 3} r={44} />
             </g>
           ))}
+          <Rail a={[540, 900]} c={[300, 1010]} b={[180, 1128]} t={at(f, 10, 22, EASE.draw)}
+                color={C.green} width={6} />
+          <Rail a={[540, 900]} c={[790, 1010]} b={[900, 1128]} t={at(f, 14, 22, EASE.draw)}
+                color={C.green} width={6} />
+          <g transform="translate(180 1128)">
+            <Node skin={{tone: 'light'}} frame={f} from={16} r={66} kind="bank" />
+          </g>
+          <g transform="translate(900 1128)">
+            <Node skin={{tone: 'light'}} frame={f} from={20} r={66} kind="wallet" />
+          </g>
           <Place x={540} y={900} o={at(f, 20, 16)} s={mix(0.7, 1, at(f, 20, 16))}>
             <MarkG size={124} />
           </Place>

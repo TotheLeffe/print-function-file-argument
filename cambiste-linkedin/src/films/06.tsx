@@ -65,9 +65,9 @@ export const film06: SceneDef[] = [
     bg: C.forest,
     enter: {kind: 'wipe', from: 'bottom'},
     render: (f, n) => {
-      const a: [number, number] = [220, 980];
-      const c: [number, number] = [540, 700];
-      const b: [number, number] = [860, 980];
+      const a: [number, number] = [170, 1010];
+      const c: [number, number] = [540, 640];
+      const b: [number, number] = [910, 1010];
       const run = at(f, 30, 48, EASE.move);
       const p = along(a, c, b, run);
       const span = at(f, 8, 30, EASE.draw);
@@ -76,20 +76,20 @@ export const film06: SceneDef[] = [
           <Glow x={540} y={980} r={740} color={C.deep} alpha={0.7} />
           <Svg>
             {/* deux rives, un tablier */}
-            <rect x={120} y={980} width={200} height={26} rx={13} fill={C.green} opacity={at(f, 0, 14)} />
-            <rect x={760} y={980} width={200} height={26} rx={13} fill={C.blue} opacity={at(f, 6, 14)} />
-            <Rail a={a} c={c} b={b} t={span} gradient width={8} />
+            <rect x={60} y={1010} width={240} height={150} rx={18} fill={C.green} opacity={at(f, 0, 14)} />
+            <rect x={780} y={1010} width={240} height={150} rx={18} fill={C.blue} opacity={at(f, 6, 14)} />
+            <Rail a={a} c={c} b={b} t={span} gradient width={12} />
             {[0.2, 0.4, 0.6, 0.8].map((u, i) => {
               const q = along(a, c, b, u);
               return (
-                <line key={i} x1={q[0]} y1={q[1]} x2={q[0]} y2={1000}
-                      stroke={i < 2 ? C.leaf : C.sky} strokeWidth={4}
-                      opacity={0.45 * at(f, 16 + i * 4, 14) * (span > u ? 1 : 0)} />
+                <line key={i} x1={q[0]} y1={q[1]} x2={q[0]} y2={1014}
+                      stroke={i < 2 ? C.leaf : C.sky} strokeWidth={6}
+                      opacity={0.5 * at(f, 16 + i * 4, 14) * (span > u ? 1 : 0)} />
               );
             })}
             {run > 0.02 && run < 0.99 ? (
               <g transform={`translate(${p[0]} ${p[1]})`}>
-                <Token r={34} color={C.white} ring={run > 0.5 ? C.sky : C.leaf} />
+                <Token r={42} color={C.white} ring={run > 0.5 ? C.sky : C.leaf} />
               </g>
             ) : null}
           </Svg>

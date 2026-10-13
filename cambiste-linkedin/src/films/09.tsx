@@ -81,7 +81,7 @@ export const film09: SceneDef[] = [
         <>
           <Glow x={540} y={940} r={720} color={C.deep} alpha={0.72} />
           <Svg>
-            <Place x={280} y={920} s={0.46}>
+            <Place x={268} y={910} s={0.62}>
               <Bank skin={{tone: 'dark'}} frame={f} from={0} />
             </Place>
             <Rail a={a} c={c} b={b} t={at(f, 14, 30, EASE.draw)} gradient width={7} />
@@ -90,8 +90,8 @@ export const film09: SceneDef[] = [
                 <Token r={18} color={run > 0.5 ? C.blue : C.green} />
               </g>
             ) : null}
-            <Place x={820} y={920} s={0.72} o={at(f, 50, 14)}>
-              <Account skin={{tone: 'dark', key: 'blue'}} frame={f} from={50} />
+            <Place x={826} y={910} s={0.92} o={at(f, 38, 14)}>
+              <Account skin={{tone: 'dark', key: 'blue'}} frame={f} from={38} />
             </Place>
             <g transform="translate(820 920)">
               <Ping frame={f} from={68} color={C.sky} r={170} />
@@ -112,13 +112,13 @@ export const film09: SceneDef[] = [
         <Glow x={540} y={940} r={700} color={C.deep} alpha={0.68} />
         <Svg>
           <Rail a={[220, 820]} c={[540, 1040]} b={[860, 820]} t={at(f, 16, 30, EASE.draw)} gradient width={6} />
-          <Place x={220} y={820} s={0.42}>
+          <Place x={216} y={812} s={0.56}>
             <Shop skin={{tone: 'dark'}} frame={f} from={0} />
           </Place>
           <Place x={540} y={990} o={at(f, 14, 16)} s={mix(0.7, 1, at(f, 14, 16))}>
             <MarkG size={96} />
           </Place>
-          <Place x={860} y={820} s={0.46} o={at(f, 22, 14)}>
+          <Place x={864} y={812} s={0.6} o={at(f, 22, 14)}>
             <Account skin={{tone: 'dark', key: 'blue'}} frame={f} from={22} />
           </Place>
         </Svg>

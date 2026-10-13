@@ -103,11 +103,11 @@ export const film01: SceneDef[] = [
                       </g>
                     </>
                   ) : null}
-                  <Place x={b[0]} y={b[1]} s={0.55} o={at(f, 44 + i * 6, 14)}>
-                    <Account skin={{tone: 'dark', key: 'blue'}} frame={f} from={44 + i * 6} />
+                  <Place x={b[0]} y={b[1]} s={0.58} o={at(f, 26 + i * 6, 14)}>
+                    <Account skin={{tone: 'dark', key: 'blue'}} frame={f} from={26 + i * 6} />
                   </Place>
                   <g transform={`translate(${b[0]} ${b[1]})`}>
-                    <Ping frame={f} from={46 + i * 6} color={C.sky} r={128} />
+                    <Ping frame={f} from={52 + i * 6} color={C.sky} r={128} />
                   </g>
                 </g>
               );

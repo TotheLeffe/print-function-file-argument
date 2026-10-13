@@ -109,7 +109,7 @@ export const film12: SceneDef[] = [
         <>
           <Glow x={540} y={900} r={700} color={C.deep} alpha={0.68} />
           <Svg>
-            <Place x={300} y={880} s={0.6}>
+            <Place x={296} y={880} s={0.74}>
               <Phone skin={{tone: 'dark'}} frame={f} from={0} rows={2} />
             </Place>
             <Rail a={a} c={c} b={b} t={at(f, 12, 26, EASE.draw)} gradient width={6} />
@@ -118,8 +118,8 @@ export const film12: SceneDef[] = [
                 <Token r={16} color={run > 0.5 ? C.blue : C.green} />
               </g>
             ) : null}
-            <Place x={800} y={920} s={0.68} o={at(f, 44, 14)}>
-              <Account skin={{tone: 'dark', key: 'blue'}} frame={f} from={44} />
+            <Place x={806} y={920} s={0.88} o={at(f, 34, 14)}>
+              <Account skin={{tone: 'dark', key: 'blue'}} frame={f} from={34} />
             </Place>
           </Svg>
           <Message lines={['One connected', 'experience.']} tone="dark" pos="top" frames={n} />

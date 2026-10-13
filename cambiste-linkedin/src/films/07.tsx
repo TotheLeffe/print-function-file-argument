@@ -16,15 +16,15 @@ import {EndCard} from '../art/EndCard';
 const SCATTER = (() => {
   const r = rng(7007);
   return Array.from({length: 8}, () => ({
-    x: 180 + r() * 720,
-    y: 620 + r() * 560,
+    x: 170 + r() * 740,
+    y: 580 + r() * 640,
     k: r(),
   }));
 })();
 
 const RING = SCATTER.map((_, i) => {
   const a = -Math.PI / 2 + (i / SCATTER.length) * Math.PI * 2;
-  return {x: 540 + Math.cos(a) * 300, y: 900 + Math.sin(a) * 300};
+  return {x: 540 + Math.cos(a) * 340, y: 910 + Math.sin(a) * 340};
 });
 
 const kindOf = (k: number) => (k < 0.33 ? 'bank' : k < 0.66 ? 'wallet' : 'plain');
@@ -40,7 +40,7 @@ export const film07: SceneDef[] = [
         <Svg>
           {SCATTER.map((s, i) => (
             <g key={i} transform={`translate(${s.x} ${s.y})`}>
-              <Node skin={{tone: 'light'}} frame={f} from={2 + i * 3} r={44} kind={kindOf(s.k)} />
+              <Node skin={{tone: 'light'}} frame={f} from={2 + i * 3} r={58} kind={kindOf(s.k)} />
             </g>
           ))}
         </Svg>
@@ -69,7 +69,7 @@ export const film07: SceneDef[] = [
           })}
           {SCATTER.map((s, i) => (
             <g key={i} transform={`translate(${s.x} ${s.y})`}>
-              <Node skin={{tone: 'light'}} frame={f} from={0} r={44} kind={kindOf(s.k)} />
+              <Node skin={{tone: 'light'}} frame={f} from={0} r={58} kind={kindOf(s.k)} />
             </g>
           ))}
         </Svg>
@@ -86,7 +86,7 @@ export const film07: SceneDef[] = [
       const move = at(f, 6, 40, EASE.move);
       return (
         <>
-          <Glow x={540} y={900} r={700} color={C.deep} alpha={0.72} />
+          <Glow x={540} y={910} r={700} color={C.deep} alpha={0.72} />
           <Svg>
             {RING.map((r, i) => {
               const q = RING[(i + 1) % RING.length];
@@ -97,16 +97,16 @@ export const film07: SceneDef[] = [
               );
             })}
             {RING.map((r, i) => (
-              <line key={`s${i}`} x1={540} y1={900} x2={mix(540, r.x, at(f, 64 + i * 3, 16, EASE.draw))}
-                    y2={mix(900, r.y, at(f, 64 + i * 3, 16, EASE.draw))}
+              <line key={`s${i}`} x1={540} y1={910} x2={mix(540, r.x, at(f, 64 + i * 3, 16, EASE.draw))}
+                    y2={mix(910, r.y, at(f, 64 + i * 3, 16, EASE.draw))}
                     stroke={C.green} strokeWidth={4} opacity={0.55} />
             ))}
             {SCATTER.map((s, i) => (
               <g key={i} transform={`translate(${mix(s.x, RING[i].x, move)} ${mix(s.y, RING[i].y, move)})`}>
-                <Node skin={{tone: 'dark'}} frame={f} from={0} r={44} kind={kindOf(s.k)} />
+                <Node skin={{tone: 'dark'}} frame={f} from={0} r={58} kind={kindOf(s.k)} />
               </g>
             ))}
-            <Place x={540} y={900} o={at(f, 58, 16)} s={mix(0.6, 1, at(f, 58, 16))}>
+            <Place x={540} y={910} o={at(f, 58, 16)} s={mix(0.6, 1, at(f, 58, 16))}>
               <MarkG size={112} />
             </Place>
           </Svg>
@@ -124,24 +124,24 @@ export const film07: SceneDef[] = [
       const sweep = at(f, 4, 56, EASE.move);
       return (
         <>
-          <Glow x={540} y={900} r={700} color={C.deep} alpha={0.72} />
+          <Glow x={540} y={910} r={700} color={C.deep} alpha={0.72} />
           <Svg>
             {RING.map((r, i) => {
               const q = RING[(i + 1) % RING.length];
               return <line key={i} x1={r.x} y1={r.y} x2={q.x} y2={q.y} stroke={C.leaf} strokeWidth={5} opacity={0.6} />;
             })}
             {RING.map((r, i) => (
-              <line key={`s${i}`} x1={540} y1={900} x2={r.x} y2={r.y} stroke={C.green} strokeWidth={4} opacity={0.5} />
+              <line key={`s${i}`} x1={540} y1={910} x2={r.x} y2={r.y} stroke={C.green} strokeWidth={4} opacity={0.5} />
             ))}
             {SCATTER.map((s, i) => {
               const lit = Math.max(0, 1 - Math.abs(sweep * RING.length - i));
               return (
                 <g key={i} transform={`translate(${RING[i].x} ${RING[i].y}) scale(${mix(1, 1.14, lit)})`}>
-                  <Node skin={{tone: 'dark'}} frame={f} from={0} r={44} kind={kindOf(s.k)} />
+                  <Node skin={{tone: 'dark'}} frame={f} from={0} r={58} kind={kindOf(s.k)} />
                 </g>
               );
             })}
-            <Place x={540} y={900}>
+            <Place x={540} y={910}>
               <MarkG size={112} />
             </Place>
           </Svg>

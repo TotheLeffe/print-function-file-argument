@@ -12,7 +12,7 @@ import {EndCard} from '../art/EndCard';
    desordonne et le resout en un objet unique, vu de trois quarts.
    ========================================================================= */
 
-const ENTRIES = [700, 790, 880, 970, 1060];
+const ENTRIES = [660, 775, 890, 1005, 1120];
 
 export const film10: SceneDef[] = [
   {
@@ -30,7 +30,7 @@ export const film10: SceneDef[] = [
               <path
                 key={i}
                 d={`M${-40} ${y} C${260} ${y + curl} ${520} ${y - curl} ${-40 + 1120 * t} ${y + curl * 0.4}`}
-                fill="none" stroke={i % 2 ? C.green : C.deep} strokeWidth={7}
+                fill="none" stroke={i % 2 ? C.green : C.deep} strokeWidth={10}
                 strokeLinecap="round" opacity={i % 2 ? 0.9 : 0.4}
               />
             );
@@ -54,12 +54,12 @@ export const film10: SceneDef[] = [
               <path
                 key={i}
                 d={`M${-40} ${y} Q${300} ${y} ${mix(1120, 540, pull)} ${mix(y, 900, pull)}`}
-                fill="none" stroke={i % 2 ? C.green : C.deep} strokeWidth={7}
+                fill="none" stroke={i % 2 ? C.green : C.deep} strokeWidth={10}
                 strokeLinecap="round" opacity={i % 2 ? 0.9 : 0.4}
               />
             ))}
             <g transform="translate(540 900)">
-              <Layer skin={{tone: 'light'}} frame={f} from={34} w={660} />
+              <Layer skin={{tone: 'light'}} frame={f} from={34} w={780} />
             </g>
             <Place x={540} y={900} o={at(f, 58, 16)} s={mix(0.7, 1, at(f, 58, 16))}>
               <MarkG size={92} />
@@ -80,7 +80,7 @@ export const film10: SceneDef[] = [
         <Glow x={540} y={940} r={740} color={C.deep} alpha={0.75} />
         <Svg>
           <g transform="translate(540 940)">
-            <Layer skin={{tone: 'dark'}} frame={f} from={0} w={740} />
+            <Layer skin={{tone: 'dark'}} frame={f} from={0} w={840} />
           </g>
           <Place x={540} y={940} o={at(f, 24, 16)} s={mix(0.7, 1, at(f, 24, 16))}>
             <MarkG size={104} />
@@ -106,13 +106,13 @@ export const film10: SceneDef[] = [
       <>
         <Glow x={540} y={940} r={700} color={C.deep} alpha={0.7} />
         <Svg>
-          <Place x={230} y={760} s={0.4}>
+          <Place x={224} y={752} s={0.52}>
             <Bank skin={{tone: 'dark'}} frame={f} from={0} />
           </Place>
-          <Place x={540} y={752} s={0.36}>
+          <Place x={540} y={744} s={0.46}>
             <Phone skin={{tone: 'dark'}} frame={f} from={6} rows={2} />
           </Place>
-          <Place x={856} y={766} s={0.52} o={at(f, 12, 14)}>
+          <Place x={858} y={756} s={0.66} o={at(f, 12, 14)}>
             <Account skin={{tone: 'dark', key: 'blue'}} frame={f} from={12} />
           </Place>
           {[230, 540, 856].map((x, i) => (
