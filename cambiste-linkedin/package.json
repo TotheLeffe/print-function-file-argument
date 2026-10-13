@@ -1,0 +1,22 @@
+{
+  "name": "cambiste-linkedin-series",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cambiste — serie de 14 spots LinkedIn, 1080x1350, 15 s",
+  "scripts": {
+    "start": "remotion studio",
+    "render": "node scripts/render-all.mjs",
+    "verify": "node scripts/verify.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.410",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "remotion": "4.0.410"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.2",
+    "typescript": "5.9.3"
+  }
+}
