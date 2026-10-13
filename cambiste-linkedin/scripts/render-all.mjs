@@ -7,6 +7,14 @@
    par choix — LinkedIn demarre la lecture sans son — donc la piste n'a
    aucune raison d'exister.
 
+   --concurrency=1 : Remotion repartit sinon les images sur plusieurs onglets,
+   et Chromium ne rasterise pas un meme texte au meme sous-pixel d'un onglet a
+   l'autre. Les images d'un plan alternaient alors entre deux rasterisations —
+   invisible a l'oeil, mesurable sur le fichier (7 000 pixels une image sur
+   deux), et contraire a la promesse d'un texte rigoureusement immobile. Un
+   seul onglet rend toutes les images : elles sont identiques au pixel pres.
+   Cout : 42 s par spot au lieu de 26.
+
    Un seul rendu a la fois : chaque navigateur de rendu occupe beaucoup de
    memoire, et la serie n'est pas pressee.
 
@@ -32,7 +40,8 @@ for (const id of ids) {
   const t0 = Date.now();
   const r = spawnSync(
     join(ROOT, 'node_modules', '.bin', 'remotion'),
-    ['render', 'src/index.ts', name, `out/${name}.mp4`, '--muted', '--log=error'],
+    ['render', 'src/index.ts', name, `out/${name}.mp4`,
+     '--muted', '--concurrency=1', '--log=error'],
     {cwd: ROOT, stdio: ['ignore', 'pipe', 'pipe']}
   );
   if (r.status === 0) {

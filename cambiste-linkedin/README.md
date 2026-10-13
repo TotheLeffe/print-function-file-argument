@@ -121,15 +121,20 @@ distingue un mouvement du bruit de compression : un texte fixe encodé en
 H.264 varie de quelques centaines de pixels sur ses bords anticrénelés, alors
 qu'un décalage d'un seul pixel en changerait des milliers.
 
-**Une transformation résiduelle n'est pas neutre.** Laisser
-`transform: translateY(0px)` sur le bloc de texte une fois la phrase posée
-promeut ce bloc en couche composée, et Chromium ne la rastérise pas au même
-sous-pixel d'un onglet de rendu à l'autre : les images d'un même plan
-alternaient entre deux rastérisations du même texte. Invisible à l'œil,
-mais mesurable — 2 400 pixels par image — et contraire à la promesse d'un
-texte rigoureusement immobile. La transformation est donc **retirée**, pas
-mise à zéro. La mesure sur le fichier rendu l'a trouvé ; la relecture du
-code ne l'aurait pas trouvé.
+**Les 14 films sont rendus sur un seul onglet** (`--concurrency=1`).
+Remotion répartit sinon les images sur plusieurs onglets de rendu, et
+Chromium ne rastérise pas un même texte au même sous-pixel d'un onglet à
+l'autre : les images d'un même plan alternaient entre deux rastérisations du
+même texte — invisible à l'œil, mais 7 000 pixels d'écart une image sur
+deux, et contraire à la promesse d'un texte rigoureusement immobile. Un seul
+onglet rend toutes les images : elles sont identiques au pixel près. Le coût
+est de 42 s par spot au lieu de 26.
+
+Dans le même esprit, la transformation du bloc de texte est **retirée** une
+fois la phrase posée, et non mise à zéro : un `transform: translateY(0px)`
+résiduel promeut le bloc en couche composée, ce qui n'a aucune raison
+d'être. Ces deux points ont été trouvés en mesurant le fichier rendu ; la
+relecture du code ne les aurait pas trouvés.
 
 ## Structure
 
