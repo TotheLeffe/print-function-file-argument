@@ -1,23 +1,23 @@
 import React from 'react';
 import {Composition} from 'remotion';
 import {FPS, HEIGHT, TOTAL_FRAMES, WIDTH} from './config';
-import {SPOTS} from './spots';
-import {SpotFilm} from './SpotFilm';
+import {Film} from './Film';
+import {FILMS} from './films';
 
-/* Quatorze compositions, un seul composant : cambiste-linkedin-01 a -14.
-   Chacune fait 1080 x 1350, 30 ips, 450 images — 15,000 s exactement. */
+/* Les quatorze films : meme format, meme systeme graphique, une mise en
+   scene propre a chacun. */
 export const RemotionRoot: React.FC = () => (
   <>
-    {SPOTS.map((spot) => (
+    {Object.keys(FILMS).map((id) => (
       <Composition
-        key={spot.id}
-        id={`cambiste-linkedin-${spot.id}`}
-        component={SpotFilm}
+        key={id}
+        id={`cambiste-linkedin-${id}`}
+        component={Film}
         durationInFrames={TOTAL_FRAMES}
         fps={FPS}
         width={WIDTH}
         height={HEIGHT}
-        defaultProps={{spotId: spot.id}}
+        defaultProps={{id}}
       />
     ))}
   </>

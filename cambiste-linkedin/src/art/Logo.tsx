@@ -1,7 +1,7 @@
 import React from 'react';
 import {Img, staticFile} from 'remotion';
 import {MARK, WORDMARK} from '../brand';
-import {ASSETS, COLORS} from '../config';
+import {ASSETS, C} from '../config';
 
 /**
  * Contour du carre de marque : une superellipse, pas un rayon simple. Les
@@ -46,11 +46,11 @@ export const CambisteMark: React.FC<{height: number}> = ({height}) => (
     viewBox={`0 0 ${MARK.vbw} ${MARK.vbh}`}
     style={{display: 'block'}}
   >
-    <path d={SQUIRCLE} fill={COLORS.green} />
-    <path d={MARK.lobe} fill={COLORS.white} />
+    <path d={SQUIRCLE} fill={C.green} />
+    <path d={MARK.lobe} fill={C.white} />
     <path
       d={MARK.lobe}
-      fill={COLORS.white}
+      fill={C.white}
       transform={`rotate(180 ${MARK.cx} ${MARK.cy})`}
     />
   </svg>
@@ -73,3 +73,18 @@ export const CambisteLockup: React.FC<{height: number}> = ({height}) => (
     <CambisteMark height={height} />
   </div>
 );
+
+/**
+ * La marque seule, en element de dessin : meme trace que le logotype
+ * officiel, utilisable au milieu d'une illustration.
+ */
+export const MarkG: React.FC<{size: number; o?: number}> = ({size, o = 1}) => {
+  const s = size / MARK.vbh;
+  return (
+    <g transform={`translate(${(-MARK.vbw * s) / 2} ${(-MARK.vbh * s) / 2}) scale(${s})`} opacity={o}>
+      <path d={SQUIRCLE} fill={C.green} />
+      <path d={MARK.lobe} fill={C.white} />
+      <path d={MARK.lobe} fill={C.white} transform={`rotate(180 ${MARK.cx} ${MARK.cy})`} />
+    </g>
+  );
+};
