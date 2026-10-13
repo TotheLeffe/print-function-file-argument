@@ -70,7 +70,10 @@ export const EndCard: React.FC<{
             marginTop: 44,
             fontSize: 38,
             fontWeight: 700,
-            color: C.green,
+            /* Encre, pas vert : le vert Cambiste sur fond clair ne donne que
+               2,5:1 de contraste, sous le seuil d'un texte de cette taille.
+               Le vert reste l'accent du trait sous le logotype. */
+            color: tone === 'dark' ? C.leaf : C.forest,
             opacity: t(14),
           }}
         >

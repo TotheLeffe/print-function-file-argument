@@ -15,11 +15,14 @@ import {EndCard} from '../art/EndCard';
    le meme a chaque rendu. */
 const SCATTER = (() => {
   const r = rng(7007);
-  return Array.from({length: 8}, () => ({
-    x: 170 + r() * 740,
-    y: 580 + r() * 640,
-    k: r(),
-  }));
+  const out: {x: number; y: number; k: number}[] = [];
+  let guard = 0;
+  while (out.length < 8 && guard++ < 4000) {
+    const p = {x: 180 + r() * 720, y: 560 + r() * 660, k: r()};
+    // rien ne se touche : deux systemes epars, ce n'est pas un tas
+    if (out.every((q) => Math.hypot(q.x - p.x, q.y - p.y) > 190)) out.push(p);
+  }
+  return out;
 })();
 
 const RING = SCATTER.map((_, i) => {
