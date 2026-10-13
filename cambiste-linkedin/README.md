@@ -121,6 +121,16 @@ distingue un mouvement du bruit de compression : un texte fixe encodé en
 H.264 varie de quelques centaines de pixels sur ses bords anticrénelés, alors
 qu'un décalage d'un seul pixel en changerait des milliers.
 
+**Une transformation résiduelle n'est pas neutre.** Laisser
+`transform: translateY(0px)` sur le bloc de texte une fois la phrase posée
+promeut ce bloc en couche composée, et Chromium ne la rastérise pas au même
+sous-pixel d'un onglet de rendu à l'autre : les images d'un même plan
+alternaient entre deux rastérisations du même texte. Invisible à l'œil,
+mais mesurable — 2 400 pixels par image — et contraire à la promesse d'un
+texte rigoureusement immobile. La transformation est donc **retirée**, pas
+mise à zéro. La mesure sur le fichier rendu l'a trouvé ; la relecture du
+code ne l'aurait pas trouvé.
+
 ## Structure
 
 ```

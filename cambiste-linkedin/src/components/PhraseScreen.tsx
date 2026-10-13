@@ -44,7 +44,13 @@ export const PhraseScreen: React.FC<Props> = ({
       style={{
         width: CONTENT_W,
         opacity: p,
-        transform: `translateY(${(1 - p) * 16}px)`,
+        /* Une fois la phrase posee, la transformation est RETIREE, pas mise
+           a zero : un `transform` residuel promeut le bloc en couche
+           composee, et Chromium ne rasterise pas cette couche au meme
+           sous-pixel d'un onglet de rendu a l'autre. Les images d'un meme
+           plan alternaient alors entre deux rasterisations — invisible a
+           l'oeil, mais le texte n'etait plus rigoureusement immobile. */
+        transform: p >= 1 ? undefined : `translateY(${(1 - p) * 16}px)`,
       }}
     >
       {lines.map((line, i) => (

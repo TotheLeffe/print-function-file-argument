@@ -175,13 +175,19 @@ const Dot: React.FC<{x: number; y: number; r: number; p: number; fill: string}> 
   x, y, r, p, fill,
 }) => (p <= 0.01 ? null : <circle cx={x} cy={y} r={r * p} fill={fill} />);
 
-/** Nuage de points deterministe, sans aucune reference geographique. */
+/**
+ * Nuage de points deterministe, sans aucune reference geographique : un
+ * foyer d'activite, jamais un continent dessine.
+ *
+ * Les rayons partent de 7 px : en dessous, un point disparait sur un fil
+ * LinkedIn de 400 px de large, ou il ne mesurerait plus que deux pixels.
+ */
 const cloud = (seed: number, n: number, box: {x0: number; y0: number; x1: number; y1: number}) => {
   const r = rng(seed);
   return Array.from({length: n}, () => ({
     x: box.x0 + r() * (box.x1 - box.x0),
     y: box.y0 + r() * (box.y1 - box.y0),
-    s: 4 + r() * 5,
+    s: 7 + r() * 6,
     rank: r(),
   }));
 };

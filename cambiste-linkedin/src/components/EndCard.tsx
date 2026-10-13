@@ -72,7 +72,7 @@ export const EndCard: React.FC<Props> = ({lines, bg}) => {
             width: CONTENT_W,
             marginBottom: 96,
             opacity: msg,
-            transform: `translateY(${(1 - msg) * 16}px)`,
+            transform: msg >= 1 ? undefined : `translateY(${(1 - msg) * 16}px)`,
           }}
         >
           {lines.map((line, i) => (
@@ -94,7 +94,12 @@ export const EndCard: React.FC<Props> = ({lines, bg}) => {
         </div>
       ) : null}
 
-      <div style={{opacity: logo, transform: `translateY(${(1 - logo) * 12}px)`}}>
+      <div
+        style={{
+          opacity: logo,
+          transform: logo >= 1 ? undefined : `translateY(${(1 - logo) * 12}px)`,
+        }}
+      >
         <CambisteLockup height={LOGO_H} />
       </div>
 
