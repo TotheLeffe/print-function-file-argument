@@ -120,6 +120,24 @@ for (const {f, w, h} of FILES) {
     }
     return n / (sw * sh);
   };
+  /* Pour la signature, on ne mesure que la zone ou elle se trouve. Le decor
+     garde volontairement une derive de camera tres lente derriere elle :
+     c'est la « variation tres discrete » demandee, pas un defaut, et elle
+     n'a rien a voir avec la stabilite du logotype et des lignes. */
+  const band = {
+    x0: Math.round(sw * 0.14), x1: Math.round(sw * 0.86),
+    y0: Math.round(sh * 0.34), y1: Math.round(sh * 0.66),
+  };
+  const diffBand = (x, y) => {
+    let n = 0;
+    for (let r = band.y0; r < band.y1; r++) {
+      for (let c = band.x0; c < band.x1; c++) {
+        const i = (r * sw + c) * 3;
+        if (Math.abs(x[i] - y[i]) + Math.abs(x[i + 1] - y[i + 1]) + Math.abs(x[i + 2] - y[i + 2]) > 42) n++;
+      }
+    }
+    return n / ((band.x1 - band.x0) * (band.y1 - band.y0));
+  };
   const lum = (img) => {
     let s = 0;
     for (let i = 0; i < size; i += 3) s += 0.2126 * img[i] + 0.7152 * img[i + 1] + 0.0722 * img[i + 2];
@@ -146,7 +164,7 @@ for (const {f, w, h} of FILES) {
   let stable = fr.length - 1;
   for (let k = 780; k < fr.length; k++) {
     let ok = true;
-    for (let g = k; g < fr.length; g += 3) if (diff(fr[g], last) > 0.0015) {ok = false; break;}
+    for (let g = k; g < fr.length; g += 3) if (diffBand(fr[g], last) > 0.0015) {ok = false; break;}
     if (ok) {stable = k; break;}
   }
   const stillness = (fr.length - stable) / 30;
