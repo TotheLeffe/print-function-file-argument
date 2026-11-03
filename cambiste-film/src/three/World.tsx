@@ -218,6 +218,45 @@ const Orchestration: React.FC<{frame: number; dx: number}> = ({frame, dx}) => {
   );
 };
 
+/* ---- Le trajet operationnel --------------------------------------------
+   Une liaison directe, en bas et en bleu, entre les deux systemes
+   financiers. Elle ne passe pas par la couche Cambiste et ne monte jamais
+   vers elle : les operations financieres restent entre les partenaires,
+   Cambiste coordonne les echanges techniques au-dessus. C'est la
+   difference la plus importante du film, et elle se voit.              */
+const OperationalPath: React.FC<{frame: number; dx: number}> = ({frame, dx}) => {
+  /* Devant les deux systemes et sous les interfaces : on la voit, elle ne
+     touche jamais la couche du dessus. */
+  const y = -1.18;
+  const z = 1.32;
+  const a: V3 = [GAP.left + dx - 0.9, y, z];
+  const b: V3 = [GAP.right - dx + 0.9, y, z];
+  const draw = at(frame, 392, 40, EASE.draw);
+  const fade = 1 - 0.55 * at(frame, 688, 34, EASE.move);
+  if (draw <= 0.001) return null;
+  return (
+    <group>
+      <Strut a={a} b={b} t={draw} w={0.034}>
+        <Lumen color={C.blueLit} power={mix(1.9, 0.9, 1 - fade)} />
+      </Strut>
+      {[a, b].map((p, i) => (
+        <mesh key={i} position={[p[0], p[1], p[2]]} scale={clamp01(draw * 6)}>
+          <boxGeometry args={[0.1, 0.16, 0.16]} />
+          <Edge />
+        </mesh>
+      ))}
+      {[0, 1, 2].map((i) => {
+        const t = at(frame, 416 + i * 44, 52, EASE.move);
+        if (t <= 0.02 || t >= 0.98 || frame > 560) return null;
+        const u = i % 2 ? 1 - t : t;
+        return (
+          <Pulse key={i} pos={[mix(a[0], b[0], u), y, z]} s={0.72} color={C.blueLit} />
+        );
+      })}
+    </group>
+  );
+};
+
 /* ---- Les signaux --------------------------------------------------------
    Une seule impulsion porte le film. Elle monte d'abord dans le systeme
    de gauche et attend au bord du vide ; une fois la connexion etablie,
@@ -290,6 +329,7 @@ export const World: React.FC<{frame: number; dx?: number}> = ({frame, dx = 0}) =
     <LeftSystem frame={frame} dx={dx} />
     <RightSystem frame={frame} dx={dx} />
     <Orchestration frame={frame} dx={dx} />
+    <OperationalPath frame={frame} dx={dx} />
     <Signals frame={frame} dx={dx} />
     {/* sol : il ne se voit pas, il recoit les ombres de contact */}
     <mesh position={[0, -2.26, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>

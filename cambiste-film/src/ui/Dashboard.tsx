@@ -92,10 +92,10 @@ const Step: React.FC<{text: string; frame: number; from: number; last: boolean; 
 export const Dashboard: React.FC<{frame: number; format: Format}> = ({frame, format}) => {
   const wide = format === 'wide';
   const s = wide ? 1 : 0.92;
-  const o = band(frame, T.panel, T.out, 20, 16);
+  const o = band(frame, T.panel, T.out, 22, 16, EASE.move);
   if (o <= 0.002) return null;
 
-  const draw = at(frame, T.panel, 26, EASE.out);
+  const draw = at(frame, T.panel, 28, EASE.move);
   const head = at(frame, T.head, 16);
   const pay = at(frame, T.payment, 16);
   const recon = at(frame, T.recon, 16);

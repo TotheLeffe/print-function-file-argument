@@ -30,9 +30,22 @@ export const at = (
     easing: ease,
   });
 
-/** Opacite d'un bloc qui entre, tient, puis sort. */
-export const band = (frame: number, from: number, to: number, enter = 12, leave = 10) =>
-  at(frame, from, enter) * (1 - at(frame, to - leave, leave, EASE.move));
+/**
+ * Opacite d'un bloc qui entre, tient, puis sort.
+ *
+ * `ease` compte : une sortie d'exponentielle bouge enormement des la
+ * premiere image, ce qui convient a un texte qui doit se poser vite, mais
+ * fait apparaitre d'un coup un grand aplat. Pour une surface large, on
+ * prend une courbe qui demarre lentement.
+ */
+export const band = (
+  frame: number,
+  from: number,
+  to: number,
+  enter = 12,
+  leave = 10,
+  ease: (n: number) => number = EASE.out
+) => at(frame, from, enter, ease) * (1 - at(frame, to - leave, leave, EASE.move));
 
 export const mix = (a: number, b: number, t: number) => a + (b - a) * t;
 

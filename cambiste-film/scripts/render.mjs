@@ -10,7 +10,7 @@
    Usage : node scripts/render.mjs [wide|tall]
    ========================================================================= */
 import {spawnSync} from 'node:child_process';
-import {mkdirSync} from 'node:fs';
+import {mkdirSync, rmSync} from 'node:fs';
 import {dirname, join, resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 
@@ -29,9 +29,18 @@ for (const j of JOBS) {
   const t0 = Date.now();
   const r = spawnSync(
     join(ROOT, 'node_modules', '.bin', 'remotion'),
-    ['render', 'src/index.ts', j.id, `out/${j.out}`, '--concurrency=1', '--log=error'],
+    ['render', 'src/index.ts', j.id, `out/.tmp-${j.out}`, '--concurrency=1', '--log=error'],
     {cwd: ROOT, stdio: ['ignore', 'pipe', 'pipe']}
   );
+  if (r.status === 0) {
+    /* La piste AAC depasse la video de quelques centiemes : on coupe le
+       conteneur a 30,000 s sans toucher aux 900 images. */
+    const cut = spawnSync('ffmpeg', ['-v', 'error', '-y', '-i', join(ROOT, 'out', `.tmp-${j.out}`),
+                                     '-t', '30', '-c', 'copy', '-movflags', '+faststart',
+                                     join(ROOT, 'out', j.out)]);
+    if (cut.status !== 0) {failed++; console.log('ECHEC (coupe)');}
+    rmSync(join(ROOT, 'out', `.tmp-${j.out}`), {force: true});
+  }
   if (r.status === 0) {
     console.log(`ok (${((Date.now() - t0) / 1000).toFixed(0)} s)`);
   } else {

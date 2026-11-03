@@ -1,7 +1,7 @@
 import React from 'react';
 import {AbsoluteFill, Audio, staticFile, useCurrentFrame} from 'remotion';
 import {ASSETS, C, Format} from './config';
-import {at} from './anim';
+import {EASE, at} from './anim';
 import {useOutfit} from './fonts';
 import {Scene} from './three/Scene';
 import {Overlay} from './ui/Overlay';
@@ -17,11 +17,11 @@ export const Film: React.FC<{format: Format}> = ({format}) => {
   const frame = useCurrentFrame();
   /* Pendant l'interface, le decor s'estompe au lieu de disparaitre : on
      reste dans le meme espace. */
-  const dimE = 0.74 * at(frame, 514, 26) * (1 - at(frame, 674, 30));
+  const dimE = 0.74 * at(frame, 514, 28, EASE.move) * (1 - at(frame, 674, 30));
   /* Sequence F : la structure se simplifie. Sequence G : elle s'efface
      pour laisser le logotype seul et parfaitement lisible. */
-  const dimF = 0.46 * at(frame, 690, 26) * (1 - at(frame, 790, 28));
-  const dimG = 0.9 * at(frame, 790, 34);
+  const dimF = 0.46 * at(frame, 690, 28, EASE.move) * (1 - at(frame, 790, 28));
+  const dimG = 0.9 * at(frame, 790, 34, EASE.move);
   const dim = Math.max(dimE, dimF, dimG);
   return (
     <AbsoluteFill style={{background: C.bg, fontFamily: 'Outfit'}}>
