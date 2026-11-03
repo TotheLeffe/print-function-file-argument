@@ -70,8 +70,8 @@ export const BEATS: Beat[] = [
   {id: 'make', lines: ['Make the connection.'], in: 334, out: 422},
   {id: 'systems', lines: ['Connected systems.', 'Clearer operations.'], in: 432, out: 526},
   {id: 'visibility', lines: ['Visibility', 'at every stage.'], in: 556, out: 676},
-  {id: 'serve', lines: ['You serve your customers.'], in: 694, out: 790},
-  {id: 'infra', lines: ['We connect the infrastructure.'], in: 722, out: 790},
+  {id: 'serve', lines: ['You serve your customers.'], in: 692, out: 782},
+  {id: 'infra', lines: ['We connect the infrastructure.'], in: 716, out: 782},
 ];
 
 /** Libelles poses dans le decor, petits mais lisibles. */
@@ -89,8 +89,8 @@ export const SIGNAL_LABELS = [
 
 export const QUALIFIER = {
   text: 'For banks, mobile money operators and fintechs.',
-  in: 744,
-  out: 790,
+  in: 738,
+  out: 782,
 } as const;
 
 /** Mention : Cambiste orchestre, les partenaires executent. */
@@ -101,7 +101,7 @@ export const DISCLOSURE = {
 } as const;
 
 export const SIGNATURE = {
-  from: 792,
+  from: 786,
   tagline: 'Connecting African wallets to Global Banking.',
   cta: "Let's build your next payment corridor.",
   site: 'cambiste.app',

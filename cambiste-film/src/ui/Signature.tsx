@@ -18,7 +18,7 @@ const Line: React.FC<{
   color: string;
   weight?: number;
 }> = ({frame, from, children, size, color, weight = 500}) => {
-  const o = at(frame, from, 16, EASE.out);
+  const o = at(frame, from, 14, EASE.out);
   return (
     <div
       style={{
@@ -38,7 +38,7 @@ const Line: React.FC<{
 
 export const Signature: React.FC<{frame: number; format: Format}> = ({frame, format}) => {
   const s = SCALE[format];
-  const o = at(frame, SIGNATURE.from, 18, EASE.out);
+  const o = at(frame, SIGNATURE.from, 16, EASE.out);
   if (o <= 0.002) return null;
   return (
     <AbsoluteFill style={{justifyContent: 'center', alignItems: 'center'}}>
@@ -52,13 +52,13 @@ export const Signature: React.FC<{frame: number; format: Format}> = ({frame, for
         <Lockup height={58 * s} />
       </div>
       <div style={{display: 'flex', flexDirection: 'column', gap: 18 * s, alignItems: 'center'}}>
-        <Line frame={frame} from={SIGNATURE.from + 12} size={34 * s} color={C.white} weight={500}>
+        <Line frame={frame} from={SIGNATURE.from + 10} size={34 * s} color={C.white} weight={500}>
           {SIGNATURE.tagline}
         </Line>
-        <Line frame={frame} from={SIGNATURE.from + 24} size={27 * s} color={C.grey} weight={400}>
+        <Line frame={frame} from={SIGNATURE.from + 19} size={27 * s} color={C.grey} weight={400}>
           {SIGNATURE.cta}
         </Line>
-        <Line frame={frame} from={SIGNATURE.from + 34} size={26 * s} color={C.signalLit} weight={600}>
+        <Line frame={frame} from={SIGNATURE.from + 27} size={26 * s} color={C.signalLit} weight={600}>
           {SIGNATURE.site}
         </Line>
       </div>

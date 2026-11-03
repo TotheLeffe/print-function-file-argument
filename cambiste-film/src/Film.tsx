@@ -20,8 +20,8 @@ export const Film: React.FC<{format: Format}> = ({format}) => {
   const dimE = 0.74 * at(frame, 514, 28, EASE.move) * (1 - at(frame, 674, 30));
   /* Sequence F : la structure se simplifie. Sequence G : elle s'efface
      pour laisser le logotype seul et parfaitement lisible. */
-  const dimF = 0.46 * at(frame, 690, 28, EASE.move) * (1 - at(frame, 790, 28));
-  const dimG = 0.9 * at(frame, 790, 34, EASE.move);
+  const dimF = 0.46 * at(frame, 690, 28, EASE.move) * (1 - at(frame, 782, 28));
+  const dimG = 0.9 * at(frame, 782, 34, EASE.move);
   const dim = Math.max(dimE, dimF, dimG);
   return (
     <AbsoluteFill style={{background: C.bg, fontFamily: 'Outfit'}}>
